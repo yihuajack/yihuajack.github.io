@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ayka</title>
+  
+  <subtitle>Poor intelligence, useless work</subtitle>
+  <link href="https://yihuajack.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://yihuajack.github.io/"/>
+  <updated>2020-03-18T05:54:00.782Z</updated>
+  <id>https://yihuajack.github.io/</id>
+  
+  <author>
+    <name>Liu Yihua</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://yihuajack.github.io/2020/09/28/hello-world/"/>
+    <id>https://yihuajack.github.io/2020/09/28/hello-world/</id>
+    <published>2020-09-27T16:37:28.274Z</published>
+    <updated>2020-03-18T05:54:00.782Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于安装Adobe CC系列Photoshop等软件时报错无法写入注册表值错误代码160问题的解决方法</title>
+    <link href="https://yihuajack.github.io/2020/09/27/CSDN-2/"/>
+    <id>https://yihuajack.github.io/2020/09/27/CSDN-2/</id>
+    <published>2020-09-27T09:05:00.000Z</published>
+    <updated>2020-09-27T09:06:33.498Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;几个月前在研究音频处理时试图更新Audition出错，今天更新PS和AI再度出错，于是在C:\Program Files (x86)\Common</summary>
+        
+      
+    
+    
+    
+    <category term="CSDN" scheme="https://yihuajack.github.io/categories/CSDN/"/>
+    
+    
+    <category term="Adobe" scheme="https://yihuajack.github.io/tags/Adobe/"/>
+    
+    <category term="Adobe安装错误" scheme="https://yihuajack.github.io/tags/Adobe%E5%AE%89%E8%A3%85%E9%94%99%E8%AF%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从零开始的hexo配置github.io博客</title>
+    <link href="https://yihuajack.github.io/2020/03/19/paper/"/>
+    <id>https://yihuajack.github.io/2020/03/19/paper/</id>
+    <published>2020-03-19T05:05:00.000Z</published>
+    <updated>2020-09-27T08:58:45.886Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;建立GitHub仓库&quot;&gt;&lt;a href=&quot;#建立GitHub仓库&quot; class=&quot;headerlink&quot; title=&quot;建立GitHub仓库&quot;&gt;&lt;/a&gt;建立GitHub仓库&lt;/h3&gt;&lt;script&gt;
+       </summary>
+        
+      
+    
+    
+    
+    
+    <category term="tutorial" scheme="https://yihuajack.github.io/tags/tutorial/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于Visual Studio Installer无法识别已安装的VS并报错找不到路径的问题</title>
+    <link href="https://yihuajack.github.io/2019/07/27/CSDN-1/"/>
+    <id>https://yihuajack.github.io/2019/07/27/CSDN-1/</id>
+    <published>2019-07-27T09:56:50.000Z</published>
+    <updated>2020-09-27T09:01:28.980Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;千万不要删除下载缓存或将下载缓存或安装目录移动到其他位置，如果磁盘空间有限就在安装时将下载缓存放在移动硬盘上。安装后亲测结果当移动硬盘未连接时VS Installer在已安装界面显示为空（即无法识别已安装的VS），插入安装时放下载缓存的移动硬盘后VS</summary>
+        
+      
+    
+    
+    
+    <category term="CSDN" scheme="https://yihuajack.github.io/categories/CSDN/"/>
+    
+    
+    <category term="Visual Studio Installer Error" scheme="https://yihuajack.github.io/tags/Visual-Studio-Installer-Error/"/>
+    
+  </entry>
+  
+</feed>

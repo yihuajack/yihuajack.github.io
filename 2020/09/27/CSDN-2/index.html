@@ -12,12 +12,12 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|JetBrains Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yihuajack.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yihuajack.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="几个月前在研究音频处理时试图更新Audition出错，今天更新PS和AI再度出错，于是在C:\Program Files (x86)\Common Files\Adobe\Installers下找到install.log或在C:\ProgramData\Adobe\Installer下找到Summary.htm如下（以Photoshop为例，对Adobe各软件均有效）： 12345678910Ex">
@@ -78,6 +78,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Ayka" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -244,10 +245,28 @@
 
       
         <p>几个月前在研究音频处理时试图更新Audition出错，今天更新PS和AI再度出错，于是在C:\Program Files (x86)\Common Files\Adobe\Installers下找到install.log或在C:\ProgramData\Adobe\Installer下找到Summary.htm如下（以Photoshop为例，对Adobe各软件均有效）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Exit Code: 160</span><br><span class="line">-------------------------------------- Summary --------------------------------------</span><br><span class="line"> - 2 fatal error(s), 0 error(s), 3 warnings(s) </span><br><span class="line"></span><br><span class="line">FATAL: Error (Code &#x3D; 160) executing in command &#39;SetRegistryValueCommand&#39; for package: &#39;AdobePhotoshop20-Core_x64&#39;, version:20.0.6.80</span><br><span class="line">FATAL: Error occurred in install of package (Name: AdobePhotoshop20-Core_x64 Version: 20.0.6.80). Error code: &#39;160&#39;</span><br><span class="line">WARN: Asset(versioned) File in target location &#39;C:\Program Files (x86)\Common Files\Adobe\Color\Profiles\Recommended\JapanColor2001Coated.icc&#39; is locked by another application. Skipping replacement</span><br><span class="line">WARN: Asset(versioned) File in target location &#39;C:\Program Files (x86)\Common Files\Adobe\Color\Profiles\Recommended\USWebCoatedSWOP.icc&#39; is locked by another application. Skipping replacement</span><br><span class="line">WARN: Error Setting Registry - Start 64-bit:1 root:0 key:.cin name:Default type:REG_SZ data:Photoshop.CINFile.130. Check for Registry permissions. (Error: Error 5 鎷掔粷璁块棶銆�)</span><br><span class="line">-------------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Exit Code: 160</span><br><span class="line"><span class="comment">-------------------------------------- Summary --------------------------------------</span></span><br><span class="line"> - 2 fatal error(s), 0 error(s), 3 warnings(s) </span><br><span class="line"></span><br><span class="line">FATAL: Error (Code = 160) executing in command 'SetRegistryValueCommand' for package: 'AdobePhotoshop20-Core_x64', version:20.0.6.80</span><br><span class="line">FATAL: Error occurred in <span class="keyword">install</span> <span class="keyword">of</span> <span class="keyword">package</span> (<span class="keyword">Name</span>: AdobePhotoshop20-Core_x64 <span class="keyword">Version</span>: <span class="number">20.0</span><span class="number">.6</span><span class="number">.80</span>). <span class="keyword">Error</span> code: <span class="string">'160'</span></span><br><span class="line">WARN: Asset(versioned) <span class="keyword">File</span> <span class="keyword">in</span> target location <span class="string">'C:\Program Files (x86)\Common Files\Adobe\Color\Profiles\Recommended\JapanColor2001Coated.icc'</span> <span class="keyword">is</span> <span class="keyword">locked</span> <span class="keyword">by</span> another application. Skipping replacement</span><br><span class="line">WARN: Asset(versioned) <span class="keyword">File</span> <span class="keyword">in</span> target location <span class="string">'C:\Program Files (x86)\Common Files\Adobe\Color\Profiles\Recommended\USWebCoatedSWOP.icc'</span> <span class="keyword">is</span> <span class="keyword">locked</span> <span class="keyword">by</span> another application. Skipping replacement</span><br><span class="line">WARN: <span class="keyword">Error</span> Setting Registry - <span class="keyword">Start</span> <span class="number">64</span>-<span class="built_in">bit</span>:<span class="number">1</span> root:<span class="number">0</span> <span class="keyword">key</span>:.cin <span class="keyword">name</span>:<span class="keyword">Default</span> <span class="keyword">type</span>:REG_SZ <span class="keyword">data</span>:Photoshop.CINFile<span class="number">.130</span>. <span class="keyword">Check</span> <span class="keyword">for</span> Registry permissions. (<span class="keyword">Error</span>: <span class="keyword">Error</span> <span class="number">5</span> 鎷掔粷璁块棶銆�)</span><br><span class="line"><span class="comment">-------------------------------------------------------------------------------------</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>其中第1、2条warning是由于文件被其他Adobe程序（如Acrobat）占用所致问题不大，看到第3条warning找到注册表值Photoshop.CINFile.130.在regedit或其他注册表管理器中找到该值发现位于HKEY_LOCAL_MACHINE\SOFTWARE\Classes下，将该项下所有关于Photoshop的注册表全部删掉（注意避开其他Adobe软件和Solidworks等软件相关联的注册表），并将Classes的Administrators的权限改为完全控制，并将所有者也改为Administrators，使用可从此对象继承的权限项目替换所有子对象的权限项目，替换子容器和对象的所有者。权限更改后Adobe CC系列各软件的此类问题全部解决，但是可能导致开始菜单桌面应用图标无法显示的问题。</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
     </div>
 
     
@@ -261,6 +280,11 @@
           </div>
 
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
 
 
         
@@ -528,6 +552,26 @@ window.addEventListener('pjax:success', () => {
 
 
 
+  <script data-pjax>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 27455,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
 
 
@@ -575,5 +619,9 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 </script>
 
     </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.1.17/jquery.backstretch.min.js"></script>
+  <script>
+  $("body").backstretch("https://i.pximg.net/img-original/img/2018/12/10/19/31/15/72055179_p0.jpg");
+  </script>
 </body>
 </html>
