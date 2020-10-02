@@ -14,17 +14,18 @@
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|JetBrains Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yihuajack.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yihuajack.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"81Y57S4KVS","apiKey":"f9bea3504a9ea65b4de8d63b6f6ce44b","indexName":"Ayka's Blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ayka">
+<meta property="og:title" content="Ayka&#39;s Blog">
 <meta property="og:url" content="https://yihuajack.github.io/archives/index.html">
-<meta property="og:site_name" content="Ayka">
+<meta property="og:site_name" content="Ayka&#39;s Blog">
 <meta property="og:description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Liu Yihua">
@@ -44,7 +45,7 @@
   };
 </script>
 
-  <title>归档 | Ayka</title>
+  <title>归档 | Ayka's Blog</title>
   
 
 
@@ -75,7 +76,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Ayka" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Ayka's Blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -96,14 +97,15 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Ayka</h1>
+      <h1 class="site-title">Ayka's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">Poor intelligence, useless work</p>
+      <p class="site-subtitle" itemprop="description">Useless work</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -143,11 +145,40 @@
     <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
 
 </div>
     </header>
@@ -175,7 +206,8 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 4 篇日志。 继续努力。</span>
+        
+        <span class="collection-header">不错! 目前共计 55 篇日志。 继续努力。</span>
       </div>
 
       
@@ -188,15 +220,35 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2020-09-28T00:37:28+08:00"
+              datetime="2020-09-30T21:48:11+08:00"
+              content="2020-09-30">
+          09-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/posts/28957.html" itemprop="url">
+            <span itemprop="name">非一般情况下(HOME更改)git@github.com：Permission denied (publickey)的原因及解决方法</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-09-28T14:31:37+08:00"
               content="2020-09-28">
           09-28
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2020/09/28/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
+          <a class="post-title-link" href="/posts/63648.html" itemprop="url">
+            <span itemprop="name">ssh-add出现Error connecting to agent：No such file or directory的解决方法</span>
           </a>
       </div>
 
@@ -208,15 +260,15 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2020-09-27T17:05:00+08:00"
+              datetime="2020-09-27T23:05:52+08:00"
               content="2020-09-27">
           09-27
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2020/09/27/CSDN-2/" itemprop="url">
-            <span itemprop="name">关于安装Adobe CC系列Photoshop等软件时报错无法写入注册表值错误代码160问题的解决方法</span>
+          <a class="post-title-link" href="/posts/53007.html" itemprop="url">
+            <span itemprop="name">从零开始的hexo与next主题配置github.io博客（进阶篇）</span>
           </a>
       </div>
 
@@ -228,38 +280,135 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2020-03-19T13:05:00+08:00"
-              content="2020-03-19">
-          03-19
+              datetime="2020-09-27T18:47:19+08:00"
+              content="2020-09-27">
+          09-27
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2020/03/19/paper/" itemprop="url">
-            <span itemprop="name">从零开始的hexo配置github.io博客</span>
+          <a class="post-title-link" href="/posts/36835.html" itemprop="url">
+            <span itemprop="name">从零开始的hexo与next主题配置github.io博客（入门篇）</span>
           </a>
       </div>
 
     </header>
   </article>
-    <div class="collection-year">
-      <span class="collection-header">2019</span>
-    </div>
 
   <article itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2019-07-27T17:56:50+08:00"
-              content="2019-07-27">
-          07-27
+              datetime="2020-09-24T00:04:42+08:00"
+              content="2020-09-24">
+          09-24
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2019/07/27/CSDN-1/" itemprop="url">
-            <span itemprop="name">关于Visual Studio Installer无法识别已安装的VS并报错找不到路径的问题</span>
+          <a class="post-title-link" href="/posts/25920.html" itemprop="url">
+            <span itemprop="name">LaTeX xcolor使用x11names等选项无法识别报错Package xcolor Error：Undefined color的解决方法</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-09-22T21:18:31+08:00"
+              content="2020-09-22">
+          09-22
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/posts/12875.html" itemprop="url">
+            <span itemprop="name">OrCAD PSpice原理图Schematic导出PDF没反应的解决方法</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-09-20T21:59:59+08:00"
+              content="2020-09-20">
+          09-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/posts/41027.html" itemprop="url">
+            <span itemprop="name">Ghostscript已有字体报错can‘t find font file问题的原因</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-09-19T17:03:53+08:00"
+              content="2020-09-19">
+          09-19
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/posts/12191.html" itemprop="url">
+            <span itemprop="name">QtSpim写MIPS报错spim parser syntax error等各种错误的解决方法</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-09-19T02:44:44+08:00"
+              content="2020-09-19">
+          09-19
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/posts/21934.html" itemprop="url">
+            <span itemprop="name">Shell插件合集</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-09-19T02:36:00+08:00"
+              content="2020-09-19">
+          09-19
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/posts/8456.html" itemprop="url">
+            <span itemprop="name">Vim及NeoVim插件合集</span>
           </a>
       </div>
 
@@ -274,6 +423,9 @@
   
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -330,6 +482,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liu Yihua"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">Liu Yihua</p>
   <div class="site-description" itemprop="description">綴る言の葉に彩られ 紅く色めき刹那に踊る</div>
 </div>
@@ -338,20 +492,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -426,6 +580,24 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>   
+<script>
+    var now = new Date();
+    function createtime() {
+      var grt= new Date("03/18/2020 13:54:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+  }
+  setInterval("createtime()",250);  
+</script>
+
         
 
 
@@ -442,6 +614,8 @@
   
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -541,6 +715,13 @@ window.addEventListener('pjax:success', () => {
     })();
   }
   </script>
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
 
 
 
