@@ -75,6 +75,49 @@
       </tags>
   </entry>
   <entry>
+    <title>PowerShell使用import-module安装oh-my-posh下载慢、卡的问题的解决方法</title>
+    <url>/posts/6240.html</url>
+    <content><![CDATA[<p>该方法对Windows自带Powershell（Windows 10是PowerShell 5.1）和新版的Powershell 6、7等版本均有效。</p>
+<p>初体验PowerShell 7执行命令</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> oh-my-posh -<span class="keyword">Scope</span> CurrentUser</span><br></pre></td></tr></tbody></table></figure>
+
+<p>后并按A键确认后停留在Install的界面，抑或是进入Download界面下载0.03MB或0.06MB后卡住不动，在设置代理后仍然如此，在设置</p>
+<figure class="highlight gams"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span>-ExecutionPolicy <span class="comment">Bypass</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>或</p>
+<figure class="highlight dsconfig"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">set-ExecutionPolicy</span> <span class="string">RemoteSigned</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>后仍然如此。但是打开之前已经配置好的Powershell 5.1执行</p>
+<figure class="highlight mathematica"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Update</span>-<span class="keyword">Module</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>后发现其迅速成功更新了oh-my-posh模块，发现我们只需<strong>用管理员方式启动</strong>Powershell 7再安装即可。事实上新版的PowerShell无需像旧版那样配置Set-ExecutionPolicy和NuGet即可顺利安装模块，并且预装了PSReadLine等。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CSDN补档</category>
+      </categories>
+      <tags>
+        <tag>powershell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python安装wordcloud报错error：Microsoft Visual C++ 14.0 is required的解决方法</title>
     <url>/posts/37588.html</url>
     <content><![CDATA[<p> 使用PyCharm的虚拟环境安装wordcloud时出现错误：</p>
@@ -118,23 +161,19 @@
       </tags>
   </entry>
   <entry>
-    <title>PowerShell使用import-module安装oh-my-posh下载慢、卡的问题的解决方法</title>
-    <url>/posts/6240.html</url>
-    <content><![CDATA[<p>该方法对Windows自带Powershell（Windows 10是PowerShell 5.1）和新版的Powershell 6、7等版本均有效。</p>
-<p>初体验PowerShell 7执行命令</p>
-<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> oh-my-posh -<span class="keyword">Scope</span> CurrentUser</span><br></pre></td></tr></tbody></table></figure>
+    <title>为PowerShell和PowerShell Core 7设置不同的profile配置文件路径</title>
+    <url>/posts/33820.html</url>
+    <content><![CDATA[<p>在体验PowerShell 7并配置profile文件后发现，不同于PowerShell 5.1，使用ScreenFetch命令会报错：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:65</span><br><span class="line">Line |</span><br><span class="line">  65 |      return <span class="formula">$env:USERNAME + "@" + (Get-WmiObject Win32_OperatingSystem …</span></span><br><span class="line"><span class="formula">     |                                    ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:70</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula">  70 |      return (Get-WmiObject Win32_OperatingSystem).Caption + " " +</span></span><br><span class="line"><span class="formula">     |              ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:76</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula">  76 |      return (Get-WmiObject  Win32_OperatingSystem).Version;</span></span><br><span class="line"><span class="formula">     |              ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:81</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula">  81 |      $</span>Uptime = ((Get-WmiObject Win32_OperatingSystem).ConvertToDateTim …</span><br><span class="line">     |                  ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line"> </span><br><span class="line">InvalidOperation: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:86</span><br><span class="line">Line |</span><br><span class="line">  86 |      <span class="formula">$FormattedUptime =  $</span>Uptime.Days.ToString() + "d " + <span class="formula">$Uptime.Hour …</span></span><br><span class="line"><span class="formula">     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | You cannot call a method on a null-valued expression.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:107</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 107 |      $</span>monitors = Get-WmiObject -N "root<span class="tag">\<span class="name">wmi</span></span>" -Class WmiMonitorListedSu …</span><br><span class="line">     |                  ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line"> </span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:133</span><br><span class="line">Line |</span><br><span class="line"> 133 |      return (((Get-WmiObject Win32_Processor).Name) -replace '<span class="tag">\<span class="name">s</span></span>+', '  …</span><br><span class="line">     |                ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:138</span><br><span class="line">Line |</span><br><span class="line"> 138 |      return (Get-WmiObject Win32_DisplayConfiguration).DeviceName;</span><br><span class="line">     |              ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:143</span><br><span class="line">Line |</span><br><span class="line"> 143 |      <span class="formula">$FreeRam = ([math]::Truncate((Get-WmiObject Win32_OperatingSystem …</span></span><br><span class="line"><span class="formula">     |                                    ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:144</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 144 |      $</span>TotalRam = ([math]::Truncate((Get-WmiObject Win32_ComputerSystem …</span><br><span class="line">     |                                     ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">RuntimeException: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:146</span><br><span class="line">Line |</span><br><span class="line"> 146 |      <span class="formula">$FreeRamPercent = ($</span>FreeRam / <span class="formula">$TotalRam) * 100;</span></span><br><span class="line"><span class="formula">     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | Attempted to divide by zero.</span></span><br><span class="line"><span class="formula">RuntimeException: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:148</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 148 |      $</span>UsedRamPercent = (<span class="formula">$UsedRam / $</span>TotalRam) * 100;</span><br><span class="line">     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | Attempted to divide by zero.</span><br><span class="line">InvalidOperation: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:151</span><br><span class="line">Line |</span><br><span class="line"> 151 |      return <span class="formula">$UsedRam.ToString() + "MB / " + $</span>TotalRam.ToString() + " M …</span><br><span class="line">     |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | You cannot call a method on a null-valued expression.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:158</span><br><span class="line">Line |</span><br><span class="line"> 158 |      <span class="formula">$NumDisks = (Get-WmiObject Win32_LogicalDisk).Count;</span></span><br><span class="line"><span class="formula">     |                   ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:189</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 189 |          $</span>DiskID = (Get-WmiObject Win32_LogicalDisk).DeviceId;</span><br><span class="line">     |                     ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:191</span><br><span class="line">Line |</span><br><span class="line"> 191 |          <span class="formula">$FreeDiskSize = (Get-WmiObject Win32_LogicalDisk).FreeSpace</span></span><br><span class="line"><span class="formula">     |                           ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:195</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 195 |          $</span>DiskSize = (Get-WmiObject Win32_LogicalDisk).Size;</span><br><span class="line">     |                       ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">InvalidOperation: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:215</span><br><span class="line">Line |</span><br><span class="line"> 215 |              <span class="formula">$FormattedDisk = "Disk " + $</span>DiskID.ToString() + " Empty";</span><br><span class="line">     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | You cannot call a method on a null-valued expression.</span><br><span class="line">                         ....::::</span><br><span class="line">                 ....::::::::::::       OS: Dell Inc. 03RV2M</span><br><span class="line">        ....:::: ::::::::::::::::       Kernel: PowerShell 7.0.0</span><br><span class="line">....:::::::::::: ::::::::::::::::       Uptime: DWM</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Motherboard: Segoe UI</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Shell:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Resolution:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Window Manager:</span><br><span class="line">................ ................       Font:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       CPU:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       GPU</span><br><span class="line">:::::::::::::::: ::::::::::::::::       RAM:</span><br><span class="line">'''':::::::::::: ::::::::::::::::</span><br><span class="line">        '''':::: ::::::::::::::::</span><br><span class="line">                 ''''::::::::::::</span><br><span class="line">                         ''''::::</span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></tbody></table></figure>
 
-<p>后并按A键确认后停留在Install的界面，抑或是进入Download界面下载0.03MB或0.06MB后卡住不动，在设置代理后仍然如此，在设置</p>
-<figure class="highlight gams"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span>-ExecutionPolicy <span class="comment">Bypass</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>或</p>
-<figure class="highlight dsconfig"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">set-ExecutionPolicy</span> <span class="string">RemoteSigned</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>后仍然如此。但是打开之前已经配置好的Powershell 5.1执行</p>
-<figure class="highlight mathematica"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Update</span>-<span class="keyword">Module</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>后发现其迅速成功更新了oh-my-posh模块，发现我们只需<strong>用管理员方式启动</strong>Powershell 7再安装即可。事实上新版的PowerShell无需像旧版那样配置Set-ExecutionPolicy和NuGet即可顺利安装模块，并且预装了PSReadLine等。</p>
-<script>
+<p>所以我们想要为PowerShell和PowerShell Core设置不同的profile配置文件路径，方法如下：</p>
+<p>将C:\Users&lt;username&gt;\Documents\PowerShell中的Microsoft.PowerShell_profile.ps1复制到C:\WINDOWS\System32\WindowsPowerShell\v1.0中，则现在：</p>
+<p>C:\WINDOWS\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1是PowerShell 5.1的配置文件；</p>
+<p>C:\Users&lt;username&gt;\Documents\PowerShell\Microsoft.PowerShell_profile.ps1是PowerShell 7的配置文件。</p>
+<p>注意，如果你之前的配置文件名称是profile.ps1，则你需要将其文件名更改为Microsoft.PowerShell_profile.ps1。</p>
+<p>这种方法有一个bug，如果你在前者的profile文件中加入ScreenFetch而后者不加入，尽管PowerShell 7不再执行ScreenFetch命令，但是PowerShell 5.1会将ScreenFetch执行两遍，我们只好将前者的profile文件中的ScreenFetch命令也删去，则PowerShell 5.1只执行一次ScreenFetch。</p>
+<p>另外，更改PowerShell的profile文件的路径可使用命令</p>
+<figure class="highlight arcade"><table><tbody><tr><td class="code"><pre><span class="line"><span class="symbol">$profile</span> = <span class="string">"NewLocation\profile.ps1"</span></span><br></pre></td></tr></tbody></table></figure><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -242,45 +281,6 @@
       </tags>
   </entry>
   <entry>
-    <title>为PowerShell和PowerShell Core 7设置不同的profile配置文件路径</title>
-    <url>/posts/33820.html</url>
-    <content><![CDATA[<p>在体验PowerShell 7并配置profile文件后发现，不同于PowerShell 5.1，使用ScreenFetch命令会报错：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:65</span><br><span class="line">Line |</span><br><span class="line">  65 |      return <span class="formula">$env:USERNAME + "@" + (Get-WmiObject Win32_OperatingSystem …</span></span><br><span class="line"><span class="formula">     |                                    ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:70</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula">  70 |      return (Get-WmiObject Win32_OperatingSystem).Caption + " " +</span></span><br><span class="line"><span class="formula">     |              ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:76</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula">  76 |      return (Get-WmiObject  Win32_OperatingSystem).Version;</span></span><br><span class="line"><span class="formula">     |              ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:81</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula">  81 |      $</span>Uptime = ((Get-WmiObject Win32_OperatingSystem).ConvertToDateTim …</span><br><span class="line">     |                  ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line"> </span><br><span class="line">InvalidOperation: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:86</span><br><span class="line">Line |</span><br><span class="line">  86 |      <span class="formula">$FormattedUptime =  $</span>Uptime.Days.ToString() + "d " + <span class="formula">$Uptime.Hour …</span></span><br><span class="line"><span class="formula">     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | You cannot call a method on a null-valued expression.</span></span><br><span class="line"><span class="formula"> </span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:107</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 107 |      $</span>monitors = Get-WmiObject -N "root<span class="tag">\<span class="name">wmi</span></span>" -Class WmiMonitorListedSu …</span><br><span class="line">     |                  ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line"> </span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:133</span><br><span class="line">Line |</span><br><span class="line"> 133 |      return (((Get-WmiObject Win32_Processor).Name) -replace '<span class="tag">\<span class="name">s</span></span>+', '  …</span><br><span class="line">     |                ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:138</span><br><span class="line">Line |</span><br><span class="line"> 138 |      return (Get-WmiObject Win32_DisplayConfiguration).DeviceName;</span><br><span class="line">     |              ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:143</span><br><span class="line">Line |</span><br><span class="line"> 143 |      <span class="formula">$FreeRam = ([math]::Truncate((Get-WmiObject Win32_OperatingSystem …</span></span><br><span class="line"><span class="formula">     |                                    ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:144</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 144 |      $</span>TotalRam = ([math]::Truncate((Get-WmiObject Win32_ComputerSystem …</span><br><span class="line">     |                                     ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">RuntimeException: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:146</span><br><span class="line">Line |</span><br><span class="line"> 146 |      <span class="formula">$FreeRamPercent = ($</span>FreeRam / <span class="formula">$TotalRam) * 100;</span></span><br><span class="line"><span class="formula">     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | Attempted to divide by zero.</span></span><br><span class="line"><span class="formula">RuntimeException: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:148</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 148 |      $</span>UsedRamPercent = (<span class="formula">$UsedRam / $</span>TotalRam) * 100;</span><br><span class="line">     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | Attempted to divide by zero.</span><br><span class="line">InvalidOperation: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:151</span><br><span class="line">Line |</span><br><span class="line"> 151 |      return <span class="formula">$UsedRam.ToString() + "MB / " + $</span>TotalRam.ToString() + " M …</span><br><span class="line">     |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | You cannot call a method on a null-valued expression.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:158</span><br><span class="line">Line |</span><br><span class="line"> 158 |      <span class="formula">$NumDisks = (Get-WmiObject Win32_LogicalDisk).Count;</span></span><br><span class="line"><span class="formula">     |                   ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:189</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 189 |          $</span>DiskID = (Get-WmiObject Win32_LogicalDisk).DeviceId;</span><br><span class="line">     |                     ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:191</span><br><span class="line">Line |</span><br><span class="line"> 191 |          <span class="formula">$FreeDiskSize = (Get-WmiObject Win32_LogicalDisk).FreeSpace</span></span><br><span class="line"><span class="formula">     |                           ~~~~~~~~~~~~~</span></span><br><span class="line"><span class="formula">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span></span><br><span class="line"><span class="formula">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span></span><br><span class="line"><span class="formula">     | and try again.</span></span><br><span class="line"><span class="formula">Get-WmiObject: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:195</span></span><br><span class="line"><span class="formula">Line |</span></span><br><span class="line"><span class="formula"> 195 |          $</span>DiskSize = (Get-WmiObject Win32_LogicalDisk).Size;</span><br><span class="line">     |                       ~~~~~~~~~~~~~</span><br><span class="line">     | The term 'Get-WmiObject' is not recognized as the name of a cmdlet, function, script file, or operable</span><br><span class="line">     | program. Check the spelling of the name, or if a path was included, verify that the path is correct</span><br><span class="line">     | and try again.</span><br><span class="line">InvalidOperation: C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">PowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">windows</span></span>-screenfetch<span class="tag">\</span>1.0.2<span class="tag">\<span class="name">Data</span></span>.psm1:215</span><br><span class="line">Line |</span><br><span class="line"> 215 |              <span class="formula">$FormattedDisk = "Disk " + $</span>DiskID.ToString() + " Empty";</span><br><span class="line">     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | You cannot call a method on a null-valued expression.</span><br><span class="line">                         ....::::</span><br><span class="line">                 ....::::::::::::       OS: Dell Inc. 03RV2M</span><br><span class="line">        ....:::: ::::::::::::::::       Kernel: PowerShell 7.0.0</span><br><span class="line">....:::::::::::: ::::::::::::::::       Uptime: DWM</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Motherboard: Segoe UI</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Shell:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Resolution:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       Window Manager:</span><br><span class="line">................ ................       Font:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       CPU:</span><br><span class="line">:::::::::::::::: ::::::::::::::::       GPU</span><br><span class="line">:::::::::::::::: ::::::::::::::::       RAM:</span><br><span class="line">'''':::::::::::: ::::::::::::::::</span><br><span class="line">        '''':::: ::::::::::::::::</span><br><span class="line">                 ''''::::::::::::</span><br><span class="line">                         ''''::::</span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></tbody></table></figure>
-
-<p>所以我们想要为PowerShell和PowerShell Core设置不同的profile配置文件路径，方法如下：</p>
-<p>将C:\Users&lt;username&gt;\Documents\PowerShell中的Microsoft.PowerShell_profile.ps1复制到C:\WINDOWS\System32\WindowsPowerShell\v1.0中，则现在：</p>
-<p>C:\WINDOWS\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1是PowerShell 5.1的配置文件；</p>
-<p>C:\Users&lt;username&gt;\Documents\PowerShell\Microsoft.PowerShell_profile.ps1是PowerShell 7的配置文件。</p>
-<p>注意，如果你之前的配置文件名称是profile.ps1，则你需要将其文件名更改为Microsoft.PowerShell_profile.ps1。</p>
-<p>这种方法有一个bug，如果你在前者的profile文件中加入ScreenFetch而后者不加入，尽管PowerShell 7不再执行ScreenFetch命令，但是PowerShell 5.1会将ScreenFetch执行两遍，我们只好将前者的profile文件中的ScreenFetch命令也删去，则PowerShell 5.1只执行一次ScreenFetch。</p>
-<p>另外，更改PowerShell的profile文件的路径可使用命令</p>
-<figure class="highlight arcade"><table><tbody><tr><td class="code"><pre><span class="line"><span class="symbol">$profile</span> = <span class="string">"NewLocation\profile.ps1"</span></span><br></pre></td></tr></tbody></table></figure><script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CSDN补档</category>
-      </categories>
-      <tags>
-        <tag>powershell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python解决gbk、utf-8、gb2312的UnicodeEncodeError与UnicodeDecodeError乱码解码的两种方法</title>
     <url>/posts/40036.html</url>
     <content><![CDATA[<p>Python在处理文字数据时往往会面对文字中乱码的困扰，这其中往往还包含了神奇的双字节字符和多字节字符，我们只想删除这些乱码而不想去掉字符串中的任何普通符号，可以使用正则表达式处理（以MATLAB为例）：</p>
@@ -325,41 +325,6 @@
         <tag>codec</tag>
         <tag>regex</tag>
         <tag>gbk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git for Windows 2.25.1更改$HOME路径</title>
-    <url>/posts/36466.html</url>
-    <content><![CDATA[<p>由于之前安装Cadence更改了系统环境变量，Git for Windows的$HOME目录定位到了其他地方，新版的Git for Windows在安装目录（如D:\Program_Files\Git）下的/etc/profile中已经删除了HOME相关的设置行，但是不用担心，我们只需要在profile文件开头加入：</p>
-<figure class="highlight ini"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">HOME</span>=<span class="string">"C:/Users/&lt;username&gt;"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>或其他你想指定的目录即可更改$HOME路径，无视环境变量中对HOME的定义。</p>
-<p>Reference:</p>
-<p><a href="https://www.riuson.com/blog/post/git-for-windows-custom-home-directory">Git for Windows - custom home directory</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CSDN补档</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -436,6 +401,93 @@
       <tags>
         <tag>Adobe</tag>
         <tag>Adobe安装错误</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git for Windows 2.25.1更改$HOME路径</title>
+    <url>/posts/36466.html</url>
+    <content><![CDATA[<p>由于之前安装Cadence更改了系统环境变量，Git for Windows的$HOME目录定位到了其他地方，新版的Git for Windows在安装目录（如D:\Program_Files\Git）下的/etc/profile中已经删除了HOME相关的设置行，但是不用担心，我们只需要在profile文件开头加入：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">HOME</span>=<span class="string">"C:/Users/&lt;username&gt;"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>或其他你想指定的目录即可更改$HOME路径，无视环境变量中对HOME的定义。</p>
+<p>Reference:</p>
+<p><a href="https://www.riuson.com/blog/post/git-for-windows-custom-home-directory">Git for Windows - custom home directory</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CSDN补档</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LaTeX中align和alignat之间的区别</title>
+    <url>/posts/57768.html</url>
+    <content><![CDATA[<p>第一个区别是使用align不需要额外的参数：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{align}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>而alignat需要：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{&lt;number&gt;}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>两种环境都创建基于rl对的列对齐，align会根据你写的内容创建足够多的列，而alignat需要你提前指定想要多少列。</p>
+<p>然而，这两种环境还有更多不同。align环境会在列与列之间添加水平空格</p>
+<figure class="highlight apache"><table><tbody><tr><td class="code"><pre><span class="line"><span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;...&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>而alignat不会添加水平空格。例如见<a href="https://tex.stackexchange.com/questions/200502/align-environment-align-on-the-left-side">Align-environment: Align on the left side</a>中的一个对齐</p>
+<figure class="highlight apache"><table><tbody><tr><td class="code"><pre><span class="line"><span class="section">&lt;l col&gt;</span><span class="section">&lt;l col&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>可以通过使用空的右对齐列：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{2}</span></span></span><br><span class="line">&amp;ABC  &amp;&amp;= AB</span><br><span class="line">&amp;ABCD &amp;&amp;= ABC - ABCDEFG</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>两种环境在cell的开始处的左对齐列都有一个隐式的{}来使得起始于关系符或运算符的cell能够有合适的间距。</p>
+<p>alignat的其他用法包括当我们想要更好地控制列与列之间的水平间距时。这样的间距应当被显式地指定如下：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat*}</span><span class="string">{3}</span></span></span><br><span class="line">&amp; m   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{módulo}</span></span>            <span class="tag">\<span class="name">quad</span></span> &amp;&amp; m&gt;0<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; a   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{multiplicador}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0&lt;a&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; c   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{constante aditiva}</span></span> <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> c&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; x_0 <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{valor inicial}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> x_0 &lt;m</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat*}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>(见<a href="https://tex.stackexchange.com/questions/49014/aligning-equations-with-text-with-alignat">Aligning equations with text with alignat</a>)这样的控制是不可能通过align完成的，因为它总是在列与列之间添加相同长度的水平间距。</p>
+<p>两种环境都有*的形式并对于任意行都接受\tag或\notag。</p>
+<p>此外还有“内部”版本的aligned和alignedat，在行内公式、显示公式和数学对齐等内部数学模式中它们遵循相同的规则。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CSDN补档</category>
+      </categories>
+      <tags>
+        <tag>latex</tag>
       </tags>
   </entry>
   <entry>
@@ -574,101 +626,6 @@
       </categories>
   </entry>
   <entry>
-    <title>WSL(Ubuntu)pip安装genpac后找不到命令的解决方法</title>
-    <url>/posts/60680.html</url>
-    <content><![CDATA[<p>在WSL Ubuntu使用pip成功安装genpac后运行genpac –version却显示</p>
-<figure class="highlight groovy"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">zsh:</span> command not <span class="attr">found:</span> genpac</span><br></pre></td></tr></tbody></table></figure>
-
-<p>输入</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pip list</span><br></pre></td></tr></tbody></table></figure>
-
-<p>后发现genpac已经在列表中。解决方法是在.zshrc（如果不用ZSH则是.bashrc）文件中添加：</p>
-<figure class="highlight awk"><table><tbody><tr><td class="code"><pre><span class="line">export PATH=<span class="variable">$HOME</span><span class="regexp">/bin:/u</span>sr<span class="regexp">/local/</span>bin:<span class="variable">$PATH</span></span><br><span class="line">export PATH=<span class="variable">$HOME</span><span class="regexp">/.local/</span>bin:<span class="regexp">/usr/</span>local/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>后genpac可以成功运行。执行ls ~/.local/bin得到：</p>
-<figure class="highlight apache"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attribute">genpac</span>  pip  pip<span class="number">2</span>  pip<span class="number">2</span>.<span class="number">7</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>这个目录是pip的安装目录，对于pip安装的其他包也同样适用。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CSDN补档</category>
-      </categories>
-      <tags>
-        <tag>pip</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LaTeX中align和alignat之间的区别</title>
-    <url>/posts/57768.html</url>
-    <content><![CDATA[<p>第一个区别是使用align不需要额外的参数：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{align}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>而alignat需要：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{&lt;number&gt;}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>两种环境都创建基于rl对的列对齐，align会根据你写的内容创建足够多的列，而alignat需要你提前指定想要多少列。</p>
-<p>然而，这两种环境还有更多不同。align环境会在列与列之间添加水平空格</p>
-<figure class="highlight apache"><table><tbody><tr><td class="code"><pre><span class="line"><span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;...&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>而alignat不会添加水平空格。例如见<a href="https://tex.stackexchange.com/questions/200502/align-environment-align-on-the-left-side">Align-environment: Align on the left side</a>中的一个对齐</p>
-<figure class="highlight apache"><table><tbody><tr><td class="code"><pre><span class="line"><span class="section">&lt;l col&gt;</span><span class="section">&lt;l col&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>可以通过使用空的右对齐列：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{2}</span></span></span><br><span class="line">&amp;ABC  &amp;&amp;= AB</span><br><span class="line">&amp;ABCD &amp;&amp;= ABC - ABCDEFG</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>两种环境在cell的开始处的左对齐列都有一个隐式的{}来使得起始于关系符或运算符的cell能够有合适的间距。</p>
-<p>alignat的其他用法包括当我们想要更好地控制列与列之间的水平间距时。这样的间距应当被显式地指定如下：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat*}</span><span class="string">{3}</span></span></span><br><span class="line">&amp; m   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{módulo}</span></span>            <span class="tag">\<span class="name">quad</span></span> &amp;&amp; m&gt;0<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; a   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{multiplicador}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0&lt;a&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; c   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{constante aditiva}</span></span> <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> c&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; x_0 <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{valor inicial}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> x_0 &lt;m</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat*}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>(见<a href="https://tex.stackexchange.com/questions/49014/aligning-equations-with-text-with-alignat">Aligning equations with text with alignat</a>)这样的控制是不可能通过align完成的，因为它总是在列与列之间添加相同长度的水平间距。</p>
-<p>两种环境都有*的形式并对于任意行都接受\tag或\notag。</p>
-<p>此外还有“内部”版本的aligned和alignedat，在行内公式、显示公式和数学对齐等内部数学模式中它们遵循相同的规则。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CSDN补档</category>
-      </categories>
-      <tags>
-        <tag>latex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WSL Ubuntu使用Cargo安装Starship</title>
     <url>/posts/55520.html</url>
     <content><![CDATA[<p>对于WSL，Starship官网推荐的安装方法是执行</p>
@@ -753,8 +710,8 @@
         <category>CSDN补档</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
         <tag>bash</tag>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -802,6 +759,49 @@
       <tags>
         <tag>ubuntu</tag>
         <tag>vmware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL(Ubuntu)pip安装genpac后找不到命令的解决方法</title>
+    <url>/posts/60680.html</url>
+    <content><![CDATA[<p>在WSL Ubuntu使用pip成功安装genpac后运行genpac –version却显示</p>
+<figure class="highlight groovy"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">zsh:</span> command not <span class="attr">found:</span> genpac</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输入</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pip list</span><br></pre></td></tr></tbody></table></figure>
+
+<p>后发现genpac已经在列表中。解决方法是在.zshrc（如果不用ZSH则是.bashrc）文件中添加：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="code"><pre><span class="line">export PATH=<span class="variable">$HOME</span><span class="regexp">/bin:/u</span>sr<span class="regexp">/local/</span>bin:<span class="variable">$PATH</span></span><br><span class="line">export PATH=<span class="variable">$HOME</span><span class="regexp">/.local/</span>bin:<span class="regexp">/usr/</span>local/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>后genpac可以成功运行。执行ls ~/.local/bin得到：</p>
+<figure class="highlight apache"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attribute">genpac</span>  pip  pip<span class="number">2</span>  pip<span class="number">2</span>.<span class="number">7</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个目录是pip的安装目录，对于pip安装的其他包也同样适用。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CSDN补档</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1284,42 +1284,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git错误unable to create symlink ssl...Could not reset index file to revision ‘HEAD‘的解决方法</title>
-    <url>/posts/57803.html</url>
-    <content><![CDATA[<p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></tbody></table></figure>
-
-<p>时报错：</p>
-<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">error: </span>unable to create symlink ssl: Permission denied</span><br><span class="line">fatal: Could not reset index file to revision 'HEAD'</span><br></pre></td></tr></tbody></table></figure>
-
-<p>解决方法是以管理员身份运行Terminal或Shell。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CSDN补档</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WSL1安装rust报错thread ‘main‘ panicked的解决方法</title>
     <url>/posts/10972.html</url>
     <content><![CDATA[<p>根据<a href="https://www.rust-lang.org/tools/install%EF%BC%8CWSL%E5%AE%89%E8%A3%85rust%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4">https://www.rust-lang.org/tools/install，WSL安装rust使用命令</a></p>
@@ -1365,6 +1329,42 @@
         <tag>rust</tag>
         <tag>vundle</tag>
         <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git错误unable to create symlink ssl...Could not reset index file to revision ‘HEAD‘的解决方法</title>
+    <url>/posts/57803.html</url>
+    <content><![CDATA[<p>执行</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></tbody></table></figure>
+
+<p>时报错：</p>
+<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">error: </span>unable to create symlink ssl: Permission denied</span><br><span class="line">fatal: Could not reset index file to revision 'HEAD'</span><br></pre></td></tr></tbody></table></figure>
+
+<p>解决方法是以管理员身份运行Terminal或Shell。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CSDN补档</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -1822,8 +1822,8 @@
         <category>CSDN补档</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>powershell</tag>
+        <tag>python</tag>
         <tag>venv</tag>
       </tags>
   </entry>
@@ -2674,6 +2674,38 @@
       </tags>
   </entry>
   <entry>
+    <title>GitHub Actions不更新Gist问题的调试方法与解决方法（以waka-box为例）</title>
+    <url>/posts/37452.html</url>
+    <content><![CDATA[<p>使用<a href="https://github.com/matchai/waka-box">waka-box</a>或<a href="https://github.com/YouEclipse/waka-box-go">waka-box-go</a>时根据其README配置完成后发现Gist未更新，根据<a href="https://github.com/matchai/waka-box/issues/42">Issue #42</a>需要等WakaTime中有数据后才可以更新，于是等到WakaTime有数据后再查看依旧不更新，根据<a href="https://github.com/matchai/waka-box/issues/61">Issue #61</a>，WakaTime每日更新一次，于是等过了一天Gist依旧不更新，尝试删除了GitHub Access Token、fork的Repository和创建的Gist后重新配置依旧失败，在另一个pinned-gist项目<a href="https://github.com/maxam2017/productive-box">productive-box</a>的README中找到Project Setup的第2步：Open the “Actions” tab of your fork and click the “enable” button，于是在fork的repository中的Actions中选择了启用，等待一天后依旧没有更新Gist。受到<a href="https://github.com/matchai/waka-box/issues/51">Issue #51</a>的启发，进入fork的waka-box仓库的/actions下查看All workflows显示两个results：Update gist with WakaTime stats Update gist with WakaTime stats #1: Scheduled和Update gist with WakaTime stats #2: Scheduled并都有绿色对勾，进入workflow:”Update gist with WakaTime stats”下选择任一个result进入显示1 completed job，左边栏update-gist为绿色对勾状态，点击update-gist下的Update Gist项显示httperror: bad credentials。受到<a href="https://blog.csdn.net/qq_22884761/article/details/102769390">Error: Failed to install ‘unknown package’ from GitHub: HTTP error 401. Bad credentials</a>启发检查<a href="https://github.com/settings/tokens">Personal access tokens</a>发现之前删除了token，于是重新Generate new token并修改库-&gt;Settings-&gt;Secrets Update GH_TOKEN后回到Actions下选择最新的result右上角点击Re-run jobs-&gt;Re-run all jobs：<img src="/posts/37452/Documents\Programming\HexoBlog\source_posts\Others-1\20201029190306206.png" alt="img">等待片刻后任务完成，检查Update Gists项详情：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020102919033828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpaHVhamFjaw==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>成功运行，此时检查对应Gist发现其已被正确更新。 </p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LaTeX TikZ使用usegdlibrary命令报错Undefined control sequence的原因及解决方案</title>
     <url>/posts/26450.html</url>
     <content><![CDATA[<p>原因：“usegdlibrary”命令基于Ti<em>k</em>Z库“graphdrawing”，该库需要LuaTeX/LuaLaTeX支持。</p>
@@ -2710,38 +2742,6 @@
         <tag>latex</tag>
         <tag>vscode</tag>
         <tag>tikz</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub Actions不更新Gist问题的调试方法与解决方法（以waka-box为例）</title>
-    <url>/posts/37452.html</url>
-    <content><![CDATA[<p>使用<a href="https://github.com/matchai/waka-box">waka-box</a>或<a href="https://github.com/YouEclipse/waka-box-go">waka-box-go</a>时根据其README配置完成后发现Gist未更新，根据<a href="https://github.com/matchai/waka-box/issues/42">Issue #42</a>需要等WakaTime中有数据后才可以更新，于是等到WakaTime有数据后再查看依旧不更新，根据<a href="https://github.com/matchai/waka-box/issues/61">Issue #61</a>，WakaTime每日更新一次，于是等过了一天Gist依旧不更新，尝试删除了GitHub Access Token、fork的Repository和创建的Gist后重新配置依旧失败，在另一个pinned-gist项目<a href="https://github.com/maxam2017/productive-box">productive-box</a>的README中找到Project Setup的第2步：Open the “Actions” tab of your fork and click the “enable” button，于是在fork的repository中的Actions中选择了启用，等待一天后依旧没有更新Gist。受到<a href="https://github.com/matchai/waka-box/issues/51">Issue #51</a>的启发，进入fork的waka-box仓库的/actions下查看All workflows显示两个results：Update gist with WakaTime stats Update gist with WakaTime stats #1: Scheduled和Update gist with WakaTime stats #2: Scheduled并都有绿色对勾，进入workflow:”Update gist with WakaTime stats”下选择任一个result进入显示1 completed job，左边栏update-gist为绿色对勾状态，点击update-gist下的Update Gist项显示httperror: bad credentials。受到<a href="https://blog.csdn.net/qq_22884761/article/details/102769390">Error: Failed to install ‘unknown package’ from GitHub: HTTP error 401. Bad credentials</a>启发检查<a href="https://github.com/settings/tokens">Personal access tokens</a>发现之前删除了token，于是重新Generate new token并修改库-&gt;Settings-&gt;Secrets Update GH_TOKEN后回到Actions下选择最新的result右上角点击Re-run jobs-&gt;Re-run all jobs：<img src="/posts/37452/Documents\Programming\HexoBlog\source_posts\Others-1\20201029190306206.png" alt="img">等待片刻后任务完成，检查Update Gists项详情：</p>
-<p><img src="https://img-blog.csdnimg.cn/2020102919033828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpaHVhamFjaw==,size_16,color_FFFFFF,t_70" alt="img"></p>
-<p>成功运行，此时检查对应Gist发现其已被正确更新。 </p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -2804,6 +2804,42 @@
         <tag>malloc</tag>
         <tag>free</tag>
         <tag>struct</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ssh-add出现Error connecting to agent：No such file or directory的解决方法</title>
+    <url>/posts/63648.html</url>
+    <content><![CDATA[<p>Windows环境下执行</p>
+<figure class="highlight arcade"><table><tbody><tr><td class="code"><pre><span class="line">ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa</span><br></pre></td></tr></tbody></table></figure>
+
+<p>报错：</p>
+<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Error </span>connecting to agent: No such file or directory</span><br></pre></td></tr></tbody></table></figure>
+
+<p>解决方法：【<strong>以管理员身份运行</strong>】执行</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="code"><pre><span class="line">Set-Service ssh-agent -StartupType Manual</span><br><span class="line">Start-Service ssh-agent</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>SuperUser</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
@@ -2879,42 +2915,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ssh-add出现Error connecting to agent：No such file or directory的解决方法</title>
-    <url>/posts/63648.html</url>
-    <content><![CDATA[<p>Windows环境下执行</p>
-<figure class="highlight arcade"><table><tbody><tr><td class="code"><pre><span class="line">ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa</span><br></pre></td></tr></tbody></table></figure>
-
-<p>报错：</p>
-<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Error </span>connecting to agent: No such file or directory</span><br></pre></td></tr></tbody></table></figure>
-
-<p>解决方法：【<strong>以管理员身份运行</strong>】执行</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="code"><pre><span class="line">Set-Service ssh-agent -StartupType Manual</span><br><span class="line">Start-Service ssh-agent</span><br></pre></td></tr></tbody></table></figure><script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>SuperUser</category>
-      </categories>
-      <tags>
-        <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SuperUser-3</title>
     <url>/posts/61447.html</url>
     <content><![CDATA[<p>先检查是否可以裸连github.com，如果不能则可能由于DNS解析的问题，需要等待DNS服务修复。这里更换DNS解析很难解决问题，使用代理虽然可以连接，但是SSH将仍处于不可用的状态。这种情况下参考<a href="https://gist.github.com/Tamal/1cc77f88ef3e900aeae65f0e5e504794">Solution for ‘ssh: connect to host github.com port 22: Connection timed out’ error</a>、<a href="https://blog.csdn.net/s740556472/article/details/80318886">【git 端口拒绝解决方案】ssh: connect to host github.com port 22: Connection refused</a>等方式更换端口为443或设置ProxyCommand等方法自然是无效的，等到网络修复好后自然可以顺利使用SSH方式连接。</p>
@@ -2945,6 +2945,45 @@
         <tag>ssh</tag>
         <tag>dns服务器</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/16107.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
   </entry>
   <entry>
     <title>Windows更改Emacs的独立HOME路径的三种方法</title>
@@ -2997,45 +3036,6 @@
       <tags>
         <tag>emacs</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/16107.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
   </entry>
   <entry>
     <title>美化Windows PowerShell以及Fluent Terminal配置Posh-git、Oh-my-posh、DirColors方法</title>
