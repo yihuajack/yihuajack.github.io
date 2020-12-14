@@ -6,7 +6,7 @@
   <link href="https://yihuajack.github.io/atom.xml" rel="self"/>
   
   <link href="https://yihuajack.github.io/"/>
-  <updated>2020-10-02T04:33:32.670Z</updated>
+  <updated>2020-12-14T15:18:44.554Z</updated>
   <id>https://yihuajack.github.io/</id>
   
   <author>
@@ -15,6 +15,179 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C/C++使用malloc为结构体数组分配内存（及free释放内存）的三种方法</title>
+    <link href="https://yihuajack.github.io/posts/285.html"/>
+    <id>https://yihuajack.github.io/posts/285.html</id>
+    <published>2020-12-08T18:05:58.000Z</published>
+    <updated>2020-12-14T15:18:44.554Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;以&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="Programming" scheme="https://yihuajack.github.io/categories/Programming/"/>
+    
+    
+    <category term="c++" scheme="https://yihuajack.github.io/tags/c/"/>
+    
+    <category term="c" scheme="https://yihuajack.github.io/tags/c/"/>
+    
+    <category term="malloc" scheme="https://yihuajack.github.io/tags/malloc/"/>
+    
+    <category term="free" scheme="https://yihuajack.github.io/tags/free/"/>
+    
+    <category term="struct" scheme="https://yihuajack.github.io/tags/struct/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows更改Emacs的独立HOME路径的三种方法</title>
+    <link href="https://yihuajack.github.io/posts/22545.html"/>
+    <id>https://yihuajack.github.io/posts/22545.html</id>
+    <published>2020-12-07T16:38:27.000Z</published>
+    <updated>2020-12-14T15:18:44.558Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Emacs的HOME路径~默认为环境变量“HOME”的值（例如E:\Cadence\SPB_Data），若要为Emacs设置独立的HOME路径需要手动更改。经试验目前中文网络上所谓修改注册表值HKEY_LOCAL_MACHINE\SOFTWARE\GNU\Emacs\HOM</summary>
+        
+      
+    
+    
+    
+    <category term="SuperUser" scheme="https://yihuajack.github.io/categories/SuperUser/"/>
+    
+    
+    <category term="emacs" scheme="https://yihuajack.github.io/tags/emacs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LaTeX TikZ使用usegdlibrary命令报错Undefined control sequence的原因及解决方案</title>
+    <link href="https://yihuajack.github.io/posts/26450.html"/>
+    <id>https://yihuajack.github.io/posts/26450.html</id>
+    <published>2020-11-29T07:24:57.000Z</published>
+    <updated>2020-12-14T15:18:44.550Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原因：“usegdlibrary”命令基于Ti&lt;em&gt;k&lt;/em&gt;Z库“graphdrawing”，该库需要LuaTeX/LuaLaTeX支持。&lt;/p&gt;
+&lt;p&gt;解决方案：如已安装Tex Live，以VS</summary>
+        
+      
+    
+    
+    
+    <category term="LaTeX" scheme="https://yihuajack.github.io/categories/LaTeX/"/>
+    
+    
+    <category term="latex" scheme="https://yihuajack.github.io/tags/latex/"/>
+    
+    <category term="vscode" scheme="https://yihuajack.github.io/tags/vscode/"/>
+    
+    <category term="tikz" scheme="https://yihuajack.github.io/tags/tikz/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cadence PSpice中更改Cursor控制的曲线及打印图形Cursor信息的方法</title>
+    <link href="https://yihuajack.github.io/posts/56491.html"/>
+    <id>https://yihuajack.github.io/posts/56491.html</id>
+    <published>2020-11-11T03:33:28.000Z</published>
+    <updated>2020-12-14T15:18:44.548Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;画好原理图，Run PSpice运行仿真显示仿真曲线后在菜单栏Trace-&amp;gt;Cursor-&amp;gt;Display显示Cursor，在图上左键单击为Cursor 1，右键单击为Cursor 2，默认如图示：&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="EE" scheme="https://yihuajack.github.io/categories/EE/"/>
+    
+    
+    <category term="orcad" scheme="https://yihuajack.github.io/tags/orcad/"/>
+    
+    <category term="pspice" scheme="https://yihuajack.github.io/tags/pspice/"/>
+    
+    <category term="cadence" scheme="https://yihuajack.github.io/tags/cadence/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub Actions不更新Gist问题的调试方法与解决方法（以waka-box为例）</title>
+    <link href="https://yihuajack.github.io/posts/37452.html"/>
+    <id>https://yihuajack.github.io/posts/37452.html</id>
+    <published>2020-10-29T11:04:46.000Z</published>
+    <updated>2020-12-14T15:18:44.552Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;使用&lt;a href=&quot;https://github.com/matchai/waka-box&quot;&gt;waka-box&lt;/a&gt;或&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Others" scheme="https://yihuajack.github.io/categories/Others/"/>
+    
+    
+    <category term="github" scheme="https://yihuajack.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SuperUser-3</title>
+    <link href="https://yihuajack.github.io/posts/61447.html"/>
+    <id>https://yihuajack.github.io/posts/61447.html</id>
+    <published>2020-10-25T01:49:48.000Z</published>
+    <updated>2020-12-14T15:18:44.556Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;先检查是否可以裸连github.com，如果不能则可能由于DNS解析的问题，需要等待DNS服务修复。这里更换DNS解析很难解决问题，使用代理虽然可以连接，但是SSH将仍处于不可用的状态。这种情况下参考&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="SuperUser" scheme="https://yihuajack.github.io/categories/SuperUser/"/>
+    
+    
+    <category term="github" scheme="https://yihuajack.github.io/tags/github/"/>
+    
+    <category term="ssh" scheme="https://yihuajack.github.io/tags/ssh/"/>
+    
+    <category term="dns服务器" scheme="https://yihuajack.github.io/tags/dns%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>非一般情况下(HOME更改)git@github.com：Permission denied (publickey)的原因及解决方法</title>
@@ -402,9 +575,9 @@
     <category term="CSDN补档" scheme="https://yihuajack.github.io/categories/CSDN%E8%A1%A5%E6%A1%A3/"/>
     
     
-    <category term="powershell" scheme="https://yihuajack.github.io/tags/powershell/"/>
-    
     <category term="python" scheme="https://yihuajack.github.io/tags/python/"/>
+    
+    <category term="powershell" scheme="https://yihuajack.github.io/tags/powershell/"/>
     
     <category term="venv" scheme="https://yihuajack.github.io/tags/venv/"/>
     
@@ -437,181 +610,6 @@
     <category term="wsl" scheme="https://yihuajack.github.io/tags/wsl/"/>
     
     <category term="zsh" scheme="https://yihuajack.github.io/tags/zsh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Cygwin快速配置C++环境+ZSH</title>
-    <link href="https://yihuajack.github.io/posts/1017.html"/>
-    <id>https://yihuajack.github.io/posts/1017.html</id>
-    <published>2020-08-22T17:05:17.000Z</published>
-    <updated>2020-10-02T04:31:49.920Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.cygwin.com/&quot;&gt;Cygwin官网&lt;/a&gt;下载&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="CSDN补档" scheme="https://yihuajack.github.io/categories/CSDN%E8%A1%A5%E6%A1%A3/"/>
-    
-    
-    <category term="cygwin" scheme="https://yihuajack.github.io/tags/cygwin/"/>
-    
-    <category term="zsh" scheme="https://yihuajack.github.io/tags/zsh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MSYS2快速配置C++环境+ZSH</title>
-    <link href="https://yihuajack.github.io/posts/9923.html"/>
-    <id>https://yihuajack.github.io/posts/9923.html</id>
-    <published>2020-08-22T15:12:16.000Z</published>
-    <updated>2020-10-02T04:31:49.916Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;在&lt;a href=&quot;https://www.msys2.org/&quot;&gt;MSYS2官网&lt;/a&gt;下载MSYS2并安装&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;换源。根据&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="CSDN补档" scheme="https://yihuajack.github.io/categories/CSDN%E8%A1%A5%E6%A1%A3/"/>
-    
-    
-    <category term="msys" scheme="https://yihuajack.github.io/tags/msys/"/>
-    
-    <category term="mingw" scheme="https://yihuajack.github.io/tags/mingw/"/>
-    
-    <category term="pacman" scheme="https://yihuajack.github.io/tags/pacman/"/>
-    
-    <category term="zsh" scheme="https://yihuajack.github.io/tags/zsh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>go get golang.org包失败的解决方法（Windows Terminal设置proxy）</title>
-    <link href="https://yihuajack.github.io/posts/33918.html"/>
-    <id>https://yihuajack.github.io/posts/33918.html</id>
-    <published>2020-08-21T13:25:20.000Z</published>
-    <updated>2020-10-02T04:31:49.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Windows在编译安装YCM时在下载安装Omnisharp结束后报错：&lt;/p&gt;
-&lt;figure class=&quot;highlight routeros&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="CSDN补档" scheme="https://yihuajack.github.io/categories/CSDN%E8%A1%A5%E6%A1%A3/"/>
-    
-    
-    <category term="go" scheme="https://yihuajack.github.io/tags/go/"/>
-    
-    <category term="proxy" scheme="https://yihuajack.github.io/tags/proxy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WSL1安装rust报错thread ‘main‘ panicked的解决方法</title>
-    <link href="https://yihuajack.github.io/posts/10972.html"/>
-    <id>https://yihuajack.github.io/posts/10972.html</id>
-    <published>2020-08-21T05:33:07.000Z</published>
-    <updated>2020-10-02T04:31:49.913Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;根据&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="CSDN补档" scheme="https://yihuajack.github.io/categories/CSDN%E8%A1%A5%E6%A1%A3/"/>
-    
-    
-    <category term="wsl" scheme="https://yihuajack.github.io/tags/wsl/"/>
-    
-    <category term="rust" scheme="https://yihuajack.github.io/tags/rust/"/>
-    
-    <category term="vundle" scheme="https://yihuajack.github.io/tags/vundle/"/>
-    
-    <category term="vim" scheme="https://yihuajack.github.io/tags/vim/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git错误unable to create symlink ssl...Could not reset index file to revision ‘HEAD‘的解决方法</title>
-    <link href="https://yihuajack.github.io/posts/57803.html"/>
-    <id>https://yihuajack.github.io/posts/57803.html</id>
-    <published>2020-08-21T04:32:37.000Z</published>
-    <updated>2020-10-02T04:31:49.911Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;执行&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    <category term="CSDN补档" scheme="https://yihuajack.github.io/categories/CSDN%E8%A1%A5%E6%A1%A3/"/>
-    
-    
-    <category term="git" scheme="https://yihuajack.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pip升级会导致Could not install packages due to an EnvironmentError：[WinError 5]拒绝访问错误的原因</title>
-    <link href="https://yihuajack.github.io/posts/17887.html"/>
-    <id>https://yihuajack.github.io/posts/17887.html</id>
-    <published>2020-08-21T01:33:54.000Z</published>
-    <updated>2020-10-02T04:33:32.663Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Python安装时可勾选安装pip，安装完成后执行&lt;/p&gt;
-&lt;figure class=&quot;highlight ebnf&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="CSDN补档" scheme="https://yihuajack.github.io/categories/CSDN%E8%A1%A5%E6%A1%A3/"/>
-    
-    
-    <category term="python" scheme="https://yihuajack.github.io/tags/python/"/>
-    
-    <category term="pip" scheme="https://yihuajack.github.io/tags/pip/"/>
     
   </entry>
   

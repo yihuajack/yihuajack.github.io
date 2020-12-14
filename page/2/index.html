@@ -150,6 +150,16 @@
     <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a>
 
   </li>
+        <li class="menu-item menu-item-resume">
+
+    <a href="/resume/" rel="section"><i class="fa fa-file-user fa-fw"></i>简历</a>
+
+  </li>
+        <li class="menu-item menu-item-prs">
+
+    <a href="/PRs/" rel="section"><i class="fa fa-code-merge fa-fw"></i>开源贡献</a>
+
+  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -199,6 +209,877 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/25920.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/25920.html" class="post-title-link" itemprop="url">LaTeX xcolor使用x11names等选项无法识别报错Package xcolor Error：Undefined color的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-24 00:04:42" itemprop="dateCreated datePublished" datetime="2020-09-24T00:04:42+08:00">2020-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:33:32" itemprop="dateModified" datetime="2020-10-02T12:33:32+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/25920.html" class="post-meta-item leancloud_visitors" data-flag-title="LaTeX xcolor使用x11names等选项无法识别报错Package xcolor Error：Undefined color的解决方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/25920.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/25920.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>例如在使用tikz的node时设定颜色：color=FireBrick2，报错</p>
+<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Package</span> <span class="title">xcolor Error: Undefined color `tikz@color'.</span></span><br><span class="line"> </span><br><span class="line">See the xcolor <span class="keyword">package</span> <span class="title">documentation for explanation.</span></span><br><span class="line"><span class="keyword">Type</span>  <span class="type">H </span>&lt;<span class="keyword">return</span>&gt;  <span class="keyword">for</span> immediate help.</span><br><span class="line"> ...                                              </span><br><span class="line">                                                  </span><br><span class="line">l.<span class="number">56</span>     \<span class="keyword">end</span>{axis}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在tex文件开头添加</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">[x11names]</span><span class="string">{xcolor}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>无效。根据<a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/124636/package-xcolor-error-undefined-colors-maroon-royal-blue-when-master-has-pdf">Package xcolor Error: Undefined colors “Maroon”/“Royal Blue” when master has PDF included classicthesis 3.1</a>将x11names添加到documentsclass的选项中即可解决该问题：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[a4paper,x11names]</span><span class="string">{article}</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">{xcolor}</span></span></span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/12875.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/12875.html" class="post-title-link" itemprop="url">OrCAD PSpice原理图Schematic导出PDF没反应的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-22 21:18:31" itemprop="dateCreated datePublished" datetime="2020-09-22T21:18:31+08:00">2020-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/12875.html" class="post-meta-item leancloud_visitors" data-flag-title="OrCAD PSpice原理图Schematic导出PDF没反应的解决方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/12875.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/12875.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先确定E:\Program Files\Adobe\Acrobat DC\Acrobat和D:\Program Files\gs\gs9.53.1\bin已被添加到环境变量。</p>
+<p>选中要打印的页面：</p>
+<p><img src="/posts/12875/Documents\Programming\HexoBlog\source_posts\CSDN补档-49\20200922211431160.png" alt="img"></p>
+<p>点击菜单栏File-&gt;Export-&gt;PDF，修改文件名，确认Converter和Converter Path，其余选项配置保持默认即可：</p>
+<p><img src="/posts/12875/Documents\Programming\HexoBlog\source_posts\CSDN补档-49\20200922211552971.png" alt="img"></p>
+<p>或</p>
+<p><img src="/posts/12875/Documents\Programming\HexoBlog\source_posts\CSDN补档-49\2020092221161535.png" alt="img"></p>
+<p>即可成功导出。Acrobat Distiller和GhostScript的不同之处在于前者会创建一个同名的.log文件。</p>
+<p>如果选中要导出的页面后仍然没反应，则点击左侧工程管理器Project名称或Design名称后再Export。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/41027.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/41027.html" class="post-title-link" itemprop="url">Ghostscript已有字体报错can‘t find font file问题的原因</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-20 21:59:59" itemprop="dateCreated datePublished" datetime="2020-09-20T21:59:59+08:00">2020-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/41027.html" class="post-meta-item leancloud_visitors" data-flag-title="Ghostscript已有字体报错can‘t find font file问题的原因" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/41027.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/41027.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/posts/41027/Documents\Programming\HexoBlog\source_posts\CSDN补档-48\20200920215819386.png" alt="img"></p>
+<p>执行例如</p>
+<figure class="highlight ebnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">loadallfonts</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p> 命令，报错的字体均为Ghostscript已安装字体，解决方法：</p>
+<p>检查Ghostscript安装目录gs\gs9.53.1\Resource\Font，删掉非预装字体。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/12191.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/12191.html" class="post-title-link" itemprop="url">QtSpim写MIPS报错spim parser syntax error等各种错误的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-19 17:03:53" itemprop="dateCreated datePublished" datetime="2020-09-19T17:03:53+08:00">2020-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/12191.html" class="post-meta-item leancloud_visitors" data-flag-title="QtSpim写MIPS报错spim parser syntax error等各种错误的解决方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/12191.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/12191.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>spim: (parser) syntax error on line 2 of file xxx</p>
+<p>.word 10,11,12,13,14,15,16,17,18</p>
+<p>   ^</p>
+<p>line 2:</p>
+<figure class="highlight angelscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A:  .word <span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>改为</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">A:</span>  <span class="string">.word</span> <span class="number">10</span><span class="string">,</span> <span class="number">11</span><span class="string">,</span> <span class="number">12</span><span class="string">,</span> <span class="number">13</span><span class="string">,</span> <span class="number">14</span><span class="string">,</span> <span class="number">15</span><span class="string">,</span> <span class="number">16</span><span class="string">,</span> <span class="number">17</span><span class="string">,</span> <span class="number">18</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>或</p>
+<figure class="highlight angelscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A:  .word <span class="number">10</span>:<span class="number">18</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>spim: (parser) syntax error on line 5 of file xxx</p>
+<p>j: .word 0</p>
+<p> ^</p>
+<p>line 5:</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">j: </span> <span class="meta">.word</span> <span class="number">0</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>改为</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">J: </span> <span class="meta">.word</span> <span class="number">0</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>spim: (parser) Label is defined for the second time on line 8 of file xxx<br>main:<br>  ^<br>line 8:</p>
+<figure class="highlight avrasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">main:</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>根据CS 265 George Mason University D. Nordstrom的<a target="_blank" rel="noopener" href="https://cs.gmu.edu/~dnord/cs265/spim_intro.html">A Quick Introduction to SPIM</a>，在QtSpim的菜单栏File-&gt;Reinitialize and Load File后即可解决该问题。</p>
+</li>
+<li><p>spim: (parser) syntax error on line 14 of file xxx<br>lw $t2,$t1($s5)<br>   ^<br>line 14:</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lw </span>$<span class="built_in">t2</span>,$<span class="built_in">t1</span>($<span class="built_in">s5</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>改为</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add </span>$<span class="built_in">t1</span>,$<span class="built_in">s5</span>,$<span class="built_in">t1</span></span><br><span class="line"><span class="keyword">lw </span>$<span class="built_in">t2</span>,<span class="number">0</span>($<span class="built_in">t1</span>)</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Attempt to execute non-instruction at 0x00400030<br>根据<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/20172655/attempt-to-execute-non-instruction-in-mips-assembler">Attempt to execute non-instruction in mips assembler?</a>在.s文件代码最后一行添加</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">jr </span>$<span class="built_in">ra</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/21934.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/21934.html" class="post-title-link" itemprop="url">Shell插件合集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-19 02:44:44" itemprop="dateCreated datePublished" datetime="2020-09-19T02:44:44+08:00">2020-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/21934.html" class="post-meta-item leancloud_visitors" data-flag-title="Shell插件合集" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/21934.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/21934.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>“The next gen ls command” <a target="_blank" rel="noopener" href="https://github.com/Peltoche/lsd">lsd</a>：</p>
+<p>Ubuntu: 先在<a target="_blank" rel="noopener" href="https://github.com/Peltoche/lsd/releases">Release页面</a>下载deb包，然后使用dpkg命令安装：</p>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">wget</span> https://github.com/Peltoche/lsd/releases/download/<span class="number">0</span>.<span class="number">18</span>.<span class="number">0</span>/lsd_<span class="number">0</span>.<span class="number">18</span>.<span class="number">0</span>_amd<span class="number">64</span>.deb</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attribute">sudo</span> dpkg -i lsd_<span class="number">0</span>.<span class="number">18</span>.<span class="number">0</span>_amd<span class="number">64</span>.deb</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop install lsd</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>“Easily and securely send things from one computer to another” <a target="_blank" rel="noopener" href="https://github.com/schollz/croc">croc</a>：</p>
+<p>Ubuntu：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snap install croc</span><br></pre></td></tr></tbody></table></figure>
+
+<p>（WSL无法使用snap，使用</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://getcroc.schollz.com | bash</span><br></pre></td></tr></tbody></table></figure>
+
+<p>代替）<br>Windows：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop install croc</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>“A faster way to navigate your filesystem”  <a target="_blank" rel="noopener" href="https://github.com/ajeetdsouza/zoxide">zoxide</a>：</p>
+<p>Ubuntu：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo install zoxide -f</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop install zoxide</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在~/.bashrc中添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="subst">$(zoxide init bash)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在~/.zshrc中添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="subst">$(zoxide init zsh)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在C:\Users&lt;username&gt;\Documents\PowerShell\Microsoft.PowerShell_profile.ps1中添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Invoke-Expression (&amp; {</span><br><span class="line">    <span class="variable">$hook</span> = <span class="keyword">if</span> (<span class="variable">$PSVersionTable</span>.PSVersion.Major -lt 6) { <span class="string">'prompt'</span> } <span class="keyword">else</span> { <span class="string">'pwd'</span> }</span><br><span class="line">    (zoxide init --hook <span class="variable">$hook</span> powershell) -join <span class="string">"`n"</span></span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>“A command-line fuzzy finder”  <a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf">fzf</a>：</p>
+<p>Ubuntu：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fzf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop install fzf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install fzf</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>“Vim-fork focused on extensibility and usability” <a target="_blank" rel="noopener" href="https://github.com/neovim/neovim">neovim</a>：</p>
+<p>Ubuntu：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install neovim</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop install neovim</span><br></pre></td></tr></tbody></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install neovim</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/8456.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/8456.html" class="post-title-link" itemprop="url">Vim及NeoVim插件合集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-19 02:36:00" itemprop="dateCreated datePublished" datetime="2020-09-19T02:36:00+08:00">2020-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/8456.html" class="post-meta-item leancloud_visitors" data-flag-title="Vim及NeoVim插件合集" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/8456.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/8456.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>“Vundle, the plug-in manager for Vim” <a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">Vundle.vim</a>：<br>Ubuntu：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</span><br></pre></td></tr></tbody></table></figure>
+
+<p>根据README.md的Quick Start在.vimrc中添加配置。打开vim，然后输入:PluginInstall并回车，或者直接从命令行输入</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim +PluginInstall +qall</span><br></pre></td></tr></tbody></table></figure>
+
+<p>安装。<br>对于<a target="_blank" rel="noopener" href="https://www.tabnine.com/">TabNine（Codota）</a>有不使用Vundle的方法：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/zxqfl/tabnine-vim</span><br></pre></td></tr></tbody></table></figure>
+
+<p>.vimrc中添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> rtp+=~/.vim/bundle/Vundle.vim</span><br></pre></td></tr></tbody></table></figure>
+
+<p>.vimrc如下：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="string">" be iMproved, required</span></span><br><span class="line"><span class="string">filetype off                  "</span> <span class="keyword">required</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/tabnine-vim</span><br><span class="line"><span class="keyword">call</span> vundle<span class="comment">#begin()</span></span><br><span class="line"><span class="keyword">Plugin</span> <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"><span class="keyword">Plugin</span> <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line"><span class="keyword">Plugin</span> <span class="string">'git://git.wincent.com/command-t.git'</span></span><br><span class="line"><span class="keyword">Plugin</span> <span class="string">'rstacruz/sparkup'</span>, {<span class="string">'rtp'</span>: <span class="string">'vim/'</span>}</span><br><span class="line"><span class="keyword">Plugin</span> <span class="string">'zxqfl/tabnine-vim'</span></span><br><span class="line"><span class="keyword">call</span> vundle<span class="comment">#end()            " required</span></span><br><span class="line">filetype <span class="keyword">plugin</span> indent <span class="keyword">on</span>    <span class="string">" required</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/VundleVim/Vundle.vim.git ~/vimfiles/bundle/Vundle.vim</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后在_vimrc中添加配置如下：</p>
+<figure class="highlight vim"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> encoding=utf-<span class="number">8</span></span><br><span class="line"><span class="keyword">set</span> nocompatible</span><br><span class="line"><span class="keyword">filetype</span> off</span><br><span class="line"><span class="keyword">set</span> shellslash</span><br><span class="line"><span class="keyword">set</span> rtp+=~/vimfiles/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin(<span class="string">'~/vimfiles/bundle'</span>)</span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line">Plugin <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line">Plugin <span class="string">'git://git.wincent.com/command-t.git'</span></span><br><span class="line">Plugin <span class="string">'rstacruz/sparkup'</span>, {<span class="string">'rtp'</span>: <span class="string">'vim'</span>}</span><br><span class="line">Plugin <span class="string">'ycm-core/YouCompleteMe'</span></span><br><span class="line">Plugin <span class="string">'zxqfl/tabnine-vim'</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line">removal</span><br><span class="line"><span class="keyword">source</span> $VIMRUNTIME/vimrc_example.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">source</span> $VIMRUNTIME/mswin.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">behave</span> mswin</span><br><span class="line"><span class="keyword">if</span> &amp;diffopt !~# <span class="string">'internal'</span></span><br><span class="line">  <span class="keyword">set</span> diffexpr=MyDiff()</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyDiff</span><span class="params">()</span></span></span><br><span class="line">  <span class="keyword">let</span> <span class="keyword">opt</span> = <span class="string">'-a --binary '</span></span><br><span class="line">  <span class="keyword">if</span> &amp;diffopt =~ <span class="string">'icase'</span> | <span class="keyword">let</span> <span class="keyword">opt</span> = <span class="keyword">opt</span> . <span class="string">'-i '</span> | <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">if</span> &amp;diffopt =~ <span class="string">'iwhite'</span> | <span class="keyword">let</span> <span class="keyword">opt</span> = <span class="keyword">opt</span> . <span class="string">'-b '</span> | <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">let</span> arg1 = <span class="variable">v:fname_in</span></span><br><span class="line">  <span class="keyword">if</span> arg1 =~ <span class="string">' '</span> | <span class="keyword">let</span> arg1 = <span class="string">'"'</span> . arg1 . <span class="string">'"'</span> | <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">let</span> arg1 = <span class="keyword">substitute</span>(arg1, <span class="string">'!'</span>, <span class="string">'\!'</span>, <span class="string">'g'</span>)</span><br><span class="line">  <span class="keyword">let</span> arg2 = <span class="variable">v:fname_new</span></span><br><span class="line">  <span class="keyword">if</span> arg2 =~ <span class="string">' '</span> | <span class="keyword">let</span> arg2 = <span class="string">'"'</span> . arg2 . <span class="string">'"'</span> | <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">let</span> arg2 = <span class="keyword">substitute</span>(arg2, <span class="string">'!'</span>, <span class="string">'\!'</span>, <span class="string">'g'</span>)</span><br><span class="line">  <span class="keyword">let</span> arg3 = <span class="variable">v:fname_out</span></span><br><span class="line">  <span class="keyword">if</span> arg3 =~ <span class="string">' '</span> | <span class="keyword">let</span> arg3 = <span class="string">'"'</span> . arg3 . <span class="string">'"'</span> | <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">let</span> arg3 = <span class="keyword">substitute</span>(arg3, <span class="string">'!'</span>, <span class="string">'\!'</span>, <span class="string">'g'</span>)</span><br><span class="line">  <span class="keyword">if</span> $VIMRUNTIME =~ <span class="string">' '</span></span><br><span class="line">    <span class="keyword">if</span> &amp;<span class="keyword">sh</span> =~ <span class="string">'\&lt;cmd'</span></span><br><span class="line">      <span class="keyword">if</span> <span class="built_in">empty</span>(&amp;shellxquote)</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">l:shxq_sav</span> = <span class="string">''</span></span><br><span class="line">        <span class="keyword">set</span> shellxquote&amp;</span><br><span class="line">      <span class="keyword">endif</span></span><br><span class="line">      <span class="keyword">let</span> cmd = <span class="string">'"'</span> . $VIMRUNTIME . <span class="string">'\diff"'</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">let</span> cmd = <span class="keyword">substitute</span>($VIMRUNTIME, <span class="string">' '</span>, <span class="string">'" '</span>, <span class="string">''</span>) . <span class="string">'\diff"'</span></span><br><span class="line">    <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">let</span> cmd = $VIMRUNTIME . <span class="string">'\diff'</span></span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">let</span> cmd = <span class="keyword">substitute</span>(cmd, <span class="string">'!'</span>, <span class="string">'\!'</span>, <span class="string">'g'</span>)</span><br><span class="line">  <span class="keyword">silent</span> <span class="keyword">execute</span> <span class="string">'!'</span> . cmd . <span class="string">' '</span> . <span class="keyword">opt</span> . arg1 . <span class="string">' '</span> . arg2 . <span class="string">' &gt; '</span> . arg3</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">exists</span>(<span class="string">'l:shxq_sav'</span>)</span><br><span class="line">    <span class="keyword">let</span> &amp;shellxquote=<span class="variable">l:shxq_sav</span></span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="/posts/8456/Documents\Programming\HexoBlog\source_posts\CSDN补档-45\20200918230952613.png" alt="img">“A code-completion engine for Vim” <a target="_blank" rel="noopener" href="https://github.com/ycm-core/YouCompleteMe">YouCompleteMe</a>在安装Vim plugin后：<br>Ubuntu：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install build-essential cmake vim python3-dev</span><br></pre></td></tr></tbody></table></figure>
+
+<p>以及mono-complete、go、node和npm，然后编译：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.vim/bundle/YouCompleteMe</span><br><span class="line">python3 install.py --all</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows：<br>安装Visual Studio Build Tools 2017+、cmake、vim、python、go、node、npm后编译：</p>
+<figure class="highlight vim"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> YouCompleteMe</span><br><span class="line"><span class="keyword">python3</span> install.<span class="keyword">py</span> --<span class="keyword">all</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>“Minimalist Vim Plugin Manager” <a target="_blank" rel="noopener" href="https://github.com/junegunn/vim-plug">vim-plug</a>：<br>Ubuntu Vim：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fLo ~/.vim/<span class="built_in">autoload</span>/plug.vim --create-dirs \</span><br><span class="line">    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Ubuntu NeoVim：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \</span></span><br><span class="line"><span class="string">       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows Vim：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`</span><br><span class="line">    ni <span class="variable">$HOME</span>/vimfiles/<span class="built_in">autoload</span>/plug.vim -Force</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Windows NeoVim：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`</span><br><span class="line">    ni <span class="string">"<span class="variable">$env</span>:LOCALAPPDATA/nvim-data/site/autoload/plug.vim"</span> -Force</span><br></pre></td></tr></tbody></table></figure>
+
+<p>PowerShell命令可能会出现“Invoke-WebRequest: 由于目标计算机积极拒绝，无法连接。”错误。<br>手动将<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">plug.vim</a>文件保存到$HOME\vimfiles\autoload文件夹（对于Vim）|C:\Users&lt;username&gt;\AppData\Local\nvim-data\site\autoload文件夹下。参考<a target="_blank" rel="noopener" href="https://jakeg.dev/neovim-in-windows/">Neovim in Windows</a>执行</p>
+<figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">md ~<span class="symbol">\A</span>ppData<span class="symbol">\L</span>ocal<span class="symbol">\n</span>vim<span class="symbol">\a</span>utoload</span><br><span class="line"><span class="keyword">$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</span></span><br><span class="line"><span class="keyword"></span>(New-Object Net.WebClient).DownloadFile(</span><br><span class="line">  <span class="keyword">$uri,</span></span><br><span class="line"><span class="keyword">  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath</span>(</span><br><span class="line">    "~<span class="symbol">\A</span>ppData<span class="symbol">\L</span>ocal<span class="symbol">\n</span>vim<span class="symbol">\a</span>utoload<span class="symbol">\p</span>lug.vim"</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Ubuntu：创建~/.config/nvim/init.vim（需要先mkdir ~/.config/nvim），添加</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">call plug#begin(<span class="string">'~/.vim/plugged'</span>)</span><br><span class="line">Plug <span class="string">'junegunn/vim-easy-align'</span></span><br><span class="line">Plug <span class="string">'https://github.com/junegunn/vim-github-dashboard.git'</span></span><br><span class="line">Plug <span class="string">'SirVer/ultisnips'</span> | Plug <span class="string">'honza/vim-snippets'</span></span><br><span class="line">Plug <span class="string">'scrooloose/nerdtree'</span>, { <span class="string">'on'</span>:  <span class="string">'NERDTreeToggle'</span> }</span><br><span class="line">Plug <span class="string">'tpope/vim-fireplace'</span>, { <span class="string">'for'</span>: <span class="string">'clojure'</span> }</span><br><span class="line">Plug <span class="string">'rdnetto/YCM-Generator'</span>, { <span class="string">'branch'</span>: <span class="string">'stable'</span> }</span><br><span class="line">Plug <span class="string">'fatih/vim-go'</span>, { <span class="string">'tag'</span>: <span class="string">'*'</span> }</span><br><span class="line">Plug <span class="string">'nsf/gocode'</span>, { <span class="string">'tag'</span>: <span class="string">'v.20150303'</span>, <span class="string">'rtp'</span>: <span class="string">'vim'</span> }</span><br><span class="line">Plug <span class="string">'junegunn/fzf'</span>, { <span class="string">'dir'</span>: <span class="string">'~/.fzf'</span>, <span class="string">'do'</span>: <span class="string">'./install --all'</span> }</span><br><span class="line">Plug <span class="string">'~/my-prototype-plugin'</span></span><br><span class="line">Plug <span class="string">'tpope/vim-sensible'</span></span><br><span class="line">Plug <span class="string">'scrooloose/nerdtree'</span>, { <span class="string">'on'</span>: <span class="string">'NERDTreeToggle'</span> }</span><br><span class="line">Plug <span class="string">'junegunn/vim-github-dashboard'</span>, { <span class="string">'on'</span>: [<span class="string">'GHDashboard'</span>, <span class="string">'GHActivity'</span>] }</span><br><span class="line">Plug <span class="string">'kovisoft/paredit'</span>, { <span class="string">'for'</span>: [<span class="string">'clojure'</span>, <span class="string">'scheme'</span>] }</span><br><span class="line">Plug <span class="string">'junegunn/vader.vim'</span>,  { <span class="string">'on'</span>: <span class="string">'Vader'</span>, <span class="string">'for'</span>: <span class="string">'vader'</span> }</span><br><span class="line">Plug <span class="string">'junegunn/goyo.vim'</span>, { <span class="string">'for'</span>: <span class="string">'markdown'</span> }</span><br><span class="line">autocmd!<span class="built_in"> User </span>goyo.vim echom <span class="string">'Goyo is now loaded!'</span></span><br><span class="line">Plug <span class="string">'Shougo/vimproc.vim'</span>, { <span class="string">'do'</span>: <span class="string">'make'</span> }</span><br><span class="line">Plug <span class="string">'yuttie/inkstained-vim'</span></span><br><span class="line">call plug#end()</span><br><span class="line">syntax enable</span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">background</span>=light</span><br></pre></td></tr></tbody></table></figure>
+
+<p>以上包括了“An experimental color scheme for Vim.” <a target="_blank" rel="noopener" href="https://github.com/yuttie/inkstained-vim">inkstained-vim</a>、“Vim plugin, insert or delete brackets, parens, quotes in pair” <a target="_blank" rel="noopener" href="https://github.com/jiangmiao/auto-pairs">auto-pairs</a>等。<br>其中</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colorsheme inkstained</span><br></pre></td></tr></tbody></table></figure>
+
+<p>命令报错”Not an editor command: colorsheme“故删去。<br>然后输入:PlugInstall回车，顶部出现“Updated. Elapsed time: 19.219560 sec.”表示安装成功。<img src="/posts/8456/Documents\Programming\HexoBlog\source_posts\CSDN补档-45\2020091900571240.png" alt="img">使用主题后的效果：<img src="/posts/8456/Documents\Programming\HexoBlog\source_posts\CSDN补档-45\20200919010245790.png" alt="img">Windows：执行</p>
+<figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scoop config proxy 127.0.0.1:11000</span><br><span class="line">scoop bucket add versions</span><br><span class="line">scoop install python27</span><br><span class="line">pip install virtualenv</span><br><span class="line">virtualenv -p D:<span class="symbol">\P</span>rogram_Files<span class="symbol">\s</span>coop<span class="symbol">\a</span>pps<span class="symbol">\p</span>ython27<span class="symbol">\2</span>.7.18<span class="symbol">\p</span>ython.exe E:<span class="symbol">\P</span>rogram_Files<span class="symbol">\n</span>vimpy2</span><br><span class="line">E:<span class="symbol">\P</span>rogram_Files<span class="symbol">\n</span>vimpy2<span class="symbol">\S</span>cripts<span class="symbol">\p</span>ip.exe install pynvim jedi</span><br><span class="line">E:<span class="symbol">\P</span>rogram_Files<span class="symbol">\n</span>vimpy2<span class="symbol">\S</span>cripts<span class="symbol">\p</span>ython.exe -m pip install --upgrade pip</span><br><span class="line">E:<span class="symbol">\P</span>rogram_Files<span class="symbol">\v</span>env<span class="symbol">\S</span>cripts<span class="symbol">\p</span>ip.exe install pynvim jedi</span><br></pre></td></tr></tbody></table></figure>
+
+<p>创建C:\Users&lt;username&gt;\AppData\Local\nvim\init.vim，将init.vim填写如下：</p>
+<figure class="highlight gams"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible</span><br><span class="line">filetype <span class="comment">off</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">t_Co=256</span></span><br><span class="line">call <span class="comment">plug#begin(</span><span class="comment">'~/AppData/Local/nvim/plugged'</span><span class="comment">)</span></span><br><span class="line">Plug <span class="comment">'junegunn/vim-easy-align'</span></span><br><span class="line">Plug <span class="comment">'https://github.com/junegunn/vim-github-dashboard.git'</span></span><br><span class="line">Plug <span class="comment">'SirVer/ultisnips'</span> |<span class="comment"> Plug</span> <span class="comment">'honza/vim-snippets'</span></span><br><span class="line">Plug <span class="comment">'scrooloose/nerdtree'</span><span class="comment">, {</span> <span class="comment">'on'</span><span class="comment">:</span>  <span class="comment">'NERDTreeToggle'</span><span class="comment"> }</span></span><br><span class="line">Plug <span class="comment">'tpope/vim-fireplace'</span><span class="comment">, {</span> <span class="comment">'for'</span><span class="comment">:</span> <span class="comment">'clojure'</span><span class="comment"> }</span></span><br><span class="line">Plug <span class="comment">'rdnetto/YCM-Generator'</span><span class="comment">, {</span> <span class="comment">'branch'</span><span class="comment">:</span> <span class="comment">'stable'</span><span class="comment"> }</span></span><br><span class="line">Plug <span class="comment">'fatih/vim-go'</span><span class="comment">, {</span> <span class="comment">'tag'</span><span class="comment">:</span> <span class="comment">'*'</span><span class="comment"> }</span></span><br><span class="line">Plug <span class="comment">'nsf/gocode'</span><span class="comment">, {</span> <span class="comment">'tag'</span><span class="comment">:</span> <span class="comment">'v.20150303'</span><span class="comment">,</span> <span class="comment">'rtp'</span><span class="comment">:</span> <span class="comment">'vim'</span><span class="comment"> }</span></span><br><span class="line">Plug <span class="comment">'junegunn/fzf'</span><span class="comment">, {</span> <span class="comment">'dir'</span><span class="comment">:</span> <span class="comment">'~/.fzf'</span><span class="comment">,</span> <span class="comment">'do'</span><span class="comment">:</span> <span class="comment">'./install --all'</span><span class="comment"> }</span></span><br><span class="line">Plug <span class="comment">'junegunn/fzf.vim'</span></span><br><span class="line">Plug <span class="comment">'~/my-prototype-plugin'</span></span><br><span class="line">Plug <span class="comment">'tpope/vim-sensible'</span></span><br><span class="line">Plug <span class="comment">'junegunn/vim-github-dashboard'</span><span class="comment">, {</span> <span class="comment">'on'</span><span class="comment">: [</span><span class="comment">'GHDashboard'</span><span class="comment">,</span> <span class="comment">'GHActivity'</span><span class="comment">] }</span></span><br><span class="line">Plug <span class="comment">'kovisoft/paredit'</span><span class="comment">, {</span> <span class="comment">'for'</span><span class="comment">: [</span><span class="comment">'clojure'</span><span class="comment">,</span> <span class="comment">'scheme'</span><span class="comment">] }</span></span><br><span class="line">Plug <span class="comment">'junegunn/vader.vim'</span><span class="comment">,  {</span> <span class="comment">'on'</span><span class="comment">:</span> <span class="comment">'Vader'</span><span class="comment">,</span> <span class="comment">'for'</span><span class="comment">:</span> <span class="comment">'vader'</span><span class="comment"> }</span></span><br><span class="line">Plug <span class="comment">'junegunn/goyo.vim'</span><span class="comment">, {</span> <span class="comment">'for'</span><span class="comment">:</span> <span class="comment">'markdown'</span><span class="comment"> }</span></span><br><span class="line">autocmd! User <span class="comment">goyo.vim echom</span> <span class="comment">'Goyo is now loaded!'</span></span><br><span class="line">Plug <span class="comment">'Shougo/vimproc.vim'</span><span class="comment">, {</span> <span class="comment">'do'</span><span class="comment">:</span> <span class="comment">'make'</span><span class="comment"> }</span></span><br><span class="line">if <span class="comment">has(</span><span class="comment">'nvim'</span><span class="comment">)</span></span><br><span class="line">  Plug <span class="comment">'Shougo/deoplete.nvim'</span><span class="comment">, {</span> <span class="comment">'do'</span><span class="comment">:</span> <span class="comment">':UpdateRemotePlugins'</span><span class="comment"> }</span></span><br><span class="line">else</span><br><span class="line">  Plug <span class="comment">'Shougo/deoplete.nvim'</span></span><br><span class="line">  Plug <span class="comment">'roxma/nvim-yarp'</span></span><br><span class="line">  Plug <span class="comment">'roxma/vim-hug-neovim-rpc'</span></span><br><span class="line">endif</span><br><span class="line">Plug <span class="comment">'zchee/deoplete-jedi'</span></span><br><span class="line">Plug <span class="comment">'tpope/vim-fugitive'</span></span><br><span class="line">Plug <span class="comment">'elzr/vim-json'</span></span><br><span class="line">Plug <span class="comment">'dyng/ctrlsf.vim'</span></span><br><span class="line">Plug <span class="comment">'airblade/vim-rooter'</span></span><br><span class="line">Plug <span class="comment">'tomasiser/vim-code-dark'</span></span><br><span class="line">call <span class="comment">plug#end()</span></span><br><span class="line">colors <span class="comment">codedark</span></span><br><span class="line">let <span class="comment">g:airline_theme =</span> <span class="comment">'codedark'</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">shiftwidth=4</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">tabstop=4</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">expandtab</span></span><br><span class="line">filetype <span class="comment">plugin on</span></span><br><span class="line">filetype <span class="comment">indent on</span></span><br><span class="line">syntax <span class="comment">on</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">nu</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">autochdir</span></span><br><span class="line">nmap <span class="comment">&lt;leader&gt;l :set list!&lt;CR&gt;</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">mouse=a</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">autoread</span></span><br><span class="line">let <span class="comment">NERDTreeQuitOnOpen = 1</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">completeopt=menu</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">linebreak</span></span><br><span class="line">autocmd <span class="comment">Filetype html,ruby,javascript,yml,yaml,json,haskell,ejs,htmldjango setlocal ts=2 sts=2 sw=2</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">noswapfile</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">wildignore+=*.pyc</span></span><br><span class="line">if <span class="comment">&amp;term =</span>~ <span class="comment">'256color'</span></span><br><span class="line">  <span class="keyword">set</span> <span class="comment">t_ut=</span></span><br><span class="line">endif</span><br><span class="line">let <span class="comment">g:ycm_autoclose_preview_window_after_completion=1</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">enc=utf-8</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">fileencodings=ucs-bom,utf8,prc</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">fileencoding=utf-8</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">nofoldenable</span></span><br><span class="line">filetype <span class="comment">plugin indent on</span></span><br><span class="line">let <span class="comment">g:python2_host_prog =</span> <span class="comment">'E:\Program_Files\nvimpy2\Scripts\python.exe'</span></span><br><span class="line">let <span class="comment">g:python3_host_prog =</span> <span class="comment">'E:\Program_Files\venv\Scripts\python.exe'</span></span><br><span class="line">let <span class="comment">g:black_virtualenv =</span> <span class="comment">'E:\Program_Files\venv'</span></span><br><span class="line">let <span class="comment">g:acp_enableAtStartup = 0</span></span><br><span class="line">let <span class="comment">g:deoplete#enable_at_startup = 1</span></span><br><span class="line">inoremap <span class="comment">&lt;expr&gt;&lt;tab&gt; pumvisible() ?</span> <span class="comment">"\&lt;c-n&gt;"</span><span class="comment"> :</span> <span class="comment">"\&lt;tab&gt;"</span></span><br><span class="line">let <span class="comment">g:fzf_action = {</span></span><br><span class="line">      \ <span class="string">'ctrl-s'</span>: <span class="string">'split'</span>,</span><br><span class="line">      \ <span class="string">'ctrl-v'</span>: <span class="string">'vsplit'</span>,</span><br><span class="line">      \ <span class="string">'ctrl-t'</span>: <span class="string">'tabe'</span></span><br><span class="line">      \ }</span><br><span class="line">nnoremap <span class="comment">&lt;c-p&gt; :FZF&lt;cr&gt;</span></span><br><span class="line">nnoremap <span class="comment">&lt;c-f&gt; :Rg&lt;cr&gt;</span></span><br><span class="line">command! -bang <span class="comment">-nargs=* Rg</span></span><br><span class="line">  \ call <span class="comment">fzf#vim#grep(</span></span><br><span class="line">  \   <span class="string">'rg --column --line-number --no-heading --color=always --smart-case '</span>.shellescape(&lt;q-args&gt;), 1,</span><br><span class="line">  \   &lt;bang&gt;0 ? fzf#vim#with_preview(<span class="string">'up:60%'</span>)</span><br><span class="line">  \           : fzf#vim#with_preview(<span class="string">'right:50%:hidden'</span>, <span class="string">'?'</span>),</span><br><span class="line">  \   &lt;bang&gt;0)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后执行nvim命令或打开NeoVim窗口输入:PlugInstall回车。<br>若出现“fatal: out of memory, malloc failed (tried to allocate 2147483648 bytes)”问题，参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/41120920/git-fatal-out-of-memory-malloc-failed-tried-to-allocate-889192448-bytes">GIT: fatal: Out of memory, malloc failed (tried to allocate 889192448 bytes)</a>调小postBuffer，执行</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.postBuffer 128m</span><br></pre></td></tr></tbody></table></figure>
+
+<p>后错误解决，又有新错误“fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/honza/vim-snippets.git/'">https://github.com/honza/vim-snippets.git/'</a>: OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443”和“fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/tpope/vim-fugitive.git/'">https://github.com/tpope/vim-fugitive.git/'</a>: OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443”，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/ljj125896/article/details/104350459">OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443问题解决</a>执行</p>
+<figure class="highlight tcl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="keyword">global</span> --<span class="keyword">unset</span> <span class="keyword">http</span>.<span class="keyword">http</span>://github.com.proxy</span><br><span class="line">git config --<span class="keyword">global</span> --<span class="keyword">unset</span> https.<span class="keyword">http</span>://github.com.proxy</span><br></pre></td></tr></tbody></table></figure>
+
+<p>后成功：<img src="/posts/8456/Documents\Programming\HexoBlog\source_posts\CSDN补档-45\20200919022832690.png" alt="img"></p>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -763,916 +1644,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/1017.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/1017.html" class="post-title-link" itemprop="url">Cygwin快速配置C++环境+ZSH</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-23 01:05:17" itemprop="dateCreated datePublished" datetime="2020-08-23T01:05:17+08:00">2020-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/1017.html" class="post-meta-item leancloud_visitors" data-flag-title="Cygwin快速配置C++环境+ZSH" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/1017.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/1017.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p><a target="_blank" rel="noopener" href="http://www.cygwin.com/">Cygwin官网</a>下载<a target="_blank" rel="noopener" href="http://www.cygwin.com/setup-x86_64.exe">setup-x86_64.exe</a>并安装。选择Install from Internet、Use System Proxy Settings，在User URL中Add <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/cygwin/%E3%80%82">http://mirrors.aliyun.com/cygwin/。</a></p>
-</li>
-<li><p>安装gcc-core、gcc-g++、make、gdb、binutils、python38、cmake、man-db、nano、openssl、libssl1.1、libstdc++6、vim、wget、xz、curl、git、perl、openssh、mintty、zsh等。</p>
-</li>
-<li><p>/etc/bash.bashrc添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HOME=<span class="string">"/cygdrive/d/Documents/Programming/cygwinhome"</span></span><br><span class="line">PATH=<span class="string">"/usr/local/bin:/usr/bin"</span></span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line"><span class="built_in">exec</span> zsh</span><br></pre></td></tr></tbody></table></figure>
-
-<p>/etc/nsswitch.conf取消db_home注释并改为</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db_home:  /cygdrive/d/Documents/Programming/cygwinhome</span><br></pre></td></tr></tbody></table></figure>
-
-<p>/etc/profile添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HOME=<span class="string">"/cygdrive/d/Documents/Programming/cygwinhome"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>将.zshrc放在D:\Documents\Programming\cygwinhome中，改为</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ZSH=<span class="string">"/cygdrive/d/Program_Files/.oh-my-zsh"</span></span><br><span class="line">ZSH_THEME=<span class="string">"agnoster"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1494658/how-can-i-change-my-cygwin-home-folder-after-installation">How can I change my Cygwin home folder after installation?</a>、<a target="_blank" rel="noopener" href="https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-syntax%E5%8F%8A[Cygwin%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9HOME%E7%9B%AE%E5%BD%95%EF%BC%88MSYS2%E5%92%8CCygwin">https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-syntax及[Cygwin如何更改HOME目录（MSYS2和Cygwin</a> ZSH冲突）](<a target="_blank" rel="noopener" href="https://blog.csdn.net/yihuajack/article/details/105249209)%E3%80%82">https://blog.csdn.net/yihuajack/article/details/105249209)。</a></p>
-</li>
-<li><p>Cygwin Terminal窗口Options-&gt;Text-&gt;Font更改字体。</p>
-</li>
-<li><p>（可选）Windows Terminal配置：settings.json中的”profiles”下的”list”下添加</p>
-<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"guid"</span>: <span class="string">"{3bf9cb4f-ac0a-49ee-8002-f11a648c0ea2}"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"Cygwin64"</span>,</span><br><span class="line">    <span class="attr">"commandline"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\bin\\bash.exe"</span>,</span><br><span class="line">    <span class="attr">"icon"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\Cygwin.ico"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>（可选）ConEmu配置：Settings-&gt;General-&gt;Fonts更改字体；Settings-&gt;Startup-&gt;Tasks，{Bash:CygWin bash}中Commands默认为</p>
-<figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set CHERE_INVOKING=1 &amp; set "PATH=<span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\b</span>in;<span class="variable">%PATH%</span>" &amp; <span class="variable">%ConEmuBaseDirShort%</span><span class="symbol">\c</span>onemu-cyg-64.exe -new_console:p <span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\b</span>in<span class="symbol">\b</span>ash.exe --login -i -new_console:C:"<span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\C</span>ygwin.ico"</span><br></pre></td></tr></tbody></table></figure>
-
-<p>（可选）Fluent Terminal设置：配置文件-&gt;新建。名称：Cygwin；可执行程序位置：D:\Program_Files\cygwin64\bin\bash.exe；工作目录：D:\Documents\Programming\cygwinhome；快捷键：自选。</p>
-</li>
-</ol>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/9923.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/9923.html" class="post-title-link" itemprop="url">MSYS2快速配置C++环境+ZSH</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-22 23:12:16" itemprop="dateCreated datePublished" datetime="2020-08-22T23:12:16+08:00">2020-08-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/9923.html" class="post-meta-item leancloud_visitors" data-flag-title="MSYS2快速配置C++环境+ZSH" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/9923.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/9923.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>在<a target="_blank" rel="noopener" href="https://www.msys2.org/">MSYS2官网</a>下载MSYS2并安装</p>
-</li>
-<li><p>换源。根据<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/msys2/">清华大学开源软件镜像站MSYS2 镜像使用帮助</a>操作。</p>
-</li>
-<li><p>完成后运行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -Syu</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-</li>
-</ol>
-<p>   会提示关闭MSYS2窗口。关闭后再次启动MSYS2并运行</p>
-   <figure class="highlight ebnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pacman -Su</span></span><br></pre></td></tr></tbody></table></figure>
-
-<ol start="4">
-<li><p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S mingw-w64-x86_64-toolchain</span><br></pre></td></tr></tbody></table></figure>
-
-<p>会安装下列软件仓库：</p>
-<ol>
-<li>mingw-w64-x86_64-binutils  2) mingw-w64-x86_64-crt-git</li>
-<li>mingw-w64-x86_64-gcc  4) mingw-w64-x86_64-gcc-ada</li>
-<li>mingw-w64-x86_64-gcc-fortran  6) mingw-w64-x86_64-gcc-libgfortran</li>
-<li>mingw-w64-x86_64-gcc-libs  8) mingw-w64-x86_64-gcc-objc</li>
-<li>mingw-w64-x86_64-gdb  10) mingw-w64-x86_64-headers-git</li>
-<li>mingw-w64-x86_64-libmangle-git  12) mingw-w64-x86_64-libwinpthread-git</li>
-<li>mingw-w64-x86_64-make  14) mingw-w64-x86_64-pkg-config</li>
-<li>mingw-w64-x86_64-tools-git  16) mingw-w64-x86_64-winpthreads-git</li>
-<li>mingw-w64-x86_64-winstorecompat-git<br>包括下列软件包：<br>mingw-w64-x86_64-bzip2-1.0.8-1<br>mingw-w64-x86_64-ca-certificates-20190110-1<br>mingw-w64-x86_64-expat-2.2.9-1  mingw-w64-x86_64-gettext-0.19.8.1-9<br>mingw-w64-x86_64-gmp-6.2.0-1  mingw-w64-x86_64-isl-0.22.1-1<br>mingw-w64-x86_64-libffi-3.3-1  mingw-w64-x86_64-libiconv-1.16-1<br>mingw-w64-x86_64-libsystre-1.0.1-4<br>mingw-w64-x86_64-libtasn1-4.16.0-1<br>mingw-w64-x86_64-libtre-git-r128.6fb7206-2<br>mingw-w64-x86_64-mpc-1.1.0-1  mingw-w64-x86_64-mpdecimal-2.5.0-1<br>mingw-w64-x86_64-mpfr-4.1.0-2  mingw-w64-x86_64-ncurses-6.2-1<br>mingw-w64-x86_64-openssl-1.1.1.g-1<br>mingw-w64-x86_64-p11-kit-0.23.20-2  mingw-w64-x86_64-python-3.8.5-1<br>mingw-w64-x86_64-readline-8.0.004-1<br>mingw-w64-x86_64-sqlite3-3.32.3-2  mingw-w64-x86_64-tcl-8.6.10-1<br>mingw-w64-x86_64-termcap-1.3.1-6  mingw-w64-x86_64-tk-8.6.10-1<br>mingw-w64-x86_64-windows-default-manifest-6.4-3<br>mingw-w64-x86_64-xxhash-0.7.4-1  mingw-w64-x86_64-xz-5.2.5-1<br>mingw-w64-x86_64-zlib-1.2.11-7  mingw-w64-x86_64-zstd-1.4.5-1<br>mingw-w64-x86_64-binutils-2.34-3<br>mingw-w64-x86_64-crt-git-8.0.0.5966.f5da805f-1<br>mingw-w64-x86_64-gcc-10.2.0-1  mingw-w64-x86_64-gcc-ada-10.2.0-1<br>mingw-w64-x86_64-gcc-fortran-10.2.0-1<br>mingw-w64-x86_64-gcc-libgfortran-10.2.0-1<br>mingw-w64-x86_64-gcc-libs-10.2.0-1<br>mingw-w64-x86_64-gcc-objc-10.2.0-1  mingw-w64-x86_64-gdb-9.2-1<br>mingw-w64-x86_64-headers-git-8.0.0.5966.f5da805f-1<br>mingw-w64-x86_64-libmangle-git-8.0.0.5573.a4de8df4-1<br>mingw-w64-x86_64-libwinpthread-git-8.0.0.5906.c9a21571-1<br>mingw-w64-x86_64-make-4.3-1  mingw-w64-x86_64-pkg-config-0.29.2-1<br>mingw-w64-x86_64-tools-git-8.0.0.5903.3310d459-1<br>mingw-w64-x86_64-winpthreads-git-8.0.0.5906.c9a21571-1<br>mingw-w64-x86_64-winstorecompat-git-8.0.0.5903.3310d459-1<br>下载大小：    132.55 MiB<br>全部安装大小：  897.89 MiB</li>
-</ol>
-</li>
-<li><p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S mingw-w64-x86_64-cmake mingw-w64-x86_64-extra-cmake-modules</span><br></pre></td></tr></tbody></table></figure>
-
-<p>包含下列软件包：</p>
-<pre><code>  mingw-w64-x86_64-brotli-1.0.7-4  mingw-w64-x86_64-c-ares-1.16.1-1
-  mingw-w64-x86_64-curl-7.71.0-1  mingw-w64-x86_64-jansson-2.12-1
-  mingw-w64-x86_64-jemalloc-5.2.1-1  mingw-w64-x86_64-jsoncpp-1.9.2-1
-  mingw-w64-x86_64-libarchive-3.4.3-1
-  mingw-w64-x86_64-libidn2-2.3.0-1
-  mingw-w64-x86_64-libmetalink-0.1.3-3
-  mingw-w64-x86_64-libpsl-0.21.0-2  mingw-w64-x86_64-libssh2-1.9.0-2
-  mingw-w64-x86_64-libunistring-0.9.10-2
-  mingw-w64-x86_64-libuv-1.38.0-1  mingw-w64-x86_64-lz4-1.9.2-1
-  mingw-w64-x86_64-nettle-3.6-1  mingw-w64-x86_64-nghttp2-1.41.0-1
-  mingw-w64-x86_64-png2ico-2002.12.08-2
-  mingw-w64-x86_64-rhash-1.3.9-1  mingw-w64-x86_64-cmake-3.17.3-1
-  mingw-w64-x86_64-extra-cmake-modules-5.68.0-1</code></pre>
-<p>下载大小：    13.75 MiB<br>全部安装大小：  90.28 MiB</p>
-</li>
-<li><p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S mingw-w64-x86_64-clang</span><br></pre></td></tr></tbody></table></figure>
-
-<p>包含下列软件包：</p>
-<pre><code>  mingw-w64-x86_64-llvm-10.0.1-1  mingw-w64-x86_64-z3-4.8.8-1
-  mingw-w64-x86_64-clang-10.0.1-1</code></pre>
-<p>下载大小：    459.23 MiB<br>全部安装大小：  2377.00 MiB</p>
-</li>
-<li><p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S help2man man-db man-pages-posix</span><br></pre></td></tr></tbody></table></figure>
-
-<p>包含下列软件包：</p>
-<pre><code>  groff-1.22.4-1  libpipeline-1.5.2-1  perl-Locale-Gettext-1.07-6
-  help2man-1.47.15-1  man-db-2.9.3-1  man-pages-posix-2013_a-1</code></pre>
-<p>下载大小：    5.88 MiB<br>全部安装大小：  20.42 MiB</p>
-</li>
-<li><p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S zsh git vim</span><br></pre></td></tr></tbody></table></figure>
-
-<p>包含下列软件包：</p>
-<pre><code>  expat-2.2.9-1  heimdal-7.7.0-1  libpcre16-8.44-1  libpcre32-8.44-1
-  libpcrecpp-8.44-1  libpcreposix-8.44-1  openssh-8.3p1-1
-  pcre-8.44-1  perl-Authen-SASL-2.16-2  perl-Clone-0.45-1
-  perl-Convert-BinHex-1.125-1  perl-Encode-Locale-1.05-1
-  perl-Error-0.17029-1  perl-File-Listing-6.04-2
-  perl-HTML-Parser-3.72-6  perl-HTML-Tagset-3.20-2
-  perl-HTTP-Cookies-6.08-1  perl-HTTP-Daemon-6.12-1
-  perl-HTTP-Date-6.05-1  perl-HTTP-Message-6.25-2
-  perl-HTTP-Negotiate-6.01-2  perl-IO-HTML-1.001-1
-  perl-IO-Socket-SSL-2.068-1  perl-IO-Stringy-2.113-1
-  perl-LWP-MediaTypes-6.04-1  perl-MIME-tools-5.509-1
-  perl-MailTools-2.21-1  perl-Net-HTTP-6.19-1
-  perl-Net-SMTP-SSL-1.04-1  perl-Net-SSLeay-1.89_01-2
-  perl-TermReadKey-2.38-2  perl-TimeDate-2.33-1  perl-Try-Tiny-0.30-1
-  perl-URI-1.76-1  perl-WWW-RobotRules-6.02-2  perl-libwww-6.46-1
-  git-2.27.0-1  vim-8.2.0869-1  zsh-5.8-3</code></pre>
-<p>下载大小：    19.44 MiB<br>全部安装大小：  102.94 MiB</p>
-</li>
-<li><p>（可选）在/etc/bash.bashrc中添加export http_proxy=”xxx”和export https_proxy=”xxx”。</p>
-</li>
-<li><p>修改/etc/nsswitch.conf中的db_home为windows或指定路径无效。在/etc/bash.bashrc中添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HOME=/d/Documents/Programming/msyshome</span><br></pre></td></tr></tbody></table></figure>
-
-<p>更改HOME目录。再添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>更改启动目录为~。参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/33942924/how-to-change-home-directory-and-start-directory-on-msys2">How to change HOME directory and start directory on MSYS2?</a>。</p>
-</li>
-<li><p>在更改后的HOME目录下执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="subst">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>或</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="subst">$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>安装oh-my-zsh，然后在/etc/bash.bashrc中添加exec zsh。此时oh-my-zsh仍被安装在系统环境变量$HOME目录下。</p>
-</li>
-<li><p>生成passwd文件：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/mkpasswd.exe &gt; /etc/passwd</span><br></pre></td></tr></tbody></table></figure>
-
-<p>在msys2_shell.cmd中将</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rem <span class="built_in">set</span> MSYS2_PATH_TYPE=inherit</span><br></pre></td></tr></tbody></table></figure>
-
-<p>的rem去掉。由于Windows环境变量路径有空格，所以MSYS实际上无法使用。</p>
-</li>
-<li><p>（可选）将系统环境变量$HOME目录下的.oh-my-zsh文件夹移动到D:\Program_Files下，然后将.zshrc中的</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ZSH=<span class="string">"/e/Cadence/SPB_Data/.oh-my-zsh"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>改为</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ZSH=<span class="string">"/d/Program_Files/.oh-my-zsh"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>将MSYS Shell窗口的Options-&gt;Text-&gt;Font改为Powerline等字体，如JetBrains Mono。</p>
-</li>
-<li><p>将zshrc中的ZSH_THEME改为agnoster：ZSH_THEME=”agnoster”。</p>
-</li>
-<li><p>（可选）Windows Terminal配置：settings.json中的”profiles”下的”list”下添加</p>
-<figure class="highlight 1c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="string">"guid"</span>: <span class="string">"{957f95a7-9539-46b8-b052-df39de1f1282}"</span>,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"MSYS2"</span>,</span><br><span class="line">    <span class="string">"commandline"</span>: <span class="string">"D:\\Program_Files\\msys64\\msys2_shell.cmd -defterm -no-start -msys2"</span>,</span><br><span class="line">    <span class="string">"icon"</span>: <span class="string">"D:\\Program_Files\\msys64\\msys2.ico"</span></span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure>
-
-<p>（可选）ConEmu配置：Settings-&gt;General-&gt;Fonts更改字体；Settings-&gt;Startup-&gt;Tasks，{Bash::Msys2-64}中Commands默认为</p>
-<figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set CHERE_INVOKING=1 &amp; set "PATH=<span class="variable">%ConEmuDrive%</span><span class="symbol">\m</span>sys64<span class="symbol">\u</span>sr<span class="symbol">\b</span>in;<span class="variable">%PATH%</span>" &amp; <span class="variable">%ConEmuBaseDirShort%</span><span class="symbol">\c</span>onemu-msys2-64.exe -new_console:p <span class="variable">%ConEmuDrive%</span><span class="symbol">\m</span>sys64<span class="symbol">\u</span>sr<span class="symbol">\b</span>in<span class="symbol">\b</span>ash.exe --login -i -new_console:C:"<span class="variable">%ConEmuDrive%</span><span class="symbol">\m</span>sys64<span class="symbol">\m</span>sys2.ico"</span><br></pre></td></tr></tbody></table></figure>
-
-<p>改为</p>
-<figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set HOME=D:<span class="symbol">\D</span>ocuments<span class="symbol">\P</span>rogramming<span class="symbol">\m</span>syshome &amp; set MSYS2_PATH_TYPE=inherit &amp; set MSYSTEM=mingw64 &amp; set "PATH=D:<span class="symbol">\P</span>rogram_Files<span class="symbol">\m</span>sys64<span class="symbol">\u</span>sr<span class="symbol">\b</span>in;<span class="variable">%PATH%</span>" &amp; <span class="variable">%ConEmuBaseDirShort%</span><span class="symbol">\c</span>onemu-msys2-64.exe -new_console:p D:<span class="symbol">\P</span>rogram_Files<span class="symbol">\m</span>sys64<span class="symbol">\u</span>sr<span class="symbol">\b</span>in<span class="symbol">\z</span>sh.exe --login -i -new_console:C:"D:<span class="symbol">\P</span>rogram_Files<span class="symbol">\m</span>sys64<span class="symbol">\m</span>sys2.ico"</span><br></pre></td></tr></tbody></table></figure>
-
-<p>或新建{Msys2::MinGW64}，Commands为</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">set</span> <span class="attribute">HOME</span>=D:\Documents\Programming\msyshome &amp; <span class="builtin-name">set</span> <span class="attribute">MSYS2_PATH_TYPE</span>=inherit &amp; <span class="builtin-name">set</span> <span class="attribute">MSYSTEM</span>=mingw64 &amp; <span class="builtin-name">set</span> <span class="string">"D=D:\Program_Files\msys64"</span> &amp; %D%\usr\bin\zsh --login -i -new_console:C:<span class="string">"%D%\msys2.ico"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>其中第一个set设置HOME确保使用指定HOME目录下的.zshrc（灵感来源于<a target="_blank" rel="noopener" href="https://www.quora.com/How-do-I-change-HOME-directory-on-MSYS2">How do I change $HOME directory on MSYS2?</a>）；其他set命令部分参考了<a target="_blank" rel="noopener" href="https://blog.csdn.net/hustlei/article/details/86688160">msys2使用conemu终端配置</a>。<br>（可选）Fluent Terminal设置：配置文件-&gt;新建。名称：MSYS2；可执行程序位置：D:\Program_Files\msys64\msys2_shell.cmd（如果点三个点选择只能选择exe文件，所以需要复制粘贴到文本框中）；工作目录：D:\Documents\Programming\msyshome；参数：-defterm -no-start -msys2；快捷键：自选。</p>
-</li>
-</ol>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/33918.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/33918.html" class="post-title-link" itemprop="url">go get golang.org包失败的解决方法（Windows Terminal设置proxy）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-21 21:25:20" itemprop="dateCreated datePublished" datetime="2020-08-21T21:25:20+08:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/33918.html" class="post-meta-item leancloud_visitors" data-flag-title="go get golang.org包失败的解决方法（Windows Terminal设置proxy）" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/33918.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/33918.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Windows在编译安装YCM时在下载安装Omnisharp结束后报错：</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">Get</span> <span class="string">"https://proxy.golang.org/golang.org/x/tools/gopls/@v/v0.4.2.info"</span>: dial tcp 34.64.4.17:443: connectex: A<span class="built_in"> connection </span>attempt failed because the connected party did</span><br></pre></td></tr></tbody></table></figure>
-
-<p>而在WSL Ubuntu中则没有这个问题，其原因是WSL Ubuntu已在zshrc文件中设置了proxy，而Windows中的proxy默认并不会给Terminal，所以需要手动配置。Linux中使用命令：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://proxyAddress:port</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://proxyAddress:port</span><br></pre></td></tr></tbody></table></figure>
-
-<p>CMD中使用命令：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> http_proxy=http://proxyAddress:port</span><br><span class="line"><span class="built_in">set</span> https_proxy=http://proxyAddress:port</span><br></pre></td></tr></tbody></table></figure>
-
-<p>而在PowerShell中则使用命令：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$env</span>:http_proxy=http://proxyAddress:port</span><br><span class="line"><span class="variable">$env</span>:https_proxy=http://proxyAddress:port</span><br></pre></td></tr></tbody></table></figure>
-
-<p>由于部分ladder不通过ss，所以也不能本地proxy，故</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh winhttp <span class="builtin-name">set</span><span class="built_in"> proxy </span>proxyaddress:port</span><br></pre></td></tr></tbody></table></figure>
-
-<p>无效。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/10972.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/10972.html" class="post-title-link" itemprop="url">WSL1安装rust报错thread ‘main‘ panicked的解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-21 13:33:07" itemprop="dateCreated datePublished" datetime="2020-08-21T13:33:07+08:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/10972.html" class="post-meta-item leancloud_visitors" data-flag-title="WSL1安装rust报错thread ‘main‘ panicked的解决方法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/10972.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/10972.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>根据<a target="_blank" rel="noopener" href="https://www.rust-lang.org/tools/install%EF%BC%8CWSL%E5%AE%89%E8%A3%85rust%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4">https://www.rust-lang.org/tools/install，WSL安装rust使用命令</a></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --proto <span class="string">'=https'</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh</span><br></pre></td></tr></tbody></table></figure>
-
-<p>报错</p>
-<figure class="highlight rust"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">info: downloading installer</span><br><span class="line"> </span><br><span class="line">Welcome to Rust!</span><br><span class="line"> </span><br><span class="line">This will download and install the official compiler <span class="keyword">for</span> the Rust</span><br><span class="line">programming language, and its package manager, Cargo.</span><br><span class="line"> </span><br><span class="line">Rustup metadata and toolchains will be installed into the Rustup</span><br><span class="line">home directory, located at:</span><br><span class="line"> </span><br><span class="line">  /home/ayka_tsuzuki/.rustup</span><br><span class="line"> </span><br><span class="line">This can be modified with the RUSTUP_HOME environment variable.</span><br><span class="line"> </span><br><span class="line">The Cargo home directory located at:</span><br><span class="line"> </span><br><span class="line">  /home/ayka_tsuzuki/.cargo</span><br><span class="line"> </span><br><span class="line">This can be modified with the CARGO_HOME environment variable.</span><br><span class="line"> </span><br><span class="line">The cargo, rustc, rustup and other commands will be added to</span><br><span class="line">Cargo<span class="symbol">'s</span> bin directory, located at:</span><br><span class="line"> </span><br><span class="line">  /home/ayka_tsuzuki/.cargo/bin</span><br><span class="line"> </span><br><span class="line">This path will then be added to your PATH environment variable by</span><br><span class="line">modifying the profile files located at:</span><br><span class="line"> </span><br><span class="line">  /home/ayka_tsuzuki/.profile</span><br><span class="line">  /home/ayka_tsuzuki/.zprofile</span><br><span class="line"> </span><br><span class="line">You can uninstall at any time with rustup <span class="keyword">self</span> uninstall and</span><br><span class="line">these changes will be reverted.</span><br><span class="line"> </span><br><span class="line">Current installation options:</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">   default host triple: x86_64-unknown-linux-gnu</span><br><span class="line">     default toolchain: stable (default)</span><br><span class="line">               profile: default</span><br><span class="line">  modify PATH variable: yes</span><br><span class="line"> </span><br><span class="line"><span class="number">1</span>) Proceed with installation (default)</span><br><span class="line"><span class="number">2</span>) Customize installation</span><br><span class="line"><span class="number">3</span>) Cancel installation</span><br><span class="line">&gt;<span class="number">1</span></span><br><span class="line"> </span><br><span class="line">info: profile set to <span class="symbol">'default</span>'</span><br><span class="line">info: default host triple is x86_64-unknown-linux-gnu</span><br><span class="line">info: syncing channel updates <span class="keyword">for</span> <span class="symbol">'stable</span>-x86_64-unknown-linux-gnu'</span><br><span class="line"><span class="number">462.8</span> KiB / <span class="number">462.8</span> KiB (<span class="number">100</span> %) <span class="number">108.0</span> KiB/s <span class="keyword">in</span>  <span class="number">4</span>s ETA:  <span class="number">0</span>s</span><br><span class="line">info: latest update on <span class="number">2020</span>-<span class="number">08</span>-<span class="number">03</span>, rust version <span class="number">1.45</span>.<span class="number">2</span> (d3fb005a3 <span class="number">2020</span>-<span class="number">07</span>-<span class="number">31</span>)</span><br><span class="line">info: downloading component <span class="symbol">'cargo</span>'</span><br><span class="line">info: downloading component <span class="symbol">'clippy</span>'</span><br><span class="line">info: downloading component <span class="symbol">'rust</span>-docs'</span><br><span class="line">info: downloading component <span class="symbol">'rust</span>-std'</span><br><span class="line">info: downloading component <span class="symbol">'rustc</span>'</span><br><span class="line">info: downloading component <span class="symbol">'rustfmt</span>'</span><br><span class="line">info: installing component <span class="symbol">'cargo</span>'</span><br><span class="line">info: Defaulting to <span class="number">500.0</span> MiB unpack ram</span><br><span class="line">thread <span class="symbol">'main</span>' panicked at <span class="symbol">'assertion</span> failed: `(left == right)`</span><br><span class="line">  left: `<span class="number">22</span>`,</span><br><span class="line"> right: `<span class="number">4</span>`', src/libstd/sys/unix/thread.rs:<span class="number">179</span>:<span class="number">21</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br><span class="line">thread <span class="symbol">'main</span>' panicked at <span class="symbol">'assertion</span> failed: `(left == right)`</span><br><span class="line">  left: `<span class="number">22</span>`,</span><br><span class="line"> right: `<span class="number">4</span>`', src/libstd/sys/unix/thread.rs:<span class="number">179</span>:<span class="number">21</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>:     <span class="number">0x7f0f95edaffd</span> - backtrace::backtrace::libunwind::trace::h812748238d609e46</span><br><span class="line">                               at /cargo/registry/src/github.com-<span class="number">1</span>ecc6299db9ec823/backtrace-<span class="number">0.3</span>.<span class="number">46</span>/src/backtrace/libunwind.rs:<span class="number">86</span></span><br><span class="line">   <span class="number">1</span>:     <span class="number">0x7f0f95edaffd</span> - backtrace::backtrace::trace_unsynchronized::h7c97e818aebf09c8</span><br><span class="line">                               at /cargo/registry/src/github.com-<span class="number">1</span>ecc6299db9ec823/backtrace-<span class="number">0.3</span>.<span class="number">46</span>/src/backtrace/<span class="keyword">mod</span>.rs:<span class="number">66</span></span><br><span class="line">   <span class="number">2</span>:     <span class="number">0x7f0f95edaffd</span> - std::sys_common::backtrace::_print_fmt::h60d914263b0ccd71</span><br><span class="line">                               at src/libstd/sys_common/backtrace.rs:<span class="number">78</span></span><br><span class="line">   <span class="number">3</span>:     <span class="number">0x7f0f95edaffd</span> - &lt;std::sys_common::backtrace::_print::DisplayBacktrace <span class="keyword">as</span> core::fmt::Display&gt;::fmt::hf78227137afc7565</span><br><span class="line">                               at src/libstd/sys_common/backtrace.rs:<span class="number">59</span></span><br><span class="line">   <span class="number">4</span>:     <span class="number">0x7f0f95b6524c</span> - core::fmt::write::h543cdf60775f89bf</span><br><span class="line">                               at src/libcore/fmt/<span class="keyword">mod</span>.rs:<span class="number">1069</span></span><br><span class="line">   <span class="number">5</span>:     <span class="number">0x7f0f95eda904</span> - std::io::Write::write_fmt::h0c7f3ce24c679426</span><br><span class="line">                               at src/libstd/io/<span class="keyword">mod</span>.rs:<span class="number">1504</span></span><br><span class="line">   <span class="number">6</span>:     <span class="number">0x7f0f95eda105</span> - std::sys_common::backtrace::_print::h80e55e24be231368</span><br><span class="line">                               at src/libstd/sys_common/backtrace.rs:<span class="number">62</span></span><br><span class="line">   <span class="number">7</span>:     <span class="number">0x7f0f95eda105</span> - std::sys_common::backtrace::print::h3b197b9c1261c865</span><br><span class="line">                               at src/libstd/sys_common/backtrace.rs:<span class="number">49</span></span><br><span class="line">   <span class="number">8</span>:     <span class="number">0x7f0f95eda105</span> - std::panicking::default_hook::{{closure}}::ha6c807149ce20f8f</span><br><span class="line">                               at src/libstd/panicking.rs:<span class="number">198</span></span><br><span class="line">   <span class="number">9</span>:     <span class="number">0x7f0f95ed98f4</span> - std::panicking::default_hook::he49a9c12e358cc45</span><br><span class="line">                               at src/libstd/panicking.rs:<span class="number">218</span></span><br><span class="line">  <span class="number">10</span>:     <span class="number">0x7f0f95ed93b6</span> - std::panicking::rust_panic_with_hook::h93f74f5ef2f71f31</span><br><span class="line">                               at src/libstd/panicking.rs:<span class="number">515</span></span><br><span class="line">  <span class="number">11</span>:     <span class="number">0x7f0f95ed9198</span> - rust_begin_unwind</span><br><span class="line">                               at src/libstd/panicking.rs:<span class="number">419</span></span><br><span class="line">  <span class="number">12</span>:     <span class="number">0x7f0f95ed9140</span> - std::panicking::begin_panic_fmt::hfa6ef29ba81f400e</span><br><span class="line">                               at src/libstd/panicking.rs:<span class="number">373</span></span><br><span class="line">  <span class="number">13</span>:     <span class="number">0x7f0f95e11671</span> - &lt;rustup::diskio::threaded::Threaded <span class="keyword">as</span> rustup::diskio::Executor&gt;::join::habf6ee901a47a8a4</span><br><span class="line">  <span class="number">14</span>:     <span class="number">0x7f0f95e10c78</span> - core::ptr::drop_in_place::h0b1b0dcb4b07c267</span><br><span class="line">  <span class="number">15</span>:     <span class="number">0x7f0f95d76c40</span> - core::ptr::drop_in_place::h09572fbec04e583f</span><br><span class="line">  <span class="number">16</span>:     <span class="number">0x7f0f95e2842e</span> - rustup::dist::component::package::unpack_without_first_dir::h99f4b0c2cae349ff</span><br><span class="line">  <span class="number">17</span>:     <span class="number">0x7f0f95de559f</span> - rustup::dist::manifestation::Manifestation::update::hacf67fad3b44f03a</span><br><span class="line">  <span class="number">18</span>:     <span class="number">0x7f0f95dd563c</span> - rustup::dist::dist::update_from_dist_::h1462627f9c58c494</span><br><span class="line">  <span class="number">19</span>:     <span class="number">0x7f0f95dd227a</span> - rustup::install::InstallMethod::install::hbb6430b2dfaf5792</span><br><span class="line">  <span class="number">20</span>:     <span class="number">0x7f0f95dd0d21</span> - rustup::toolchain::DistributableToolchain::install_from_dist::h7b9bf9317c9aa2c5</span><br><span class="line">  <span class="number">21</span>:     <span class="number">0x7f0f95ec5aa2</span> - rustup::cli::self_update::install::h8ca0f61a773526a9</span><br><span class="line">  <span class="number">22</span>:     <span class="number">0x7f0f95ecbd3d</span> - rustup::cli::setup_mode::main::h4d335e1871435d70</span><br><span class="line">  <span class="number">23</span>:     <span class="number">0x7f0f95adf42a</span> - rustup_init::main::h22da971c634937a2</span><br><span class="line">  <span class="number">24</span>:     <span class="number">0x7f0f95ef3e83</span> - std::rt::lang_start_internal::{{closure}}::{{closure}}::h4ed4ab1fb893cc93</span><br><span class="line">                               at src/libstd/rt.rs:<span class="number">52</span></span><br><span class="line">  <span class="number">25</span>:     <span class="number">0x7f0f95ef3e83</span> - std::sys_common::backtrace::__rust_begin_short_backtrace::h1f01c818c00c4f70</span><br><span class="line">                               at src/libstd/sys_common/backtrace.rs:<span class="number">130</span></span><br><span class="line">  <span class="number">26</span>:     <span class="number">0x7f0f95ae053f</span> - main</span><br><span class="line">  <span class="number">27</span>:     <span class="number">0x7f0f956a70b3</span> - __libc_start_main</span><br><span class="line">  <span class="number">28</span>:     <span class="number">0x7f0f95adb029</span> - &lt;unknown&gt;</span><br><span class="line">thread panicked <span class="keyword">while</span> panicking. aborting.</span><br><span class="line">Illegal instruction (core dumped)</span><br></pre></td></tr></tbody></table></figure>
-
-<p>参考GitHub库rust-lang/rustup的issue #2245：<a target="_blank" rel="noopener" href="https://github.com/rust-lang/rustup/issues/2245">rustup panic with WSLv1 + glibc 2.31</a>，一种办法是将WSL1升级到WSL2：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-default-version 2</span><br><span class="line">wsl --list --verbose</span><br><span class="line">wsl --set-version Ubuntu-20.04 2</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后再执行安装命令；另一种办法是在.bashrc或.bash_profile（如果用的Shell是ZSH则在.zshrc）中插入</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">RUSTUP_IO_THREADS</span>=1</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后source .zshrc，或直接在命令行中输入该命令执行，然后再执行安装rust命令，即可成功安装：</p>
-<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">info:</span> <span class="string">downloading</span> <span class="string">installer</span></span><br><span class="line"> </span><br><span class="line"><span class="string">Welcome</span> <span class="string">to</span> <span class="string">Rust!</span></span><br><span class="line"> </span><br><span class="line"><span class="string">This</span> <span class="string">will</span> <span class="string">download</span> <span class="string">and</span> <span class="string">install</span> <span class="string">the</span> <span class="string">official</span> <span class="string">compiler</span> <span class="string">for</span> <span class="string">the</span> <span class="string">Rust</span></span><br><span class="line"><span class="string">programming</span> <span class="string">language,</span> <span class="string">and</span> <span class="string">its</span> <span class="string">package</span> <span class="string">manager,</span> <span class="string">Cargo.</span></span><br><span class="line"> </span><br><span class="line"><span class="string">Rustup</span> <span class="string">metadata</span> <span class="string">and</span> <span class="string">toolchains</span> <span class="string">will</span> <span class="string">be</span> <span class="string">installed</span> <span class="string">into</span> <span class="string">the</span> <span class="string">Rustup</span></span><br><span class="line"><span class="string">home</span> <span class="string">directory,</span> <span class="attr">located at:</span></span><br><span class="line"> </span><br><span class="line">  <span class="string">/home/ayka_tsuzuki/.rustup</span></span><br><span class="line"> </span><br><span class="line"><span class="string">This</span> <span class="string">can</span> <span class="string">be</span> <span class="string">modified</span> <span class="string">with</span> <span class="string">the</span> <span class="string">RUSTUP_HOME</span> <span class="string">environment</span> <span class="string">variable.</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">The Cargo home directory located at:</span></span><br><span class="line"> </span><br><span class="line">  <span class="string">/home/ayka_tsuzuki/.cargo</span></span><br><span class="line"> </span><br><span class="line"><span class="string">This</span> <span class="string">can</span> <span class="string">be</span> <span class="string">modified</span> <span class="string">with</span> <span class="string">the</span> <span class="string">CARGO_HOME</span> <span class="string">environment</span> <span class="string">variable.</span></span><br><span class="line"> </span><br><span class="line"><span class="string">The</span> <span class="string">cargo,</span> <span class="string">rustc,</span> <span class="string">rustup</span> <span class="string">and</span> <span class="string">other</span> <span class="string">commands</span> <span class="string">will</span> <span class="string">be</span> <span class="string">added</span> <span class="string">to</span></span><br><span class="line"><span class="string">Cargo's</span> <span class="string">bin</span> <span class="string">directory,</span> <span class="attr">located at:</span></span><br><span class="line"> </span><br><span class="line">  <span class="string">/home/ayka_tsuzuki/.cargo/bin</span></span><br><span class="line"> </span><br><span class="line"><span class="string">This</span> <span class="string">path</span> <span class="string">will</span> <span class="string">then</span> <span class="string">be</span> <span class="string">added</span> <span class="string">to</span> <span class="string">your</span> <span class="string">PATH</span> <span class="string">environment</span> <span class="string">variable</span> <span class="string">by</span></span><br><span class="line"><span class="attr">modifying the profile files located at:</span></span><br><span class="line"> </span><br><span class="line">  <span class="string">/home/ayka_tsuzuki/.profile</span></span><br><span class="line">  <span class="string">/home/ayka_tsuzuki/.zprofile</span></span><br><span class="line"> </span><br><span class="line"><span class="string">You</span> <span class="string">can</span> <span class="string">uninstall</span> <span class="string">at</span> <span class="string">any</span> <span class="string">time</span> <span class="string">with</span> <span class="string">rustup</span> <span class="string">self</span> <span class="string">uninstall</span> <span class="string">and</span></span><br><span class="line"><span class="string">these</span> <span class="string">changes</span> <span class="string">will</span> <span class="string">be</span> <span class="string">reverted.</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">Current installation options:</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">   <span class="attr">default host triple:</span> <span class="string">x86_64-unknown-linux-gnu</span></span><br><span class="line">     <span class="attr">default toolchain:</span> <span class="string">stable</span> <span class="string">(default)</span></span><br><span class="line">               <span class="attr">profile:</span> <span class="string">default</span></span><br><span class="line">  <span class="attr">modify PATH variable:</span> <span class="literal">yes</span></span><br><span class="line"> </span><br><span class="line"><span class="number">1</span><span class="string">)</span> <span class="string">Proceed</span> <span class="string">with</span> <span class="string">installation</span> <span class="string">(default)</span></span><br><span class="line"><span class="number">2</span><span class="string">)</span> <span class="string">Customize</span> <span class="string">installation</span></span><br><span class="line"><span class="number">3</span><span class="string">)</span> <span class="string">Cancel</span> <span class="string">installation</span></span><br><span class="line"><span class="string">&gt;1</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">info:</span> <span class="string">profile</span> <span class="string">set</span> <span class="string">to</span> <span class="string">'default'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">default</span> <span class="string">host</span> <span class="string">triple</span> <span class="string">is</span> <span class="string">x86_64-unknown-linux-gnu</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">syncing</span> <span class="string">channel</span> <span class="string">updates</span> <span class="string">for</span> <span class="string">'stable-x86_64-unknown-linux-gnu'</span></span><br><span class="line"><span class="number">462.8</span> <span class="string">KiB</span> <span class="string">/</span> <span class="number">462.8</span> <span class="string">KiB</span> <span class="string">(100</span> <span class="string">%)</span> <span class="attr">416.0 KiB/s in  1s ETA:</span>  <span class="string">0s</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">latest</span> <span class="string">update</span> <span class="string">on</span> <span class="number">2020-08-03</span><span class="string">,</span> <span class="string">rust</span> <span class="string">version</span> <span class="number">1.45</span><span class="number">.2</span> <span class="string">(d3fb005a3</span> <span class="number">2020-07-31</span><span class="string">)</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">downloading</span> <span class="string">component</span> <span class="string">'cargo'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">downloading</span> <span class="string">component</span> <span class="string">'clippy'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">downloading</span> <span class="string">component</span> <span class="string">'rust-docs'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">downloading</span> <span class="string">component</span> <span class="string">'rust-std'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">downloading</span> <span class="string">component</span> <span class="string">'rustc'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">downloading</span> <span class="string">component</span> <span class="string">'rustfmt'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">installing</span> <span class="string">component</span> <span class="string">'cargo'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">Defaulting</span> <span class="string">to</span> <span class="number">500.0</span> <span class="string">MiB</span> <span class="string">unpack</span> <span class="string">ram</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">installing</span> <span class="string">component</span> <span class="string">'clippy'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">installing</span> <span class="string">component</span> <span class="string">'rust-docs'</span></span><br><span class="line"> <span class="number">12.2</span> <span class="string">MiB</span> <span class="string">/</span>  <span class="number">12.2</span> <span class="string">MiB</span> <span class="string">(100</span> <span class="string">%)</span> <span class="attr">459.2 KiB/s in 16s ETA:</span>  <span class="string">0s</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">installing</span> <span class="string">component</span> <span class="string">'rust-std'</span></span><br><span class="line"> <span class="number">15.9</span> <span class="string">MiB</span> <span class="string">/</span>  <span class="number">15.9</span> <span class="string">MiB</span> <span class="string">(100</span> <span class="string">%)</span>  <span class="attr">11.8 MiB/s in  1s ETA:</span>  <span class="string">0s</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">installing</span> <span class="string">component</span> <span class="string">'rustc'</span></span><br><span class="line"> <span class="number">47.1</span> <span class="string">MiB</span> <span class="string">/</span>  <span class="number">47.1</span> <span class="string">MiB</span> <span class="string">(100</span> <span class="string">%)</span>  <span class="attr">11.6 MiB/s in  4s ETA:</span>  <span class="string">0s</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">installing</span> <span class="string">component</span> <span class="string">'rustfmt'</span></span><br><span class="line"><span class="attr">info:</span> <span class="string">default</span> <span class="string">toolchain</span> <span class="string">set</span> <span class="string">to</span> <span class="string">'stable'</span></span><br><span class="line"> </span><br><span class="line">  <span class="string">stable</span> <span class="string">installed</span> <span class="bullet">-</span> <span class="string">rustc</span> <span class="number">1.45</span><span class="number">.2</span> <span class="string">(d3fb005a3</span> <span class="number">2020-07-31</span><span class="string">)</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>【注意：使用Vundle安装vim插件YCM（YouCompleteMe）时需要使用Rust编译安装会自动安装Rust也会出现该问题，也需使用该方法解决】</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/57803.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/57803.html" class="post-title-link" itemprop="url">git错误unable to create symlink ssl...Could not reset index file to revision ‘HEAD‘的解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-21 12:32:37" itemprop="dateCreated datePublished" datetime="2020-08-21T12:32:37+08:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/57803.html" class="post-meta-item leancloud_visitors" data-flag-title="git错误unable to create symlink ssl...Could not reset index file to revision ‘HEAD‘的解决方法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/57803.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/57803.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></tbody></table></figure>
-
-<p>时报错：</p>
-<figure class="highlight subunit"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">error: </span>unable to create symlink ssl: Permission denied</span><br><span class="line">fatal: Could not reset index file to revision 'HEAD'</span><br></pre></td></tr></tbody></table></figure>
-
-<p>解决方法是以管理员身份运行Terminal或Shell。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/17887.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/17887.html" class="post-title-link" itemprop="url">pip升级会导致Could not install packages due to an EnvironmentError：[WinError 5]拒绝访问错误的原因</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-21 09:33:54" itemprop="dateCreated datePublished" datetime="2020-08-21T09:33:54+08:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 12:33:32" itemprop="dateModified" datetime="2020-10-02T12:33:32+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/17887.html" class="post-meta-item leancloud_visitors" data-flag-title="pip升级会导致Could not install packages due to an EnvironmentError：[WinError 5]拒绝访问错误的原因" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/17887.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/17887.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Python安装时可勾选安装pip，安装完成后执行</p>
-<figure class="highlight ebnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pip -v</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>或</p>
-<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="comment">--version</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>可成功显示版本号（以Python 3.8.5为例）</p>
-<figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="number">20.1</span>.<span class="number">1</span> from <span class="symbol">d:</span>\program_files\python38\<span class="class"><span class="keyword">lib</span>\<span class="title">site</span>-<span class="title">packages</span>\<span class="title">pip</span> (<span class="title">python</span> 3.8)</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>然而，如果执行</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> <span class="comment">--upgrade pip</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>会报错</p>
-<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Collecting</span> pip</span><br><span class="line">  <span class="attribute">Using</span> cached pip-<span class="number">20</span>.<span class="number">2</span>.<span class="number">2</span>-py<span class="number">2</span>.py<span class="number">3</span>-none-any.whl (<span class="number">1</span>.<span class="number">5</span> MB)</span><br><span class="line"><span class="attribute">Installing</span> collected packages: pip</span><br><span class="line">  <span class="attribute">Attempting</span> uninstall: pip</span><br><span class="line">    <span class="attribute">Found</span> existing installation: pip <span class="number">20</span>.<span class="number">1</span>.<span class="number">1</span></span><br><span class="line">    <span class="attribute">Uninstalling</span> pip-<span class="number">20</span>.<span class="number">1</span>.<span class="number">1</span>:</span><br><span class="line"><span class="attribute">ERROR</span>: Could not install packages due to an EnvironmentError:<span class="meta"> [WinError 5] 拒绝访问。: 'd:\\program_files\\python38\\scripts\\pip.exe'</span></span><br><span class="line"><span class="meta">Consider using the `--user` option or check the permissions.</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>该操作会导致原有的pip模块被破坏，再执行获取版本号命令会显示</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent <span class="keyword">call</span> <span class="keyword">last</span>):</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"d:\program_files\python38\lib\runpy.py"</span>, line <span class="number">194</span>, <span class="keyword">in</span> _run_module_as_main</span><br><span class="line">    <span class="keyword">return</span> _run_code(code, main_globals, <span class="keyword">None</span>,</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"d:\program_files\python38\lib\runpy.py"</span>, line <span class="number">87</span>, <span class="keyword">in</span> _run_code</span><br><span class="line">    exec(code, run_globals)</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"D:\Program_Files\Python38\Scripts\pip.exe\__main__.py"</span>, line <span class="number">4</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">ModuleNotFoundError: <span class="keyword">No</span> <span class="keyword">module</span> named <span class="string">'pip'</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>如执行</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip <span class="keyword">install</span> <span class="comment">--upgrade pip</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>会显示</p>
-<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="tag">\<span class="name">Program</span></span>_Files<span class="tag">\<span class="name">Python</span></span>38<span class="tag">\<span class="name">python</span></span>.exe: No module named pip</span><br></pre></td></tr></tbody></table></figure>
-
-<p>只能重装pip或Python，所以切勿执行非–user选项的升级命令。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1740,20 +1715,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1978,6 +1953,26 @@ window.addEventListener('pjax:success', () => {
 
 
 
+<script data-pjax>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 

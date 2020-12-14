@@ -150,6 +150,16 @@
     <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a>
 
   </li>
+        <li class="menu-item menu-item-resume">
+
+    <a href="/resume/" rel="section"><i class="fa fa-file-user fa-fw"></i>简历</a>
+
+  </li>
+        <li class="menu-item menu-item-prs">
+
+    <a href="/PRs/" rel="section"><i class="fa fa-code-merge fa-fw"></i>开源贡献</a>
+
+  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -199,6 +209,754 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/57768.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/57768.html" class="post-title-link" itemprop="url">LaTeX中align和alignat之间的区别</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-22 15:33:43" itemprop="dateCreated datePublished" datetime="2020-03-22T15:33:43+08:00">2020-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/57768.html" class="post-meta-item leancloud_visitors" data-flag-title="LaTeX中align和alignat之间的区别" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/57768.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/57768.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>第一个区别是使用align不需要额外的参数：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{align}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>而alignat需要：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{&lt;number&gt;}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>两种环境都创建基于rl对的列对齐，align会根据你写的内容创建足够多的列，而alignat需要你提前指定想要多少列。</p>
+<p>然而，这两种环境还有更多不同。align环境会在列与列之间添加水平空格</p>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;...&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>而alignat不会添加水平空格。例如见<a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/200502/align-environment-align-on-the-left-side">Align-environment: Align on the left side</a>中的一个对齐</p>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;l col&gt;</span><span class="section">&lt;l col&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>可以通过使用空的右对齐列：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{2}</span></span></span><br><span class="line">&amp;ABC  &amp;&amp;= AB</span><br><span class="line">&amp;ABCD &amp;&amp;= ABC - ABCDEFG</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>两种环境在cell的开始处的左对齐列都有一个隐式的{}来使得起始于关系符或运算符的cell能够有合适的间距。</p>
+<p>alignat的其他用法包括当我们想要更好地控制列与列之间的水平间距时。这样的间距应当被显式地指定如下：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat*}</span><span class="string">{3}</span></span></span><br><span class="line">&amp; m   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{módulo}</span></span>            <span class="tag">\<span class="name">quad</span></span> &amp;&amp; m&gt;0<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; a   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{multiplicador}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0&lt;a&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; c   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{constante aditiva}</span></span> <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> c&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; x_0 <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{valor inicial}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> x_0 &lt;m</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat*}</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>(见<a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/49014/aligning-equations-with-text-with-alignat">Aligning equations with text with alignat</a>)这样的控制是不可能通过align完成的，因为它总是在列与列之间添加相同长度的水平间距。</p>
+<p>两种环境都有*的形式并对于任意行都接受\tag或\notag。</p>
+<p>此外还有“内部”版本的aligned和alignedat，在行内公式、显示公式和数学对齐等内部数学模式中它们遵循相同的规则。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/31774.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/31774.html" class="post-title-link" itemprop="url">ssh-add -L出现两个ssh-rsa key的解决办法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-21 19:12:46" itemprop="dateCreated datePublished" datetime="2020-03-21T19:12:46+08:00">2020-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/31774.html" class="post-meta-item leancloud_visitors" data-flag-title="ssh-add -L出现两个ssh-rsa key的解决办法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/31774.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/31774.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Windows上配置Git的困难之处在于往往不知道谁动了自己的ssh key：Git for Windows、msys2/mingw-w64中的git、CMD或PowerShell中的Git、WSL中的Git、其他软件中自带的Git等，比如最近GitHub将分支推送到Origin时突然报错，然后经过一番波折发现在Windows CMD命令提示符或PowerShell中输入ssh-add -l或ssh-add -L居然显示了两个不同的ssh-rsa key，而且指向的目录都是C:\Users&lt;username&gt;.ssh\id_rsa，重启计算机仍然如此，用ssh-keygen重新生成了key仍然如此，不得不说是一个神奇的bug。事实上，到最后也没能找出原因。据说GitHub Desktop与github.com和其他站点通信使用两套不同的SSH密钥，然而理论上它使用的密钥也会显示在$USERPROFILE/.ssh中，所以排除。不过经过测试，将其中的id_rsa删除并重启CMD后运行ssh-add -L命令仍然出现两个key，原来这条命令将SSH key存入SSH-Agent的高速缓存中，所以使用语句：</p>
+<figure class="highlight dockerfile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-<span class="keyword">add</span><span class="bash"> -D</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>删除所有密钥（如果报错则先运行ssh-add -d直到不能删除然后再运行ssh-add D，不用担心，这条语句并不会删除id_rsa文件），然后重新运行</p>
+<figure class="highlight arcade"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add C:\Users\&lt;username&gt;<span class="regexp">/.ssh/i</span>d_rsa</span><br></pre></td></tr></tbody></table></figure>
+
+<p>再次检验ssh-add -L只剩一个密钥了。重新打开GitHub Desktop，问题成功解决。</p>
+<p>不过遗留的问题是如何根本上解决Windows SSH冲突的问题，比如Git for Windows中的SSH和WSL中的SSH，留待日后讨论。</p>
+<hr>
+<p>2020年3月27日更新：</p>
+<p>原因找到了，当我们使用JetBrains提供的CLion的WSL配置脚本后，它安装了一个SSH Server，并在WSL的~/.ssh/known_hosts末尾空一行添加了一行不同于普通ssh-rsa的代码，经过未知的操作，这段代码也在C:\Users&lt;username&gt;.ssh\known_hosts中出现。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/36466.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/36466.html" class="post-title-link" itemprop="url">Git for Windows 2.25.1更改$HOME路径</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-21 17:45:55" itemprop="dateCreated datePublished" datetime="2020-03-21T17:45:55+08:00">2020-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/36466.html" class="post-meta-item leancloud_visitors" data-flag-title="Git for Windows 2.25.1更改$HOME路径" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/36466.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/36466.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>由于之前安装Cadence更改了系统环境变量，Git for Windows的$HOME目录定位到了其他地方，新版的Git for Windows在安装目录（如D:\Program_Files\Git）下的/etc/profile中已经删除了HOME相关的设置行，但是不用担心，我们只需要在profile文件开头加入：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HOME</span>=<span class="string">"C:/Users/&lt;username&gt;"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>或其他你想指定的目录即可更改$HOME路径，无视环境变量中对HOME的定义。</p>
+<p>Reference:</p>
+<p><a target="_blank" rel="noopener" href="https://www.riuson.com/blog/post/git-for-windows-custom-home-directory">Git for Windows - custom home directory</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/16107.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/16107.html" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-18 13:54:00" itemprop="dateCreated datePublished" datetime="2020-03-18T13:54:00+08:00">2020-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:24:12" itemprop="dateModified" datetime="2020-10-02T12:24:12+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/16107.html" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/16107.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/16107.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/40036.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/40036.html" class="post-title-link" itemprop="url">Python解决gbk、utf-8、gb2312的UnicodeEncodeError与UnicodeDecodeError乱码解码的两种方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-15 11:09:16" itemprop="dateCreated datePublished" datetime="2020-03-15T11:09:16+08:00">2020-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/40036.html" class="post-meta-item leancloud_visitors" data-flag-title="Python解决gbk、utf-8、gb2312的UnicodeEncodeError与UnicodeDecodeError乱码解码的两种方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/40036.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/40036.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Python在处理文字数据时往往会面对文字中乱码的困扰，这其中往往还包含了神奇的双字节字符和多字节字符，我们只想删除这些乱码而不想去掉字符串中的任何普通符号，可以使用正则表达式处理（以MATLAB为例）：</p>
+<figure class="highlight lisp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matchStr=unique(<span class="name">regexp</span>(<span class="name">str</span>{i},'[^\x00-\xff]','match'))</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后使用strrep函数即可删除这些非双字节（非ASCII）字符，特别地，[\u4e00-\u9fa5]可以匹配中文字符。但是Python读取替换过后的字符串还是报错：</p>
+<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnicodeDecodeError: <span class="symbol">'gbk</span>' codec can<span class="symbol">'t</span> decode byte xxxx <span class="keyword">in</span> position</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果你设置utf-8解码或gb2312解码仍然会报错。问题在于正则表达式可以处理ASCII与Unicode编码，但<strong>不能处理GBK编码</strong>，遇上GBK编码的字符串是无解的（参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/simpman/archive/2013/02/22/2921907.html">正则表达式（二）：Unicode诸问题（上）</a>），而我们收到一组数据时往往不能对数据提供方要求说你们得给Unicode编码的字符，所以我们要忽略掉这些不能被正确编码解码的字符。</p>
+<p>方式一：读取文件对象时忽略错误</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(file_path, <span class="keyword">errors</span>=<span class="string">'ignore'</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    <span class="keyword">lines</span> = file_object.readlines()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>方式二：读取表格等数据类型时使用ISO-8859-1编码（其中header默认值即为’infer’，sep相当于MATLAB中的’Delimiter’分隔符）</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"> </span><br><span class="line">table1 = pd.read_table(file_path, <span class="attribute">sep</span>=<span class="string">'\t'</span>, <span class="attribute">header</span>=<span class="string">'infer'</span>, <span class="attribute">encoding</span>=<span class="string">'ISO-8859-1'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>成功解决。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/52215.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/52215.html" class="post-title-link" itemprop="url">MATLAB update出现未知错误unexpected error及Bundle#136 start failed的一种可能原因</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-15 10:21:26" itemprop="dateCreated datePublished" datetime="2020-03-15T10:21:26+08:00">2020-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 11:18:49" itemprop="dateModified" datetime="2020-10-02T11:18:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/52215.html" class="post-meta-item leancloud_visitors" data-flag-title="MATLAB update出现未知错误unexpected error及Bundle#136 start failed的一种可能原因" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/52215.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/52215.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在安装MATLAB R2019b Update 5的过程中出现未知错误unexpected error，并且找不到日志文件可供查询（如果有高手找到请指教），打开代理后仍然出现未知错误还连带了连接错误connection error。本来想暂时放弃更新，结果打开MATLAB发现命令行窗口报错：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Caught "std::exception" Exception message is:</span><br><span class="line">Bundle#136 start failed: Loading E:<span class="tag">\<span class="name">Program</span></span> Files<span class="tag">\<span class="name">MATLAB</span></span><span class="tag">\<span class="name">R</span></span>2019b<span class="tag">\<span class="name">bin</span></span><span class="tag">\<span class="name">win</span></span>64<span class="tag">\<span class="name">builtins</span></span><span class="tag">\<span class="name">matlab</span></span>_graphics_hg<span class="tag">\<span class="name">mwhg</span></span>_builtinimpl.dllfailed with error: 鎵句笉鍒版寚瀹氱殑妯″潡銆�</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">在后台初始化图形期间出错: Bundle#136 start failed: Loading E:<span class="tag">\<span class="name">Program</span></span></span><br><span class="line">Files<span class="tag">\<span class="name">MATLAB</span></span><span class="tag">\<span class="name">R</span></span>2019b<span class="tag">\<span class="name">bin</span></span><span class="tag">\<span class="name">win</span></span>64<span class="tag">\<span class="name">builtins</span></span><span class="tag">\<span class="name">matlab</span></span>_graphics_hg<span class="tag">\<span class="name">mwhg</span></span>_builtinimpl.dllfailed</span><br><span class="line">with error: 鎵句笉鍒版寚瀹氱殑妯″潡銆</span><br></pre></td></tr></tbody></table></figure>
+
+<p>而试图打开一个m文件则继续报错</p>
+<figure class="highlight reasonml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"AWT-EventQueue-0"</span>: java.lang.NoClassDefFoundError: com/mathworks/toolbox/coder/nide/editor/StateflowStorageLocation</span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>define<span class="constructor">Class1(Native Method)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>define<span class="constructor">Class(ClassLoader.<span class="params">java</span>:763)</span></span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">SecureClassLoader</span>.</span></span>define<span class="constructor">Class(SecureClassLoader.<span class="params">java</span>:142)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>define<span class="constructor">Class(URLClassLoader.<span class="params">java</span>:468)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>access<span class="constructor">$100(URLClassLoader.<span class="params">java</span>:74)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader$1</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>java:<span class="number">369</span>)</span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader$1</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>java:<span class="number">363</span>)</span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">AccessController</span>.</span></span><span class="keyword">do</span><span class="constructor">Privileged(Native Method)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>find<span class="constructor">Class(URLClassLoader.<span class="params">java</span>:362)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:424)</span></span><br><span class="line">	at sun.misc.<span class="module-access"><span class="module"><span class="identifier">Launcher$AppClassLoader</span>.</span></span>load<span class="constructor">Class(Launcher.<span class="params">java</span>:349)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:357)</span></span><br><span class="line">	at com.mathworks.toolbox.eml.breakpoints.<span class="module-access"><span class="module"><span class="identifier">EmlMarginProvider</span>.</span></span>is<span class="constructor">Applicable(EmlMarginProvider.<span class="params">java</span>:21)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>get<span class="constructor">ApplicableMarginProviders(EditorView.<span class="params">java</span>:252)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>init<span class="constructor">SyntaxTextPane(EditorView.<span class="params">java</span>:885)</span></span><br><span class="line">	at com.mathworks.mde.editor.EditorView.&lt;init&gt;(<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>java:<span class="number">222</span>)</span><br><span class="line">	at com.mathworks.mde.editor.EditorView.&lt;init&gt;(<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>java:<span class="number">153</span>)</span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">EditorViewClient</span>.</span></span>init(<span class="module-access"><span class="module"><span class="identifier">EditorViewClient</span>.</span></span>java:<span class="number">232</span>)</span><br><span class="line">	at com.mathworks.mde.editor.EditorViewClient.&lt;init&gt;(<span class="module-access"><span class="module"><span class="identifier">EditorViewClient</span>.</span></span>java:<span class="number">181</span>)</span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>create<span class="constructor">EditorViewClient(MatlabEditorApplication.<span class="params">java</span>:700)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>create<span class="constructor">EditorViewClient(MatlabEditorApplication.<span class="params">java</span>:685)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>create<span class="constructor">EditorViewClientFromExistingFile(MatlabEditorApplication.<span class="params">java</span>:677)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>access<span class="constructor">$300(MatlabEditorApplication.<span class="params">java</span>:73)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication$4</span>.</span></span>run<span class="constructor">WithOutput(MatlabEditorApplication.<span class="params">java</span>:402)</span></span><br><span class="line">	at com.mathworks.jmi.<span class="module-access"><span class="module"><span class="identifier">AWTUtilities$Invoker$2</span>.</span></span>watched<span class="constructor">Run(AWTUtilities.<span class="params">java</span>:475)</span></span><br><span class="line">	at com.mathworks.jmi.<span class="module-access"><span class="module"><span class="identifier">AWTUtilities$WatchedRunnable</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">AWTUtilities</span>.</span></span>java:<span class="number">436</span>)</span><br><span class="line">	at java.awt.event.<span class="module-access"><span class="module"><span class="identifier">InvocationEvent</span>.</span></span>dispatch(<span class="module-access"><span class="module"><span class="identifier">InvocationEvent</span>.</span></span>java:<span class="number">311</span>)</span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>dispatch<span class="constructor">EventImpl(EventQueue.<span class="params">java</span>:758)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>access<span class="constructor">$500(EventQueue.<span class="params">java</span>:97)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue$3</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>java:<span class="number">709</span>)</span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue$3</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>java:<span class="number">703</span>)</span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">AccessController</span>.</span></span><span class="keyword">do</span><span class="constructor">Privileged(Native Method)</span></span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">ProtectionDomain$JavaSecurityAccessImpl</span>.</span></span><span class="keyword">do</span><span class="constructor">IntersectionPrivilege(ProtectionDomain.<span class="params">java</span>:74)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>dispatch<span class="constructor">Event(EventQueue.<span class="params">java</span>:728)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">OneEventForFilters(EventDispatchThread.<span class="params">java</span>:205)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">EventsForFilter(EventDispatchThread.<span class="params">java</span>:116)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">EventsForHierarchy(EventDispatchThread.<span class="params">java</span>:105)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">Events(EventDispatchThread.<span class="params">java</span>:101)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">Events(EventDispatchThread.<span class="params">java</span>:93)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>java:<span class="number">82</span>)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: com.mathworks.toolbox.coder.nide.editor.StateflowStorageLocation</span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>find<span class="constructor">Class(URLClassLoader.<span class="params">java</span>:382)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:424)</span></span><br><span class="line">	at sun.misc.<span class="module-access"><span class="module"><span class="identifier">Launcher$AppClassLoader</span>.</span></span>load<span class="constructor">Class(Launcher.<span class="params">java</span>:349)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:357)</span></span><br><span class="line"><span class="operator">	... </span><span class="number">40</span> more</span><br></pre></td></tr></tbody></table></figure>
+
+<p>不禁让人联想起更新NVIDIA显卡驱动程序时MATLAB出现的临时性错误。经过回忆想起在这期间由于需要给开始菜单截图提交GitHub issue而把系统的语言更改成了英文。这时我们把系统的语言改回中文，命令行窗口仍会报错，这可能是因为更新失败无法回滚造成的，点击右上角铃铛图标显示通知中更新Update 5，无需代理即可成功安装更新。这启示如果出现类似错误，可以先检查一下系统设置是否发生了改变。</p>
+<p>另外，如有需求，我们可以直接从<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/downloads/web_downloads/show_updates?release=R2019b%EF%BC%88URL%E6%9C%80%E5%90%8E%E7%9A%84R2019b%E5%8F%AF%E6%8D%A2%E6%88%90%E4%BD%A0%E6%83%B3%E6%9B%B4%E6%96%B0%E7%9A%84MATLAB%E7%89%88%E6%9C%AC%E5%8F%B7%EF%BC%89%E4%B8%8B%E8%BD%BDMATLAB">https://ww2.mathworks.cn/downloads/web_downloads/show_updates?release=R2019b（URL最后的R2019b可换成你想更新的MATLAB版本号）下载MATLAB</a> Update更新包，如图所示：</p>
+<p><img src="/posts/52215/Documents\Programming\HexoBlog\source\_posts\CSDN补档-16\20200315101839605.png" alt="img"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -695,802 +1453,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/53871.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/53871.html" class="post-title-link" itemprop="url">MATLAB用plot画图使用DatetimeTickFormat设置坐标日期格式使用英文日期(月份)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 10:03:23" itemprop="dateCreated datePublished" datetime="2020-03-08T10:03:23+08:00">2020-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 11:18:06" itemprop="dateModified" datetime="2020-10-02T11:18:06+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/53871.html" class="post-meta-item leancloud_visitors" data-flag-title="MATLAB用plot画图使用DatetimeTickFormat设置坐标日期格式使用英文日期(月份)" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/53871.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/53871.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight gml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(<span class="symbol">x</span>,<span class="symbol">y</span>,<span class="string">'DatetimeTickFormat'</span>,<span class="string">'MMM-yyyy'</span>);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>x为日期格式（datetime）的一个向量，MMM表示月份的简写（Jan或一月），MMMM表示月份（January或一月），yyyy表示年。对于中文用户而言月份会自动写成“1月”或“一月”的格式，而如果想在坐标轴上显示英文月份则不行，即使在MATLAB预设项中更改语言为英文并重启MATLAB后也不行，解决方法是：</p>
-<p>（对于Windows 10）控制面板-&gt;时钟和区域-&gt;日期和时间-&gt;更改日期和时间-&gt;更改日历设置-&gt;格式改为英语(美国)（或控制面板-&gt;时钟和区域-&gt;区域）。重启MATLAB，发现英文字体发生了改变（Monospaced），脚本中的汉字字符变为乱码。打开Preferences-&gt;General：</p>
-<p><img src="/posts/53871/Documents\Programming\HexoBlog\source\_posts\CSDN补档-11\20200308095708569.png" alt="img"></p>
-<p>对比原先的界面，<img src="/posts/53871/Documents\Programming\HexoBlog\source\_posts\CSDN补档-11\2020030809574621.png" alt="img"></p>
-<p>少了最下方“桌面语言”的一栏，这时再执行开头的plot语句发现绘得的图像的横坐标月份变成英文：</p>
-<p><img src="/posts/53871/Documents\Programming\HexoBlog\source\_posts\CSDN补档-11\20200308095916864.png" alt="img"></p>
-<p>完成后将区域改回中文(简体，中国)，重启MATLAB即自动恢复到原来的中文界面。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/28219.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/28219.html" class="post-title-link" itemprop="url">美化Windows PowerShell以及Fluent Terminal配置Posh-git、Oh-my-posh、DirColors方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-29 11:27:20" itemprop="dateCreated datePublished" datetime="2020-02-29T11:27:20+08:00">2020-02-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 11:16:38" itemprop="dateModified" datetime="2020-10-02T11:16:38+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/28219.html" class="post-meta-item leancloud_visitors" data-flag-title="美化Windows PowerShell以及Fluent Terminal配置Posh-git、Oh-my-posh、DirColors方法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/28219.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/28219.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>20200823更新：</p>
-<p>请阅读20200520更新文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yihuajack/article/details/106234124">PowerShell Core 7配置与美化（结合Fluent Terminal/Windows Terminal）</a>。</p>
-<p>-———————————————————–</p>
-<p>笔者搜索了国内外网络上关于Windows PowerShell配置DirColors基本是抄“小马哥”<a href="mailto:andot@qq.com">andot@qq.com</a>博主的文章，文章中说</p>
-<blockquote>
-<p>其中 <code>~\dir_colors</code> 就是配置文件的路径，关于 dir_colors 的配置文件，在 github 上可以搜到不少，比如：<a target="_blank" rel="noopener" href="https://github.com/seebi/dircolors-solarized">dircolors-solarized</a>。这里就不再列举更多了。</p>
-</blockquote>
-<p>本来打算只写写dircolors怎么配置，但后来为避免配置不全或错误，索性写了一个整套美化Windows PowerShell以及Fluent Terminal配置Posh-git、Oh-my-posh、DirColors的方法，也以备后用。</p>
-<p>首先安装<a target="_blank" rel="noopener" href="https://github.com/felixse/FluentTerminal">Fluent Terminal</a>，安装好后用管理员权限打开PowerShell，先执行命令：</p>
-<figure class="highlight gams"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Set</span>-ExecutionPolicy <span class="comment">-ExecutionPolicy ByPass</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>否则会出现错误，参考微软文档<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7">About Execution Policies</a>。</p>
-<p>安装posh-git和oh-my-posh（如已安装跳过）：</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> posh-git -<span class="keyword">Scope</span> CurrentUser</span><br><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> oh-my-posh -<span class="keyword">Scope</span> CurrentUser</span><br></pre></td></tr></tbody></table></figure>
-
-<p>遇到提示选是或全是即可，接着执行</p>
-<figure class="highlight mathematica"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> DirColors</span><br><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> windows-screenfetch</span><br></pre></td></tr></tbody></table></figure>
-
-<p>或</p>
-<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Install-Module </span><span class="keyword">DirColors </span>-<span class="keyword">Scope </span>CurrentUser</span><br><span class="line"><span class="keyword">Install-Module </span>windows-<span class="keyword">screenfetch </span>-<span class="keyword">Scope </span>CurrentUser</span><br></pre></td></tr></tbody></table></figure>
-
-<p>遇到提示选是或全是即可。ScreenFetch的效果是启动时显示系统信息（参见文末的效果图）。然后安装字体<a target="_blank" rel="noopener" href="https://github.com/powerline/fonts">Source Code Pro for Powerline</a>（clone到本地然后复制相应字体文件到C:\WINDOWS\Fonts）。</p>
-<p>注意，正常使用posh-git和oh-my-posh可能会git报错，建议使用Git for Windows作为Windows的Git环境。</p>
-<p>接着，在C:\Users&lt;username&gt;\Documents\WindowsPowerShell中新建Microsoft.PowerShell_profile.ps1，在其中添加</p>
-<figure class="highlight mathematica"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Import</span>-<span class="keyword">Module</span> posh-git;</span><br><span class="line"><span class="keyword">Import</span>-<span class="keyword">Module</span> oh-my-posh;</span><br><span class="line"><span class="keyword">Import</span>-<span class="keyword">Module</span> DirColors;</span><br><span class="line"><span class="keyword">Update</span>-DirColors ~/dir_colors;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后从GitHub上clone <a target="_blank" rel="noopener" href="https://github.com/seebi/dircolors-solarized">dircolors-solarized</a>，问题是该放到哪儿呢？笔者先尝试在C:\Users&lt;username&gt;中新建文件夹dir_colors或dircolors放入dircolors.256dark或者整个仓库，如果路径错误会报错：</p>
-<figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Get-Content : 找不到路径“C:<span class="symbol">\U</span>sers<span class="symbol">\&lt;</span>username&gt;<span class="symbol">\d</span>ir_colors”，因为该路径不存在。</span><br><span class="line">所在位置 C:<span class="symbol">\P</span>rogram Files<span class="symbol">\W</span>indowsPowerShell<span class="symbol">\M</span>odules<span class="symbol">\D</span>irColors<span class="symbol">\1</span>.1.2<span class="symbol">\D</span>irColors.psm1:121 字符: 21</span><br><span class="line">+     ForEach ($_ In (Get-Content -Path:<span class="keyword">$Path -ReadCount 0) -Split "`n" ...</span></span><br><span class="line"><span class="keyword">+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span><br><span class="line"><span class="keyword">    + CategoryInfo          : ObjectNotFound: </span>(C:<span class="symbol">\U</span>sers<span class="symbol">\&lt;</span>username&gt;<span class="symbol">\d</span>ir_colors:String) [Get-Content], ItemNot</span><br><span class="line">   FoundException</span><br><span class="line">    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand</span><br></pre></td></tr></tbody></table></figure>
-
-<p>更正路径名称后报错：</p>
-<figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Get-Content : 对路径“C:<span class="symbol">\U</span>sers<span class="symbol">\&lt;</span>username&gt;<span class="symbol">\d</span>ir_colors”的访问被拒绝。</span><br><span class="line">所在位置 C:<span class="symbol">\P</span>rogram Files<span class="symbol">\W</span>indowsPowerShell<span class="symbol">\M</span>odules<span class="symbol">\D</span>irColors<span class="symbol">\1</span>.1.2<span class="symbol">\D</span>irColors.psm1:121 字符: 21</span><br><span class="line">+     ForEach ($_ In (Get-Content -Path:<span class="keyword">$Path -ReadCount 0) -Split "`n" ...</span></span><br><span class="line"><span class="keyword">+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span><br><span class="line"><span class="keyword">    + CategoryInfo          : PermissionDenied: </span>(C:<span class="symbol">\U</span>sers<span class="symbol">\&lt;</span>username&gt;<span class="symbol">\d</span>ir_colors:String) [Get-Content], Unaut</span><br><span class="line">   horizedAccessException</span><br><span class="line">    + FullyQualifiedErrorId : GetContentReaderUnauthorizedAccessError,Microsoft.PowerShell.Commands.Get</span><br><span class="line">   ContentCommand</span><br></pre></td></tr></tbody></table></figure>
-
-<p>想到C#报错UnauthorizedAccessException异常与获取文件的目录与文件的不同有关，于是直接将dircolors.256dark复制到C:\Users&lt;username&gt;下（也可以选择其他主题如dircolors.ansi-dark等）下，然后将以下文本复制到Microsoft.PowerShell_profile.ps1中</p>
-<figure class="highlight mathematica"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Import</span>-<span class="keyword">Module</span> DirColors</span><br><span class="line"><span class="keyword">Update</span>-DirColors ~/dircolors<span class="number">.256</span>dark</span><br><span class="line"><span class="keyword">Import</span>-<span class="keyword">Module</span> posh-git</span><br><span class="line">if (!(<span class="keyword">Get</span>-SshAgent)) {</span><br><span class="line">    Start-SshAgent</span><br><span class="line">}</span><br><span class="line"><span class="keyword">Import</span>-<span class="keyword">Module</span> oh-my-posh</span><br><span class="line"><span class="keyword">Set</span>-Theme PowerLine</span><br><span class="line">Screenfetch</span><br></pre></td></tr></tbody></table></figure>
-
-<p>如遇到SSH Agent启动失败，执行如下命令即可：</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get-Service | <span class="keyword">select</span> -property <span class="keyword">name</span>,starttype</span><br><span class="line"><span class="keyword">Set</span>-Service -<span class="keyword">Name</span> ssh-<span class="keyword">agent</span> -StartupType <span class="keyword">Manual</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>该配置可能会出现瑕疵，用该ps1代码打开PowerShell一开始光标会和箭头空出一段距离，执行任意其他命令后光标恢复到紧贴箭头处，但是<strong>后来该问题并未复现</strong>。我们还可以复制一份改名Microsoft.VSCode_profile.ps1，可参考<a target="_blank" rel="noopener" href="https://coolcode.org/2018/03/16/how-to-make-your-powershell-beautiful/">PowerShell 美化指南</a>。如果不用oh-my-posh而采用个性化自定义，可参考知乎大佬<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/vilicvane">vilicvane</a>的代码（已修改过路径、Project、Screenfetch和SSH Agent等）【为什么 Windows 的终端（如命令提示符、PowerShell）都这么丑？ - vilicvane的回答 - 知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/38752831/answer/80133586%E3%80%91%E4%B8%8B%E8%AF%84%E8%AE%BA%E9%93%BE%E6%8E%A5[https://onedrive.live.com/?authkey=!ABivZ6uPBrm68t0&amp;cid=26DFC7B235D3DFB1&amp;id=26DFC7B235D3DFB1!984614&amp;parId=26DFC7B235D3DFB1!984613&amp;o=OneUp%5D(https://onedrive.live.com/?authkey=!ABivZ6uPBrm68t0&amp;cid=26DFC7B235D3DFB1&amp;id=26DFC7B235D3DFB1!984614&amp;parId=26DFC7B235D3DFB1!984613&amp;o=OneUp)%EF%BC%9A">https://www.zhihu.com/question/38752831/answer/80133586】下评论链接[https://onedrive.live.com/?authkey=%21ABivZ6uPBrm68t0&amp;cid=26DFC7B235D3DFB1&amp;id=26DFC7B235D3DFB1%21984614&amp;parId=26DFC7B235D3DFB1%21984613&amp;o=OneUp](https://onedrive.live.com/?authkey=!ABivZ6uPBrm68t0&amp;cid=26DFC7B235D3DFB1&amp;id=26DFC7B235D3DFB1!984614&amp;parId=26DFC7B235D3DFB1!984613&amp;o=OneUp)：</a></p>
-<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">Set-Alias gh Get-Help;</span><br><span class="line">Set-Alias cd Push-Location -Option AllScope;</span><br><span class="line">Set-Alias cdb Pop-Location -Option AllScope;</span><br><span class="line">Set-PSReadLineOption -HistoryNoDuplicates;</span><br><span class="line">$ProjectDirectory = <span class="string">'D:\Documents\Programming\PowerShell'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cdp</span> </span>{</span><br><span class="line">	[CmdletBinding()]</span><br><span class="line">    Param()</span><br><span class="line">    DynamicParam {</span><br><span class="line">        <span class="comment"># Set the dynamic parameters' name</span></span><br><span class="line">        $ParameterName = <span class="string">'Path'</span>;</span><br><span class="line">        <span class="comment"># Create the dictionary</span></span><br><span class="line">        $RuntimeParameterDictionary = <span class="keyword">New</span>-<span class="keyword">Object</span> System.Management.Automation.RuntimeDefinedParameterDictionary;</span><br><span class="line">        <span class="comment"># Generate and set the ValidateSet</span></span><br><span class="line">        $DirectorySet = Get-ChildItem -Path $ProjectDirectory -<span class="built_in">Directory</span> | Select-<span class="keyword">Object</span> -ExpandProperty Name;</span><br><span class="line">        $ValidateSetAttribute = <span class="keyword">New</span>-<span class="keyword">Object</span> System.Management.Automation.ValidateSetAttribute($DirectorySet);</span><br><span class="line">        <span class="comment"># Create and set the parameters' attributes</span></span><br><span class="line">        $ParameterAttribute = <span class="keyword">New</span>-<span class="keyword">Object</span> System.Management.Automation.ParameterAttribute;</span><br><span class="line">        $ParameterAttribute.Position = <span class="number">0</span>;</span><br><span class="line">        <span class="comment"># Create the collection of attributes</span></span><br><span class="line">        $AttributeCollection = <span class="keyword">New</span>-<span class="keyword">Object</span> System.Collections.ObjectModel.Collection[System.Attribute];</span><br><span class="line">		$AttributeCollection.Add($ValidateSetAttribute);</span><br><span class="line">		$AttributeCollection.Add($ParameterAttribute);</span><br><span class="line">        <span class="comment"># Create and return the dynamic parameter</span></span><br><span class="line">        $RuntimeParameter = <span class="keyword">New</span>-<span class="keyword">Object</span> System.Management.Automation.RuntimeDefinedParameter($ParameterName, [<span class="keyword">string</span>], $AttributeCollection);</span><br><span class="line">        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter);</span><br><span class="line">        <span class="keyword">return</span> $RuntimeParameterDictionary;</span><br><span class="line">    }</span><br><span class="line">    Begin {</span><br><span class="line">        <span class="comment"># Bind the parameter to a friendly variable</span></span><br><span class="line">        $ProjectName = $PsBoundParameters[$ParameterName];</span><br><span class="line">    }</span><br><span class="line">    Process {</span><br><span class="line">		cd $ProjectDirectory\$ProjectName;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cdh</span> </span>{</span><br><span class="line">    cd ~;</span><br><span class="line">}</span><br><span class="line">Push-Location (Split-Path -Path $MyInvocation.MyCommand.Definition -<span class="built_in">Parent</span>);</span><br><span class="line">Import-Module posh-git;</span><br><span class="line">Import-Module oh-my-posh;</span><br><span class="line">Import-Module DirColors;</span><br><span class="line">Update-DirColors ~/dircolors<span class="number">.256</span>dark;</span><br><span class="line">$Global:GitPromptSettings.BeforeText = <span class="string">' '</span>;</span><br><span class="line">$Global:GitPromptSettings.BeforeForegroundColor = [ConsoleColor]::DarkGray;</span><br><span class="line">$Global:GitPromptSettings.BeforeBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.DelimText = <span class="string">" $([char]0xb7)"</span>;</span><br><span class="line">$Global:GitPromptSettings.DelimForegroundColor = [ConsoleColor]::DarkGray;</span><br><span class="line">$Global:GitPromptSettings.DelimBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.AfterText = <span class="string">' '</span>;</span><br><span class="line">$Global:GitPromptSettings.AfterForegroundColor = [ConsoleColor]::DarkGray;</span><br><span class="line">$Global:GitPromptSettings.AfterBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.LocalStagedStatusForegroundColor = [ConsoleColor]::DarkGray;</span><br><span class="line">$Global:GitPromptSettings.LocalStagedStatusBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.BranchForegroundColor = [ConsoleColor]::DarkGray;</span><br><span class="line">$Global:GitPromptSettings.BranchBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.BranchIdenticalStatusToForegroundColor = [ConsoleColor]::DarkGray;</span><br><span class="line">$Global:GitPromptSettings.BranchIdenticalStatusToBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.BranchBehindAndAheadStatusForegroundColor = [ConsoleColor]::DarkYellow;</span><br><span class="line">$Global:GitPromptSettings.BranchBehindAndAheadStatusBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.BranchBehindStatusForegroundColor = [ConsoleColor]::DarkRed;</span><br><span class="line">$Global:GitPromptSettings.BranchBehindStatusBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.BranchAheadStatusForegroundColor = [ConsoleColor]::DarkGreen;</span><br><span class="line">$Global:GitPromptSettings.BranchAheadStatusBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.LocalWorkingStatusBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.BeforeIndexBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.IndexBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.WorkingBackgroundColor = [ConsoleColor]::White;</span><br><span class="line">$Global:GitPromptSettings.EnableWindowTitle = $false;</span><br><span class="line">$Global:GitPromptSettings.ShowStatusWhenZero = $false;</span><br><span class="line"><span class="comment"># Set up a simple prompt, adding the git prompt parts inside git repos</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">global</span>:<span class="title">prompt</span> </span>{</span><br><span class="line">    $realLASTEXITCODE = $Global:LASTEXITCODE;</span><br><span class="line">    $hostline = <span class="string">" <span class="subst">$env</span>:Username@<span class="subst">$env</span>:UserDomain "</span>;</span><br><span class="line">    Write-Host;</span><br><span class="line">    <span class="keyword">if</span> ($realLASTEXITCODE -eq <span class="number">0</span>) {</span><br><span class="line">        $hostColor = [ConsoleColor]::DarkGreen;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        $hostColor = [ConsoleColor]::DarkRed;</span><br><span class="line">        $hostline += <span class="string">"(0x$('{0:X0}' -f <span class="subst">$realLASTEXITCODE</span>)) "</span>;</span><br><span class="line">    }</span><br><span class="line">    Write-Host $hostline -ForegroundColor White -BackgroundColor $hostColor -NoNewLine;</span><br><span class="line">    Write-Host <span class="string">"$([char]0xe0b0)"</span> -ForegroundColor $hostColor -BackgroundColor DarkGray -NoNewline;</span><br><span class="line">    $realFolderName = (Get-Item $pwd.ProviderPath).Name;</span><br><span class="line">    <span class="keyword">if</span> ($pwd.ProviderPath -eq $env:UserProfile) {</span><br><span class="line">        $folderName = <span class="string">'~'</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        $folderName = $realFolderName;</span><br><span class="line">    }</span><br><span class="line">    Write-Host <span class="string">" <span class="subst">$folderName</span> "</span> -ForegroundColor White -BackgroundColor DarkGray -NoNewline;</span><br><span class="line">    $gitStatus = Get-GitStatus;</span><br><span class="line">    <span class="keyword">if</span> ($gitStatus -ne $null) {</span><br><span class="line">        Write-Host <span class="string">"$([char]0xe0b0)"</span> -ForegroundColor DarkGray -BackgroundColor White -NoNewline;</span><br><span class="line">        Write-GitStatus $gitStatus;</span><br><span class="line">        Write-Host <span class="string">"$([char]0xe0b0)"</span> -ForegroundColor White;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        Write-Host <span class="string">"$([char]0xe0b0)"</span> -ForegroundColor DarkGray;</span><br><span class="line">    }</span><br><span class="line">    $Global:LASTEXITCODE = <span class="number">0</span>;</span><br><span class="line">    Write-Host <span class="string">" PS "</span> -ForegroundColor DarkGray -BackgroundColor White -NoNewline;</span><br><span class="line">    Write-Host <span class="string">"$([char]0xe0b0)"</span> -ForegroundColor White -NoNewline;</span><br><span class="line">    Write <span class="string">" "</span>;</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        &amp; <span class="string">"<span class="subst">$env</span>:ConEmuBaseDir\ConEmuC.exe"</span> <span class="string">"/GUIMACRO"</span>, <span class="string">'Rename(0,@"'</span>$realFolderName<span class="string">'")'</span> &gt; $null;</span><br><span class="line">    } <span class="keyword">catch</span> { }</span><br><span class="line">}</span><br><span class="line">Pop-Location;</span><br><span class="line"><span class="keyword">if</span> (!(Get-SshAgent)) {</span><br><span class="line">    Start-SshAgent -Quiet;</span><br><span class="line">}</span><br><span class="line">Screenfetch;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然而使用该ps1代码启动PowerShell初始会爆红(0x1)，后续执行任意其他命令才转绿，该问题一时不清楚原因，故慎用。我们可以发现语句末尾的分号是非必需的。</p>
-<p>接下来可以添加右键菜单项，在注册表：计算机\HKEY_CLASSES_ROOT\Directory\Background\shell下新建项Open PowerShell Here，新建子项command默认REG_SZ型值为C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe。一般Fluent Terminal安装会自动创建右键菜单，若没有，则新建项Open Fluent Terminal Here，新建子项command默认REG_SZ型值为”%LOCALAPPDATA%\Microsoft\WindowsApps\flute.exe” new “%V”，也可以任取项名，然后将项的默认值改为想在右键菜单中显示的名称。如果想在菜单项左边显示一个小图标，可以在”Open … Here”下新建REG_SZ值名Icon，数据为图标Icon的路径。</p>
-<p>最后，为避免中文乱码问题，在注册表项：计算机\HKEY_CURRENT_USER\Console%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe下新建REG_DWORD值名CodePage，数据为十进制65001（或十六进制0x0000fde9），FaceName值数据改为<a target="_blank" rel="noopener" href="https://github.com/powerline/fonts">DejaVu Sans Mono for Powerline</a>（还可以参考<a target="_blank" rel="noopener" href="https://github.com/Microsoft/BashOnWindows/files/1362006/Microsoft.YaHei.Mono.zip">Microsoft YaHei Mono</a>，还有另外一款字体来源于<a target="_blank" rel="noopener" href="https://blog.walterlv.com/post/customize-fonts-of-command-window">自定义 Windows PowerShell 和 cmd 的字体</a> <a target="_blank" rel="noopener" href="https://be5invis.github.io/Iosevka/inziu.html">Inziu Iosevka</a>已迁移到<a target="_blank" rel="noopener" href="https://github.com/be5invis/Sarasa-Gothic">更纱黑体</a>（最新下载链接在GitHub项目页的Release里面），但是其包含的OpenType字体很多而且体积很大，如果C盘空间有限并不推荐），<strong>重启计算机后生效</strong>，否则会出现打开PowerShell窗口后无任何显示（这是最常见的问题）或报错：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Program 'git.exe' failed to run: Valid values are between 0 and 65535, inclusive.</span><br><span class="line">Parameter name: codepageAt C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">WindowsPowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">posh</span></span>-git<span class="tag">\</span>0.7.3<span class="tag">\<span class="name">CheckVersion</span></span>.ps1:10 char:1</span><br><span class="line">4</span><br><span class="line">+ if ([String](git --version 2&gt; <span class="formula">$null) -match '(?&lt;ver&gt;<span class="tag">\<span class="name">d</span></span>+(?:<span class="tag">\<span class="name">.</span></span><span class="tag">\<span class="name">d</span></span>+)+)')  ...</span></span><br><span class="line"><span class="formula">+              ~~~~~~~~~~~~~~~~~~~~~~.</span></span><br><span class="line"><span class="formula">At C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">WindowsPowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">posh</span></span>-git<span class="tag">\</span>0.7.3<span class="tag">\<span class="name">CheckVersion</span></span>.ps1:10 char:5</span></span><br><span class="line"><span class="formula">+ if ([String](git --version 2&gt; $</span>null) -match '(?&lt;ver&gt;<span class="tag">\<span class="name">d</span></span>+(?:<span class="tag">\<span class="name">.</span></span><span class="tag">\<span class="name">d</span></span>+)+)')  ...</span><br><span class="line">+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException</span><br><span class="line">    + FullyQualifiedErrorId : NativeCommandFailed</span><br><span class="line"> </span><br><span class="line">WARNING: posh-git requires Git 1.7.2 or better. You have .</span><br><span class="line">Program 'ssh-agent.exe' failed to run: Valid values are between 0 and 65535, inclusive.</span><br><span class="line">Parameter name: codepageAt C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">WindowsPowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">posh</span></span>-git<span class="tag">\</span>0.7.3<span class="tag">\<span class="name">GitUtils</span></span>.ps1:491 char:9</span><br><span class="line">+         &amp; <span class="formula">$sshAgent | ForEach-Object {</span></span><br><span class="line"><span class="formula">+         ~~~~~~~~~~~.</span></span><br><span class="line"><span class="formula">At C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">&lt;</span></span>username&gt;<span class="tag">\<span class="name">Documents</span></span><span class="tag">\<span class="name">WindowsPowerShell</span></span><span class="tag">\<span class="name">Modules</span></span><span class="tag">\<span class="name">posh</span></span>-git<span class="tag">\</span>0.7.3<span class="tag">\<span class="name">GitUtils</span></span>.ps1:491 char:9</span></span><br><span class="line"><span class="formula">+         &amp; $</span>sshAgent | ForEach-Object {</span><br><span class="line">+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException</span><br><span class="line">    + FullyQualifiedErrorId : NativeCommandFailed</span><br></pre></td></tr></tbody></table></figure>
-
-<p>实际上，如果确定配置好了但是PowerShell控制台就是没反应或报错，重启就完事儿了，不行再另说。在Fluent Terminal设置-&gt;终端中更改字体为Source Code Pro for Powerline。然后以Fira Code Retina字体为例，注册表：计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink下新建项名Fira Code Retina，数据为：</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">MICROSS</span><span class="selector-class">.TTF</span>,<span class="selector-tag">Microsoft</span> <span class="selector-tag">Sans</span> <span class="selector-tag">Serif</span>,108,122</span><br><span class="line"><span class="selector-tag">MICROSS</span><span class="selector-class">.TTF</span>,<span class="selector-tag">Microsoft</span> <span class="selector-tag">Sans</span> <span class="selector-tag">Serif</span></span><br><span class="line"><span class="selector-tag">MINGLIU</span><span class="selector-class">.TTC</span>,<span class="selector-tag">PMingLiU</span></span><br><span class="line"><span class="selector-tag">MSMINCHO</span><span class="selector-class">.TTC</span>,<span class="selector-tag">MS</span> <span class="selector-tag">PMincho</span></span><br><span class="line"><span class="selector-tag">BATANG</span><span class="selector-class">.TTC</span>,<span class="selector-tag">Batang</span></span><br><span class="line"><span class="selector-tag">MSYH</span><span class="selector-class">.TTC</span>,<span class="selector-tag">Microsoft</span> <span class="selector-tag">YaHei</span> <span class="selector-tag">UI</span></span><br><span class="line"><span class="selector-tag">MSJH</span><span class="selector-class">.TTC</span>,<span class="selector-tag">Microsoft</span> <span class="selector-tag">JhengHei</span> <span class="selector-tag">UI</span></span><br><span class="line"><span class="selector-tag">YUGOTHM</span><span class="selector-class">.TTC</span>,<span class="selector-tag">Yu</span> <span class="selector-tag">Gothic</span> <span class="selector-tag">UI</span></span><br><span class="line"><span class="selector-tag">MALGUN</span><span class="selector-class">.TTF</span>,<span class="selector-tag">Malgun</span> <span class="selector-tag">Gothic</span></span><br><span class="line"><span class="selector-tag">SEGUISYM</span><span class="selector-class">.TTF</span>,<span class="selector-tag">Segoe</span> <span class="selector-tag">UI</span> <span class="selector-tag">Symbol</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>检查计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts是否已有安装好的字体，若没有则参照我的另一篇博文<a target="_blank" rel="noopener" href="https://blog.csdn.net/yihuajack/article/details/104384983">Windows 10 ttf字体文件右键菜单没有安装选项导致MATLAB预设无法识别使用已安装字体的问题的解决方法</a>手动补加注册表。</p>
-<p>注意：以上所有配置均针对于C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe，另外一个PowerShell在C:\WINDOWS\SysWOW64\WindowsPowerShell\v1.0\powershell.exe则保持原样未被修改。修改过程中，原来PowerShell的快捷方式会失效，<strong>即使新建快捷方式，所使用的代码页与字体与powershell.exe控制台程序不同，仍会使用系统默认，所以全程调试PowerShell控制台应该直接打开C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe或使用Win+R运行powershell或任务管理器新建任务powershell的界面</strong>。</p>
-<p>为避免可能的中文字符问题，可执行：</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> -<span class="keyword">Name</span> PowerShellGet -<span class="keyword">Force</span></span><br><span class="line"><span class="keyword">Install</span>-<span class="keyword">Module</span> -<span class="keyword">Name</span> PSReadLine -<span class="keyword">Force</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>此外，你还可以尝试<a target="_blank" rel="noopener" href="https://github.com/Davlind/PSColor">PSColor</a>、<a target="_blank" rel="noopener" href="https://github.com/joonro/Get-ChildItemColor">Get-ChildItemColor</a>。如果嫌加载个人及系统配置文件时间过长，可以在ps1文件中删掉screenfetch语句。</p>
-<p>以上的配置实际上不仅美化了Fluent Terminal，而且直接美化了powershell.exe Console。贴张PowerShell控制台的效果图：</p>
-<p><img src="/posts/28219/Documents\Programming\HexoBlog\source\_posts\CSDN补档-10\20200229110336383.png" alt="img"></p>
-<p>Fluent Terminal效果图：</p>
-<p><img src="/posts/28219/Documents\Programming\HexoBlog\source\_posts\CSDN补档-10\20200229110323177.png" alt="img"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/27647.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/27647.html" class="post-title-link" itemprop="url">彻底卸载Solidworks及Electrical以避免重新安装时出现1603、注册表权限错误或Installer未按预期运行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 20:01:15" itemprop="dateCreated datePublished" datetime="2020-02-19T20:01:15+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:21:18" itemprop="dateModified" datetime="2020-10-02T10:21:18+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/27647.html" class="post-meta-item leancloud_visitors" data-flag-title="彻底卸载Solidworks及Electrical以避免重新安装时出现1603、注册表权限错误或Installer未按预期运行" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/27647.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/27647.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本来Solidworks的卸载问题相对不多，但是由于一波hp操作（在卸载程序中断过程中删除文件、注册表）导致卸载程序没有清理干净，导致后续产生了巨大问题，打开Solidworks安装程序发现许多选项是灰色并且未勾选的，之后还出现了其他问题。那么在这种极限状况下该如何挽救？</p>
-<p>首先研究log日志文件，这非常关键，在这种安装尚未开始进行、”为支持部门保存日志”选项的窗口尚未弹出时，以Solidworks 2020 SP1.0为例，我们可以在C:\Users&lt;username&gt;\AppData\Roaming\SOLIDWORKS\Installation Logs\2020 SP1.0中找到日志文件，我们之间进入子目录”Other Logs”中寻找“sldIMLog_xxxxx-xxxxx-xxxx_0000x.txt”文件中最近一次（或出现最大问题的那次），在子目录中的sldIMLog日志比上一级目录中的同名文件记录更详尽。此外，同样在Other Logs中我们找到GetSourceInfo_xxxxx-xxxxx-xxxx-xxx.xml文件，最好通过IE等支持XML查看的浏览器或XML查看器查看，自动缩进看的好看一点。开始工作：</p>
-<p>1.对于Solidworks Electrical用户，先看结尾处的注意事项。</p>
-<p>2.如果之前未在控制面板使用Solidworks自己的卸载程序卸载，请先进行此操作，即使你知道TeighaX、Bonjour等软件是它的附加组件，也无需卸载它们（除非已经安装了比Solidworks安装程序自带的更高版本），<strong>注意不要卸载Visual C++ Redistributable、.NET Framework等（除非你之后安装的安装程序已经明确指出安装问题是由它们引起）！卸载重装往往会造成非常严重、不可挽回的问题</strong>。</p>
-<p>3.确认卸载操作完成后，下载并安装Windows Installer Clean Up，尽管该工具是为Windows XP设计，对于Windows 10的MSI许多地方显得捉襟见肘，但是目前尚无代替工具。用管理员打开后，找到带Solidworks字段的几个程序Remove。如果这一步骤与后续步骤顺序颠倒导致问题，请转至步骤6参考。</p>
-<p>该工具会出现兼容性问题，点击Remove运行一段时间后会重启一个窗口最后一行显示Removed /Features并持续占用CPU，这种情况下只要直接关闭该窗口，再次Remove运行一段时间后重启窗口最后一行显示Removed /Patches，然后再重复关闭、Remove的操作相继remove media、net等直到不再弹出为止，发现列表中要删除的程序已经消失。如果未找到Solidworks相关程序，反而找到一些(All Users)后名称与版本号为空或名称为空的程序，很可能是已损坏的Solidworks相关程序，也需要将其Remove！事实上，即使它们与Solidworks无关，它们也已经损坏，Remove不会对软件正常运行产生影响。</p>
-<p>删除X:\Program Files\SOLIDWORKS Corp(X代表盘符C/D/E等)、X:\ProgramData\SOLIDWORKS Electrical，以及C:\Program Files、C:\Program Files (x86)及其子目录Common Files中的Solidworks或Solidworks Shared文件夹，以及C:\WINDOWS\Solidworks（经常被忽略的点），以及C:\Users&lt;username&gt;\AppData的子目录Local、LocalLow、Roaming中含有Solidworks的文件夹。事实上，X:\ProgramData\SOLIDWORKS Data作为存放异孔型向导Toolbox的目录可以不必删除，在下次执行Solidworks安装程序时可以手动设置该目录，安装程序会自动更新其内容。如果你使用_SOLIDSQUAD_团队的激活工具，尽量不要删除C:\SolidWorks_Flexnet_Server，因为Cadence Allegro、Autodesk等软件激活会共用该Server的服务等，由于该团队的工具可以延续之前保留的激活状态无需激活，所以尽量不要删掉Flexnet相关文件、服务、注册表等，否则共用该服务的软件激活状态会出现异常，造成更大损失。</p>
-<p>4.Win+R运行输入regedit打开注册表编辑器，删除下列注册表项：</p>
-<p>* 计算机\HKEY_CURRENT_USER\Software\SolidWorks</p>
-<p>* 计算机\HKEY_LOCAL_MACHINE\SOFTWARE\SolidWorks</p>
-<p>* 计算机\HKEY_LOCAL_MACHINE\SOFTWARE\SolidWorks Corporation</p>
-<p>* 计算机\HKEY_USERS\S-1-5-xx(-x…)\Software\SolidWorks【可能在S-1-5-21-…】</p>
-<p>5.使用批量的注册表管理工具（推荐Registrar Registry Manager）搜索所以带Solidworks的注册表项，全部搜索出后，由于Solidworks会与Autodesk、ANSYS、COMSOL、Altium Designer、Microsoft Office等软件交互，删除时应避开带有这些字段的注册表项和值。然后再搜索eDrawings等字段补遗。</p>
-<p>6.运行Solidworks安装程序到安装选项选择安装组件那一页，如果发现有些尚未勾选的选项变灰无法勾选，退出安装程序，检查之前找到的txt日志文件，发现最后提示</p>
-<figure class="highlight angelscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[I    <span class="number">45</span> <span class="number">1</span> entitleme..ecker.cpp(<span class="number">1934</span>) <span class="number">10</span>:<span class="number">42</span>:<span class="number">10</span>] {ID #<span class="number">55700</span>} $S10:<span class="number">42</span>:<span class="number">10</span></span><br><span class="line">Info	Entitlement	<span class="number">45</span>	<span class="number">55700</span>	<span class="string">"所隐藏的产品(无法选定):{0: SOLIDWORKS Installation Manager}"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>还有另外44条类似的提示，并最终汇总给出”可以选定的产品”、”用户已授权安装的产品”、”要进行新安装(不是升级)的产品”、”已安装并要保留的产品”、”要升级的产品(带有升级的版本)”、”要删除的产品”。深入查看，发现许多类似于</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[I     0 1 entitleme<span class="built_in">..</span>ecker.cpp(2746) 10:42:10]</span><br><span class="line">SetFeaturesEntitlement() report <span class="keyword">for</span> PlugIns [=&gt;PlugIns, <span class="attribute">p</span>=Composer, 6 of 8, <span class="attribute">children</span>=0]:</span><br><span class="line">[<span class="attribute">selected</span>=1, <span class="attribute">selectable</span>=1, <span class="attribute">mode</span>=1], [<span class="attribute">ent</span>=1], <span class="attribute">skip</span>=0, <span class="attribute">clf</span>=0, <span class="attribute">addins</span>=0, <span class="attribute">asel</span>=1</span><br></pre></td></tr></tbody></table></figure>
-
-<p>的提示，我们发现，如果skip为1，那么selected与selectable均为0；如果asel为1，则selected, selectable, mode均为1。如果clf为1，则ent为0而asel为1。继续向上翻看，我们发现多条下列提示：</p>
-<figure class="highlight nim"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[I     <span class="number">0</span> <span class="number">2</span>     msiinstaller.cpp(<span class="number">2804</span>) <span class="number">10</span>:<span class="number">42</span>:<span class="number">08</span>]</span><br><span class="line"><span class="type">SKIPPING</span> <span class="type">INSTALL</span> <span class="type">CONDITION</span> - installed version <span class="type">OK</span> (productcode=<span class="meta">{......}</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>以及</p>
-<figure class="highlight angelscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[I     <span class="number">0</span> <span class="number">2</span>     msiinstaller.cpp(<span class="number">2829</span>) <span class="number">10</span>:<span class="number">42</span>:<span class="number">08</span>]</span><br><span class="line">INSTALL CONDITION Product NOT detected (upgradecode={......}, msiversion=<span class="number">14.16</span><span class="number">.27012</span></span><br><span class="line">[I     <span class="number">0</span> <span class="number">2</span>  clientinstaller.cpp(<span class="number">3538</span>) <span class="number">10</span>:<span class="number">42</span>:<span class="number">08</span>]</span><br><span class="line">INSTALL CONDITION IS FALSE!</span><br><span class="line">[E     <span class="number">0</span> <span class="number">1</span>      projectdata.cpp(<span class="number">2485</span>) <span class="number">10</span>:<span class="number">41</span>:<span class="number">07</span>]</span><br><span class="line">WARNING! IsSelected called on product (SWKorean) with no actions - using hidden m_bSelected</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这意味着这些productcode对应的组件的Installer被detect到而被skip，而且还有Uninstall的Registry Key丢失，所以我们想到要删除它们。打开之前关于GetSourceInfo的xml日志文件，用注册表管理器打开”计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders”，向下找到值为”C:\WINDOWS\Installer{…}的范围内，在XML文件中搜索/ProductCode，将搜索出的SolidWorks、SWSupportedLanguages等的Product的Code在这个范围内的值对应{}括号内的值删掉，如SolidWorks对应3F4681F3打头的Code，将该值从Folders项中删去。值得注意的是，ProductCode其后的UpgradeCode有时也有用，不过这里可以忽略。此外，一些名为SWKorean之类的语言包类Product可以跳过（除了你先前安装的其他语言如Chinese、Chinese Simplified），此外，还可以跳过一些附加组件如Bonjour、TeighaX、Microsoft_VSTA、Microsoft_VBA等，<strong>不要动MSSQL相关注册表</strong>。大致清理注册表（即步骤4中的注册表），重启安装程序，发现问题解决。</p>
-<p>7.目前可以勾选了，设置好后开始安装，却在安装Solidworks主程序遇到了注册表权限问题，接着出现Installer未按预期运行而中断，这是老生常谈的问题了。检查txt日志文件，跳过大段无用的[E  157 1   msiinstaller.cpp(3337) 13:33:58] $S13:33:58   Error   Status发现提示[I   0 3  clientinstaller.cpp(7093) 13:33:58] ::MsiInstallProduct returned 1603。这时网上的删除VSTA注册表等种种怪招自然是没用的，还有些给出的卸载方案根本卸载不干净，还有的则会造成破坏。我们记下安装程序给出的注册表位置在Unknown\……\……，两个省略号都是大段十六进制code，在注册表中搜索第一个code得到3个结果，其中一个定位到计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\，发现其子项出现严重权限问题打不开，也更改不了所有者权限，参考我的另一篇文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/yihuajack/article/details/104395132">Windows 10无法打开注册表 由于某个错误无法打开该密钥(详细信息:拒绝访问)且无法在注册表上设置新的所有者拒绝访问的解决方案</a>，更改”Component”项的所有者并选定替换子容器和对象所有者、勾选窗口最下方的使用可从此对象继承的权限项目替换所有子对象的权限项目。大致清理注册表（即步骤4中的注册表），重启安装程序，发现问题解决。再次提示记得成功后恢复”Component”项及其子项的所有者为”SYSTEM”并继承Administrators的权限以免对系统和其他软件造成影响。</p>
-<hr>
-<p><strong>针对Solidworks Electrical用户：</strong></p>
-<p><strong>注意：如果使用Solidworks安装媒介自带的SQL Server Express新建实例localhost\TEW_SQLEXPRESS来安装Solidworks Electrical，切勿对该SQL Server进行删除服务、注册表或卸载软件等操作！</strong>SQL Server是一个远比其他软件复杂的系统，如果其被损坏产生安装问题大多几乎无解，且对系统造成广泛、不可逆转的损害，而且原先的安装媒介往往丢失、不兼容、失效，修复能力很有限，往往只能重装系统。</p>
-<p>i)如果已经误操作而产生不可逆转的后果，只能将原先的TEW_SQLEXPRESS搁置，新建实例重命名为例如”TEW_SQLEXPRESS1”继续。注意实例名有长度限制。</p>
-<p>ii)如果尚未损坏SQL Server服务、注册表、软件、实例等，就不要修改、删除它们，因为SQL Server的实例高度独立，Solidworks的修改并不对其造成多大影响。如果后续SQL Server确实报错，最好通过SSMS(SQL Server Management Studio)或SQL Server安装程序安全删除该实例，并清理服务，但是仍然不要修改SQL Server的注册表或卸载其软件。如果仍然报错，请转至选项i)。</p>
-<p>事实上，如果你以安装高于2014版本（到Solidworks 2020为止）的SQL Server或高于Express的版本如Developer、Enterprise、Professional等，你可以使用自己的SQL Server新建localhost下或你的计算机名下(例如名为DESKTOP-XXXXXXX\XXX)的实例在Solidworks安装程序设定中用于Solidworks Electrical。你可以选择Windows身份验证登录方式，也可以选择SQL Server身份验证登录方式自己设定密码，二者经测均可。</p>
-<p>（20200519更新：注意采用已安装的SQL Server实例用于Solidworks Electrical时，若安装的是默认实例MSSQLSERVER，则服务器名称应为你的<strong>计算机名</strong>。）</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/22235.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/22235.html" class="post-title-link" itemprop="url">Windows 10无法打开注册表 由于某个错误无法打开该密钥(详细信息:拒绝访问)且无法在注册表上设置新的所有者拒绝访问的解决方案</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 16:21:03" itemprop="dateCreated datePublished" datetime="2020-02-19T16:21:03+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:21:18" itemprop="dateModified" datetime="2020-10-02T10:21:18+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/22235.html" class="post-meta-item leancloud_visitors" data-flag-title="Windows 10无法打开注册表 由于某个错误无法打开该密钥(详细信息:拒绝访问)且无法在注册表上设置新的所有者拒绝访问的解决方案" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/22235.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/22235.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在安装Solidworks是安装程序错误指向了注册表：</p>
-<p>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\628A……………….\3F18……………………</p>
-<p>而试图使用注册表编辑器查看该注册表时提示窗口”无法打开XXX 由于某个错误无法打开该密钥 详细信息 拒绝访问”，试图更改权限设置新的所有者后收到错误”无法在XXX上设置新的所有者拒绝访问”。</p>
-<p>经过试错，网上提供的写vbs脚本、js脚本、inf安装文件的方法无法执行，其他则多为Windows 7或XP的方法。实际上的解决方法为：</p>
-<p>在该项的上一级，也即”628A……………..”项，发现该项无权限问题，右键-&gt;权限-&gt;高级-&gt;所有者:更改（即使该项的所有者已被设为Administrators），输入Administrators检查名称后确定，选定替换子容器和对象所有者，并勾选窗口最下方的使用可从此对象继承的权限项目替换所有子对象的权限项目，可能会弹出报错窗口（无法替换子容器和对象所有者）但是继续确定（使用可从此对象继承的权限项目替换所有子对象的权限项目），完成后发现其子项可以查看，权限也已被更改，问题成功解决。</p>
-<p><strong>！注意：出现类似注册表问题时请切勿修改”Installer”项或其父项等的注册表项的权限，最高只能修改到”Components”项的权限，否则会产生开始菜单、桌面图标等种种问题，且权限很难完全更改回去，这些次生的问题也很难解决，对系统造成不可逆转的伤害。</strong></p>
-<p><strong>！注意：如果更改了父项的所有者，请在安装问题解决后将它和它的子项的所有者恢复为SYSTEM并继承Administrators的权限。</strong></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/18163.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/18163.html" class="post-title-link" itemprop="url">Windows 10 ttf字体文件右键菜单没有安装选项导致MATLAB预设无法识别使用已安装字体的问题的解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-18 23:30:04" itemprop="dateCreated datePublished" datetime="2020-02-18T23:30:04+08:00">2020-02-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:20:45" itemprop="dateModified" datetime="2020-10-02T10:20:45+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/18163.html" class="post-meta-item leancloud_visitors" data-flag-title="Windows 10 ttf字体文件右键菜单没有安装选项导致MATLAB预设无法识别使用已安装字体的问题的解决方法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/18163.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/18163.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近试图把MATLAB预设字体改成github上的Consolas-with-Yahei字体，clone到本地解压出.ttf字体文件后将其复制到C:\Windows\Fonts自动安装后发现其预设字体下拉栏中并无该字体。在网上寻找无果，经测，在控制面板-&gt;外观和个性化-&gt;字体-&gt;字体设置中允许使用快捷方式安装字体勾选后仍然无法解决，于是打开regedit注册表编辑器进入计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts(*)进行注册表操作，以Consolas-with-Yahei Bold Nerd Font.ttf字体文件为例（保险起见应先关闭MATLAB，并确定该字体文件已被复制到C:\Windows\Fonts并安装成功）：</p>
-<p>在(*)目录下新建字符串值名为”Consolas-with-Yahei Bold (TrueType)”,将其值输入为”Consolas-with-Yahei Bold Nerd Font.ttf”。</p>
-<p>为Consolas-with-Yahei Nerd Font.ttf, Consolas-with-Yahei Italic Nerd Font.ttf, Consolas-with-Yahei Bold Italic Nerd Font.ttf等重复上述操作。重新打开MATLAB预设-&gt;字体，发现下拉栏中已有Consolas-with-Yahei字体名字，问题成功解决。</p>
-<p><strong>注意：注册表中注册字体时值的名称必须为在C:\Windows\Fonts中安装的名称！</strong>例如在Fonts目录中安装后显示的名称为：”YaHei Consolas Hybrid 常规”：</p>
-<p><img src="https://img-blog.csdnimg.cn/202002190025245.png" alt="img"></p>
-<p>则值名应设为”YaHei Consolas Hybrid (TrueType)”，若设为其他名称则问题依旧存在。</p>
-<p>另外，在先前操作中发现右键.ttf字体文件或Windows\Fonts中的字体弹出右键菜单会弹出报错窗口提示Inventor等程序的启动问题接着显示残缺的右键菜单，将Autodesk Inventor卸载后则情况消失，怀疑该问题的出现与Inventor等程序有关，因为此前Inventor的授权被Solidworks、Cadence Allegro等软件干扰导致许可证出现问题使得Inventor等无法启动。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/24163.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/24163.html" class="post-title-link" itemprop="url">git clone大仓库(>1G)时速度慢并出现RPC failed断开连接错误的真正解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-22 02:17:21" itemprop="dateCreated datePublished" datetime="2019-12-22T02:17:21+08:00">2019-12-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:20:41" itemprop="dateModified" datetime="2020-10-02T10:20:41+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/24163.html" class="post-meta-item leancloud_visitors" data-flag-title="git clone大仓库(>1G)时速度慢并出现RPC failed断开连接错误的真正解决方法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/24163.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/24163.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近git clone一个很大的repository（git-sdk-64）时用它本身release的installer是解压出来一个小git然后用它来从远端clone但是速度极慢，并且出现错误</p>
-<p>克隆远程存储库时遇到错误: Git failed with a fatal error.<br>early EOF<br>the remote end hung up unexpectedly<br>index-pack failed<br>RPC failed; curl 18 transfer closed with outstanding read data remaining</p>
-<p>直接download zip用Microsoft Edge当然会断开，但是发现用Google Chrome和Internet Explorer也会断开，又试了Github Desktop也出问题，用安装了Github Extension的Visual Studio会速度慢点坚持时间长点不过仍然会报出相同的速度。考虑到网上的经验，先将github仓库用git云后台导入到gitee然后再从gitee下载zip发现同样会出现连接中断的问题，并且由于gitee下载速度较快（几个M/s）所以可以充分下载到略超过1G左右断开（其实使用offcloud下载Edge引出的zip下载链接尽管能提速但仍会在1G处断开），原来这是HTTP下载的问题(curl)，我们使用SSH clone即可（生成rsa pub那一套），注意gitee仓库和github一样对1G以上的仓库有限制，gitee会将导入的大仓库block掉，我们用掉一次解除的机会（一共3次）然后git clone ssh链接，注意到0.99/1.99/2.99处都会出现一条error，这并不影响，待其下载完resolve deltas然后update好后发现clone到的仓库完好。</p>
-<p>经过试错证明，开全局模式代理、修改hosts文件并不能加快git clone的速度（导入到gitee才是正道再clone，同时期盼coding.net能从github导入），而设置git clone的深度为一 –depth 1也并不能解决克隆大仓库时断开的问题，也不要试图用各种downgit来分成一部分一部分的下载（因为下载很多后速度会极慢乃至于会出现服务器错误）。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1558,20 +1524,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1796,6 +1762,26 @@ window.addEventListener('pjax:success', () => {
 
 
 
+<script data-pjax>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 

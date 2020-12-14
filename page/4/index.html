@@ -150,6 +150,16 @@
     <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a>
 
   </li>
+        <li class="menu-item menu-item-resume">
+
+    <a href="/resume/" rel="section"><i class="fa fa-file-user fa-fw"></i>简历</a>
+
+  </li>
+        <li class="menu-item menu-item-prs">
+
+    <a href="/PRs/" rel="section"><i class="fa fa-code-merge fa-fw"></i>开源贡献</a>
+
+  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -199,6 +209,891 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/14203.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/14203.html" class="post-title-link" itemprop="url">使用MAMP和Tsugi构建PY4E、XDebug调试PHP总结（以Windows环境为例）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-12 17:12:43" itemprop="dateCreated datePublished" datetime="2020-04-12T17:12:43+08:00">2020-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/14203.html" class="post-meta-item leancloud_visitors" data-flag-title="使用MAMP和Tsugi构建PY4E、XDebug调试PHP总结（以Windows环境为例）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/14203.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/14203.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>安装MAMP。</p>
+</li>
+<li><p>在E:\MAMP\htdocs下</p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/csev/</span>py4e.git</span><br><span class="line">cd py4e</span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/csev/</span>tsugi.git</span><br></pre></td></tr></tbody></table></figure>
+
+<p>项目很大，可以考虑导入到gitee再克隆。</p>
+</li>
+<li><p>打开MAMP Pro，Hosts-&gt;General-&gt;Port number改为8888，在Port-&gt;MySQL改为8889，启动Apache和MySQL服务器，点击Administer MySQL with: phpMyAdmin，如果没打开查看是不是端口错误，可直接在浏览器输入<a target="_blank" rel="noopener" href="http://localhost:8888/phpMyAdmin%E6%89%93%E5%BC%80%E3%80%82">http://localhost:8888/phpMyAdmin打开。</a></p>
+</li>
+<li><p>确认phpMyAdmin顶部显示为Server: localhost:8889，然后点击选项卡SQL，粘贴下列内容：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> tsugi <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> tsugi.* <span class="keyword">TO</span> <span class="string">'ltiuser'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'ltipassword'</span>;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> tsugi.* <span class="keyword">TO</span> <span class="string">'ltiuser'</span>@<span class="string">'127.0.0.1'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'ltipassword'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>并执行。</p>
+</li>
+<li><p>将E:\MAMP\htdocs\py4e\tsugi下的config-dist.php复制一份重命名为config.php，然后编辑config：</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$wwwroot = <span class="string">'http://localhost:8888/py4e/tsugi'</span>;   <span class="comment">// Embedded Tsugi localhost</span></span><br><span class="line"> </span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">$CFG-&gt;pdo = <span class="string">'mysql:host=127.0.0.1;port=8889;dbname=tsugi'</span>; <span class="comment">// MAMP</span></span><br><span class="line">$CFG-&gt;dbuser    = <span class="string">'ltiuser'</span>;</span><br><span class="line">$CFG-&gt;dbpass    = <span class="string">'ltipassword'</span>;</span><br><span class="line"> </span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">$CFG-&gt;adminpw = <span class="string">'short'</span>;</span><br><span class="line"> </span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">$CFG-&gt;apphome = <span class="string">'http://localhost:8888/py4e'</span>;</span><br><span class="line">$CFG-&gt;context_title = <span class="string">"Python for Everybody"</span>;</span><br><span class="line">$CFG-&gt;lessons = $CFG-&gt;dirroot.<span class="string">'/../lessons.json'</span>;</span><br><span class="line"> </span><br><span class="line">... </span><br><span class="line"> </span><br><span class="line">$CFG-&gt;tool_folders = <span class="keyword">array</span>(<span class="string">"admin"</span>, <span class="string">"../tools"</span>, <span class="string">"../mod"</span>);</span><br><span class="line">$CFG-&gt;install_folder = $CFG-&gt;dirroot.<span class="string">'./../mod'</span>; <span class="comment">// Tsugi as a store</span></span><br><span class="line"> </span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">$CFG-&gt;servicename = <span class="string">'PY4E'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中$CFG-&gt;adminpw可自己设定。 </p>
+</li>
+<li><p>打开<a target="_blank" rel="noopener" href="http://localhost:8888/py4e/tsugi/admin/%E7%9C%8B%E5%88%B0%E6%8F%90%E7%A4%BA%E9%9C%80%E8%A6%81Upgrade">http://localhost:8888/py4e/tsugi/admin/看到提示需要Upgrade</a> database，既可以直接点击Upgrade database，也可以在E:\MAMP\htdocs\py4e\tsugi\admin下执行php upgrade.php（但这种方法没成功），刷新后显示正常。</p>
+</li>
+<li><p>在phpMyAdmin左边栏展开tsugi-&gt;Tables点击lti_key，点击key_key为google.com的key的Edit，找到secret列确认其值不为空，否则应创建一个十六进制值。</p>
+</li>
+<li><p>点击<a target="_blank" rel="noopener" href="http://localhost:8888/py4e/tsugi/admin/install">Manage Installed Modules</a>发现报错Fatal error: in E:\MAMP\htdocs\py4e\tsugi\vendor\tsugi\lib\src\Util\GitRepo.php on line 217，在MAMP -&gt;Languages-&gt;PHP-&gt;Extensions中启用XDebug (Debugger)后显示了更详细的报错信息指向E:\MAMP\htdocs\py4e\tsugi\admin\install\index.php第24行：</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git_version</span> = <span class="variable">$repo</span>-&gt;<span class="builtin-name">run</span>(<span class="string">'--version'</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>以及上述GitRepo.php的第217行及其前是</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$resource = proc_open($command, $descriptorspec, $pipes, $cwd, $env);</span><br><span class="line"> </span><br><span class="line">$stdout = stream_get_contents($pipes[<span class="number">1</span>]);</span><br><span class="line">$stderr = stream_get_contents($pipes[<span class="number">2</span>]);</span><br><span class="line"><span class="keyword">foreach</span> ($pipes <span class="keyword">as</span> $pipe) {</span><br><span class="line">			fclose($pipe);</span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line">$status = trim(proc_close($resource));</span><br><span class="line"><span class="keyword">if</span> ($status) <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="built_in">Exception</span>($stderr);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>发现是之前删注册表删错了把Git for Windows的PATH删掉了，补上以后在MAMP-&gt;Settings-&gt;Hosts-&gt;Databases中发现已经找到Tsugi了，勾选好以后重启服务器后刷新恢复正常，显示：This screen is a wrapper for the git command if it is installed in your system. This screen runs git commands on your behalf. It will only handle the normal operations and assume that they work. If you log in and edit the files after they are checked out, this tool might not be able to upgrade some of these git repos.<br>Using: git version 2.26.0.windows.1</p>
+</li>
+<li><p>打开Available Modules选项卡发现提示Cannot be installed via this page，点击锁的图标弹出报错信息Readonly Detail<br>This server does not appear to allow the git command to make changes to the web files. So this tool will not be able to install, update, or reconfigure any of these tools. You will have to update these files some other way. Alternatively, you may be able to configure a copy of git that can update the file system - see the documentation for $CFG-&gt;git_command in the config-dist.php file.打开config.php，找到第347-358行：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> On a Mac localhost, <span class="keyword">if</span> you have git installed, you should be able to</span><br><span class="line"><span class="regexp">//</span> use the auto-install with no further configuration.</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span> On Windows, to run the automatic install of modules:</span><br><span class="line"><span class="regexp">//</span> (<span class="number">1</span>) Make sure Git is installed (https:<span class="regexp">//gi</span>t-scm.com<span class="regexp">/download/</span>win</span><br><span class="line"><span class="regexp">//</span> Maybe also install a GIT GUI https:<span class="regexp">//gi</span>t-scm.com<span class="regexp">/downloads/gui</span>s</span><br><span class="line"><span class="regexp">//</span> (<span class="number">2</span>) Open <span class="string">"cmd"</span> and type <span class="string">"git --version"</span></span><br><span class="line"><span class="regexp">//</span> this should give you the current version of git. If this fails</span><br><span class="line"><span class="regexp">//</span> then git is not setup <span class="keyword">in</span> your path</span><br><span class="line"><span class="regexp">//</span> (Control Panel &gt; System and Security &gt; System &gt; Advanced System Settings &gt; Environment Variables)</span><br><span class="line"><span class="regexp">//</span> (<span class="number">3</span>) Then here <span class="keyword">in</span> <span class="string">"config.php"</span>:</span><br><span class="line"><span class="regexp">//</span> <span class="variable">$CFG</span>-&gt;git_command = <span class="string">'git'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>后来Available Modules选项卡干脆显示No available modules<br>Unable to decode <a target="_blank" rel="noopener" href="https://api.github.com/users/tsugitools/repos?language=PHP%E3%80%82%E6%8A%8A%E7%AC%AC358%E8%A1%8C%E7%9A%84%E6%B3%A8%E9%87%8A%E5%8E%BB%E6%8E%89%E5%90%8E%E8%AE%B0%E5%BE%97%E5%8A%A0%E5%88%86%E5%8F%B7%E5%90%8E%E5%88%B7%E6%96%B0%E3%80%82">https://api.github.com/users/tsugitools/repos?language=PHP。把第358行的注释去掉后记得加分号后刷新。</a></p>
+</li>
+<li><p>为找出Cannot be installed via this page原因，重新配置git环境变量和重装git没有效果，为MAMP配置XDebug。MAMP-&gt;Languages-&gt;PHP-&gt;Default version-&gt;Open，在打开的php7.3.7.ini里的[XDebug]下添加zend_extension=”E:\MAMP\bin\php\php7.3.7\ext\php_xdebug.dll”，在E:\MAMP\conf\php7.3.7\php.ini中也这样添加。注意：MAMP无需自己创建php文件输出phpinfo或者用php -i和php -m，只需打开<a target="_blank" rel="noopener" href="http://localhost:8888/MAMP/%EF%BC%88%E6%88%96%E8%80%85%E7%9B%B8%E5%BA%94%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%92%8C%E7%AB%AF%E5%8F%A3%EF%BC%89%E5%B9%B6%E7%82%B9%E5%87%BB%E9%A1%B6%E9%83%A8%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84phpInfo%E5%8D%B3%E5%8F%AF%EF%BC%8C%E5%9C%A8phpInfo%E7%BD%91%E9%A1%B5%E4%B8%AD%E6%90%9C%E7%B4%A2%E6%89%BE%E5%88%B0XDebug%E3%80%82%E4%BD%BF%E7%94%A8php">http://localhost:8888/MAMP/（或者相应的主机和端口）并点击顶部菜单栏的phpInfo即可，在phpInfo网页中搜索找到XDebug。使用php</a> -i然后将输出结果复制到<a target="_blank" rel="noopener" href="https://xdebug.org/wizard%E5%88%86%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%BA">https://xdebug.org/wizard分析的结果为</a><br>Summary<br>Xdebug installed: no<br>Server API: Command Line Interface<br>Windows: yes - Compiler: MS VC 15 - Architecture: x86<br>Zend Server: no<br>PHP Version: 7.3.7<br>Zend API nr: 320180731<br>PHP API nr: 20180731<br>Debug Build: no<br>Thread Safe Build: yes<br>OPcache Loaded: no<br>Configuration File Path: unknown<br>Configuration File: unknown<br>Extensions directory: C:\php\ext<br>Instructions<br>Download php_xdebug-2.9.4-7.3-vc15.dll<br>Move the downloaded file to C:\php\ext<br>Create php.ini in the same folder as where php.exe is and add the line<br>zend_extension = C:\php\ext\php_xdebug-2.9.4-7.3-vc15.dll</p>
+</li>
+<li><p>在VSCode中安装PHP Debug，配置</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"<span class="selector-tag">debug</span><span class="selector-class">.allowBreakpointsEverywhere</span>": <span class="selector-tag">true</span>,</span><br><span class="line">"<span class="selector-tag">php</span><span class="selector-class">.validate</span><span class="selector-class">.executablePath</span>": "<span class="selector-tag">E</span>:\\<span class="selector-tag">MAMP</span>\\<span class="selector-tag">bin</span>\\<span class="selector-tag">php</span>\\<span class="selector-tag">php7</span><span class="selector-class">.3</span><span class="selector-class">.7</span>\\<span class="selector-tag">php</span><span class="selector-class">.exe</span>"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>运行-&gt;Launch currently open script，当前脚本为E:\MAMP\htdocs\py4e\tsugi\admin\install\index.php，生成launch.json（E:\MAMP\htdocs\py4e\tsugi.vscode\launch.json）保持默认即可。打开</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8888/py4e/tsugi/admin/install/">http://localhost:8888/py4e/tsugi/admin/install/</a></p>
+<p>，更多工具-&gt;开发人员工具-&gt;Sources，刷新网页。调试控制台显示</p>
+<figure class="highlight less"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Error</span>: spawn php ENOENT</span><br><span class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.<span class="attribute">js</span>:<span class="number">264</span>:<span class="number">19</span>)</span><br><span class="line">    at onErrorNT (internal/child_process.<span class="attribute">js</span>:<span class="number">456</span>:<span class="number">16</span>)</span><br><span class="line">    at processTicksAndRejections (internal/process/task_queues.<span class="attribute">js</span>:<span class="number">77</span>:<span class="number">11</span>) {</span><br><span class="line">  <span class="attribute">errno</span>: <span class="string">'ENOENT'</span>,</span><br><span class="line">  <span class="attribute">code</span>: <span class="string">'ENOENT'</span>,</span><br><span class="line">  <span class="attribute">syscall</span>: <span class="string">'spawn php'</span>,</span><br><span class="line">  <span class="attribute">path</span>: <span class="string">'php'</span>,</span><br><span class="line">  <span class="attribute">spawnargs</span>: [ <span class="string">'e:\\MAMP\\htdocs\\py4e\\tsugi\\admin\\install\\index.php'</span> ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>调用堆栈-&gt;Launch currently open script在{main}（E:\MAMP\htdocs\py4e\tsugi\admin\install\repos_json.php）中第58行</p>
+<figure class="highlight reasonml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add<span class="constructor">RepoInfo($<span class="params">tsugi</span>, $<span class="params">repo</span>)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>=&gt;addRepoInfo（E:\MAMP\htdocs\py4e\tsugi\admin\install\install_util.php）第146行</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$update</span> = <span class="variable">$repo</span>-&gt;<span class="builtin-name">run</span>(<span class="string">'remote update'</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>=&gt;Tsugi\Util\GitRepo-&gt;run（E:\MAMP\htdocs\py4e\tsugi\vendor\tsugi\lib\src\Util\GitRepo.php）第232行</p>
+<figure class="highlight elixir"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="variable">$this</span>-&gt;run_command(Git::get_bin().<span class="string">" "</span>.<span class="variable">$command</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>=&gt;Tsugi\Util\GitRepo-&gt;run_command（E:\MAMP\htdocs\py4e\tsugi\vendor\tsugi\lib\src\Util\GitRepo.php）第217行抛出异常：</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">出现异常。</span><br><span class="line">Exception: Logon failed, use ctrl+c <span class="keyword">to</span> cancel basic credential prompt.</span><br><span class="line">bash: /dev/tty: <span class="literal">No</span> such device <span class="keyword">or</span> address</span><br><span class="line">error: failed <span class="keyword">to</span> execute prompt<span class="built_in"> script </span>(exit code 1)</span><br><span class="line">fatal: could <span class="keyword">not</span> read Username <span class="keyword">for</span> <span class="string">'https://gitee.com'</span>: <span class="literal">No</span> such file <span class="keyword">or</span> directory</span><br><span class="line">error: Could <span class="keyword">not</span> fetch origin</span><br></pre></td></tr></tbody></table></figure>
+
+<p>由于GitHub克隆很慢，我的tsugi是导出到Gitee再克隆到本地的。</p>
+</li>
+<li><p>本机对于github.com、coding.net、gitee.com等配置了同一个SSH-key，所以只需在Git Bash输入ssh -T <a href="mailto:git@gitee.com">git@gitee.com</a>然后输入yes即可添加gitee.com到known_hosts，然后显示Hi <username>! You’ve successfully authenticated, but GITEE.COM does not provide shell access.成功。</username></p>
+</li>
+<li><p>重试debug发现还是同样的问题，给Gitee重新添加SSH公钥也没有用，尝试在Git Bash中执行git clone <a href="mailto:git@gitee.com">git@gitee.com</a>:<username>/<gitname>.git报错：</gitname></username></p>
+<figure class="highlight gauss"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CreateProcessW failed <span class="built_in">error</span>:<span class="number">193</span></span><br><span class="line">ssh_askpass: posix_spawn: Unknown <span class="built_in">error</span></span><br><span class="line">Host <span class="built_in">key</span> verification failed.</span><br></pre></td></tr></tbody></table></figure>
+
+<p>发现可能原因是由于HOME目录被更改过所以Git Bash使用的.ssh在另外一个目录E:\Cadence\SPB_Data，而刚刚执行的操作只更新了这个目录中的known_hosts而没有改变C:\Users&lt;username&gt;.ssh\known_hosts，于是将两个known_hosts文件手动同步。然后再次执行git clone（SSH方式）发现成功。</p>
+</li>
+<li><p>重试debug发现还是同样的问题，参考<a target="_blank" rel="noopener" href="https://github.com/markomarkovic/simple-php-git-deploy/issues/20">fatal: could not read Username for ‘https://github.com’: No such device or address #20</a>将tsugi目录下的.git目录下的config中URL改成git形式，使用ssh -T <a href="mailto:git@gitee.com">git@gitee.com</a>成功，确定git config user.name为账户名称，重试debug，没有抛出任何通知、警告、错误或异常。</p>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/51259.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/51259.html" class="post-title-link" itemprop="url">SQL Server 2014完全卸载与SQL Server 2019安装全记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-05 01:19:36" itemprop="dateCreated datePublished" datetime="2020-04-05T01:19:36+08:00">2020-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/51259.html" class="post-meta-item leancloud_visitors" data-flag-title="SQL Server 2014完全卸载与SQL Server 2019安装全记录" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/51259.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/51259.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>在服务中停止所有SQL Server相关服务。</p>
+</li>
+<li><p>打开Visual Studio Installer，取消勾选SQL Server Express 2016 LocalDB、SQL ADAL运行时、SQL Server Data Tools、SQL Server ODBC Driver、SQL Server 命令行实用工具、SQL Server 支持的数据源、SQL Server 的 CLR 数据类型等，当然包括其连带的一大堆组件包括使用C++的桌面开发、C++核心桌面功能、体系结构和分析工具、Windows Communication Foundation、通用Windows平台开发、.NET桌面开发、通用Windows平台工具、.NET桌面开发工具，然后安装（卸载）。</p>
+</li>
+<li><p>打开控制面板中的卸载程序，将Microsoft SQL Server 2012 Native Client、Microsoft SQL Server 2008 Setup Support Files及其安装程序、主程序、LocalDB、Microsoft SQL Server Compact 3.5 SP2及其x64版本、Microsoft System CLR Types for SQL Server、Microsoft VSS Writer for SQL Server、Microsoft OLE DB Driver for SQL Server等尽数删去，其中先卸载主程序，按步骤卸载掉实例后虽然还在列表中，但是卸载完其他项目后再卸载主程序会显示已卸载。注意如果有SQL Server Management Studio (SSMS)还要卸载SSMS。</p>
+</li>
+<li><p>打开Windows Installer Clean Up，将上述各程序及其他SQL Server相关程序尽数删去。</p>
+</li>
+<li><p>打开注册表管理器，在HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft下删除：Microsoft ODBC Driver 11 for SQL Server、Microsoft ODBC Driver 17 for SQL Server、Microsoft OLE DB Driver for SQL Server、Microsoft OLE DB Driver Redist、Microsoft SQL Server 2012 Redist、Microsoft SQL Server 2014 Redist、Microsoft SQL Server 2017 RC0 Redist、Microsoft SQL Server 2019 CTP2.2 Redist、Microsoft SQL Server Compact Edition、Microsoft SQL Server Native Client 11.0、Microsoft SQL Server、MSODBCSQL11、MSODBCSQL17、MSOLEDBSQL、MSSQLServer、SQLNCLI11等；在HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager下删除PendingFileRenameOperations；在HKEY_CLASSES_ROOT下删除MSOLEDBSQL.1、MSOLEDBSQL.AdvancedPage.1、MSOLEDBSQL.AdvancedPage、MSOLEDBSQL.AdvancedPage、MSOLEDBSQL.ConnectionPage.1、MSOLEDBSQL.ConnectionPage、MSOLEDBSQL.Enumerator.1、MSOLEDBSQL.Enumerator、MSOLEDBSQL.ErrorLookup.1、MSOLEDBSQL.ErrorLookup、MSOLEDBSQL、MSSQL.VDI.Client.2、MSSQL.VDI.Client、MSSQL.VDI.Server.2、MSSQL.VDI.Server、SQLNCLI11.1、SQLNCLI11.AdvancedPage.1、SQLNCLI11.AdvancedPage、SQLNCLI11.ConnectionPage.1、SQLNCLI11.ConnectionPage、SQLNCLI11.Enumerator.1、SQLNCLI11.Enumerator、SQLNCLI11.ErrorLookup.1、SQLNCLI11.ErrorLookup、SQLNCLI11、SQLOLEDB Enumerator.1、SQLOLEDB Enumerator、SQLOLEDB ErrorLookup.1、SQLOLEDB ErrorLookup、SQLOLEDB.1、SQLOLEDB、SQLServerProfilerTraceData、SQLServerProfilerTraceDef、SQLXMLX.1、SQLXMLX等；在HKEY_USERS\S-1-5-21-xxxxxxxxxx-xxxxxxxx-xxxxxxxxxx-xxxx\Software\Microsoft下删除Microsoft SQL Server；在HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft下删除Microsoft ODBC Driver 11 for SQL Server、Microsoft ODBC Driver 17 for SQL Server、Microsoft OLE DB Driver for SQL Server、Microsoft SQL Server Compact Edition、Microsoft SQL Server Native Client 11.0、Microsoft SQL Server、MSODBCSQL11、MSODBCSQL17、MSOLEDBSQL、MSSQLServer、SQLNCLI11；HKEY_USERS\S-1-5-18到S-1-5-8-21-…及S-1-5-80-…\Software下SQL Server相关注册表项。</p>
+</li>
+<li><p>删除C:\Program Files和Program Files (x86)\Common Files\System\Ole DB中的sqloledb.dll、sqloledb.rll、sqlxmlx.dll、sqlxmlx.rll、msdasql.dll、msdasqlr.dll以及en-US、ja-JP、zh-CN\sqloledb.rll.mui、msdasqlr.dll.mui、sqlxmlx.rll.mui；删除C:\WINDOWS\system32\sqlcecompact40.dll、sqlceoledb40、sqlceqp40.dll、sqlcese40.dll、sqlncli11.dll、SQLServerManager12.msc、SqlServerSpatial120.dll、SqlServerSpatial130.dll、SqlServerSpatial150.dll、sqlsrv32.dll、sqlsrv32.rll；删除C:\WINDOWS\SysWOW64\sqlcecompact40.dll、sqlceoledb40、sqlceqp40.dll、sqlcese40.dll、sqlsrv32.dll、sqlsrv32.rll、sqlunirl.dll、sqlwid.dll、sqlwoa.dll等。</p>
+</li>
+<li><p>使用Registrar Registry Manager搜索C:\Program Files\Microsoft SQL Server及C:\Program Files (x86)\Microsoft SQL Server，只选择数据，并选定全字匹配，搜索结果全部删除。</p>
+</li>
+<li><p>删除C:\Program Files\Microsoft SQL Server、C:\Program Files (x86)\Microsoft SQL Server、C:\Program Files (x86)\Microsoft Analysis Services、C:\Users&lt;username&gt;\AppData\Roaming\Microsoft\Microsoft SQL Server、C:\Users&lt;username&gt;\AppData\Local\Microsoft\Microsoft SQL Server（把C:\Program Files\Microsoft SQL Server\150\Setup Bootstrap\Log留下）。</p>
+</li>
+<li><p>打开SQL Server 2019安装程序，选择全新SQL Server独立安装或向现有安装添加功能，然后选择执行全新安装，指定可用版本为Developer，选择实例功能：数据库引擎服务、SQL Server复制、全文和语义提取搜索、Data Quality Services、Analysis Services和共享功能：Data Quality Client、客户端工具连接、客户端工具向后兼容性、客户端工具SDK、SQL Server客户端连接SDK（至此我们终于可以为实例功能、共享功能、共享功能（x86）都选择自己的安装目录，并且所有功能都没有变成灰色不可选或已选择的状态），选择命名实例为MSSQLSERVER，数据库引擎配置-&gt;服务器配置-&gt;身份验证模式为混合模式】设定密码并添加当前用户，再添加Administrators检查名称后的结果。</p>
+</li>
+<li><p>第一次报错：注册表权限问题，将提示的注册表十六进制代码在注册表中搜索定位到所在上一级Components（我的在HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components）设置权限所有者为Administrators，启用继承，设置权限为Administrators和Users都可完全控制（记得之后改回原样，该注册表权限与Windows搜索结果菜单和开始菜单图标右键菜单高度相关）。</p>
+</li>
+<li><p>第二次报错：服务没有及时响应启动或控制请求。查询C:\Program Files\Microsoft SQL Server\150\Setup Bootstrap\Log下相应文件夹里的Details.txt找到这条报错信息向上溯源，发现很多feature都failed in result Result或ValidateResult，向上查找到最早的报错Result为E:\Program Files\Microsoft SQL Server\MSAS15.MSSQLSERVER\OLAP\和E:\Program Files\Microsoft SQL Server\MSAS15.MSSQLSERVER\OLAP\bin\，发现服务中的MSSQLServerOLAPService启动后迅速停止。再向上寻找发现报错信息：Slp: Sco: File ‘G:\x64\setup\x64\RsFx.msi’ does not exist、Slp: Sco: File ‘G:\2052_CHS_LP\x64\setup\x64\sql_as_loc.msi’ does not exist等，由于此时尚未安装MSSQLSERVER服务所以不能在服务上做文章，多次重试无用后取消，最后安装失败，共享功能全部成功安装，实例功能全部安装失败，最终错误代码为0x80004005。于是将ISO镜像文件解压并将其从移动硬盘复制到本地硬盘。试图使用修复但是现实修复程序没有作出更改，因为数据库引擎服务本就没有配置好，好在我们之前的安装是按照安装程序一步步安装的，我们可以在卸载程序中右键Microsoft SQL Server (64位)卸载/更改然后选择卸载所有实例功能。同时，安装还试图重装IIS，但是需要重启而未重启，总之没能解决该错误。试图通过命令行启动SQL Server返回错误信息服务没有响应控制功能。搜索报错信息Configuration action failed for feature SQL_Engine_Core_Inst during timing Startup and scenario Startup也没有得到解决办法。重启后通过本地硬盘中的安装程序重新安装。</p>
+</li>
+<li><p>第三次报错：服务没有及时响应启动或控制请求。这次更奇怪的是与第二次不同，没有文件does not exist，也没有Result和ValidateResult的报错信息，安装顿时陷入最艰难的情形。不过这次MSSQLSERVER已安装好，打开计算机管理（本地）-&gt;系统工具-&gt;事件查看器-&gt;Windows 日志-&gt;系统大量报错：等待……服务的连接超时(60000 毫秒)、由于下列错误，——服务启动失败: 服务没有及时响应启动或控制请求，更改MSSQLSERVER为本地系统登录后事件信息是SQL Server (MSSQLSERVER) 服务由于下列服务特定错误而终止: %%945。更改E:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Log的权限后进入该目录打开ERRORLOG及ERRORLOG.x查看报错physical file “d:\dbs\sh\s19s\0924_133725\cmd\2\obj\x64retail\sql\mkmastr\databases\mkmastr.proj\MSDBData.mdf、model.mdf”. Operating system error 3: “3(系统找不到指定的路径。)”、MSDBLog.ldf不正确以及spid23s   SQL Server failed to communicate with filter daemon launch service  (OS error: 服务没有及时响应启动或控制请求等，搜索错误代码9954也没有结果。结束本次安装，发现Analysis Service成功安装。</p>
+</li>
+<li><p>受<a target="_blank" rel="noopener" href="https://www.cnblogs.com/woxpp/p/5607908.html">SqlServer 错误1053：服务并未及时响应启动或控制请求</a>启发，在安装到最后正在注册服务将要报错时在服务中依次将注册的SQL Server Full-text Filter Daemon Launcher (MSSQLSERVER)、SQL Server (MSSQLSERVER)、SQL Server Analysis Services (MSSQLSERVER)、SQL Server Analysis Services CEIP (MSSQLSERVER)、SQL Server Browser、SQL Server CEIP 服务 (MSSQLSERVER)、SQL Server VSS Writer、SQL Server 代理 (MSSQLSERVER)改为本地系统账户登录。安装成功。</p>
+</li>
+<li><p>另外一种更靠谱的方法：在安装失败后，SQL Server各服务都已经被添加好，只是无法启动而已，在计算机管理（本地）-&gt;系统工具-&gt;本地用户和组-&gt;组-&gt;Administrators-&gt;添加到组-&gt;添加NT Service\MSSQLSERVER、NT Service\MSSQLServerOLAPService、NT Service\MSSQLFDLauncher、NT Service\SQLSERVERAGENT，然后搜索本地安全策略-&gt;安全设置-&gt;本地策略-&gt;用户权限分配-&gt;允许本地登录-&gt;属性-&gt;添加用户或组中添加上述四项，然后卸载数据库引擎服务、SQL Server复制、全文和语义提取搜索、Data Quality Services、Analysis Services，然后重新安装时在数据库引擎配置-&gt;服务器配置-&gt;指定SQL Server管理员添加当前用户和Administrators，在下一步Analysis Services配置-&gt;指定哪些用户具有对Analysis Services的管理权限中也同样如此指定。顺利安装，并且服务登录为NT Service...。</p>
+</li>
+<li><p>为解决SQL Server配置管理器中SQL Server网络配置和SQL Native Client 11.0配置只有32位的问题重新安装，这次清理了所有SQL Server、SQLServer、MSSQL、Microsoft ODBC、Microsoft OLE DB、MSODBCSQL、SQLOLEDB、SQLNCLI、SQLXMLX、sqlboot、SqlDumper、sqlmgmprovider、svrenumapi、instapi150等注册表，教训是搜索注册表时尽量不要勾选搜索数据，只需要勾选项和值即可，否则必然会导致误删，如Autorecover MOFs、环境变量、AppCompatCache等。</p>
+</li>
+<li><p>第一次报错：已添加了具有相同键的项。解决方法：删除C:\Users&lt;username&gt;\AppData\Local\Microsoft_Corporation\LandingPage.exe*文件夹。</p>
+</li>
+<li><p>第二次报错：注册表权限问题，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/yihuajack/article/details/104395132">Windows 10无法打开注册表 由于某个错误无法打开该密钥(详细信息:拒绝访问)且无法在注册表上设置新的所有者拒绝访问的解决方案</a>更改计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components权限。</p>
+</li>
+<li><p>第三次卡在SqlEngineDBStartConfigAction_install_configrc_Cpu64报错（SQLEngine: –SqlServerServiceSCM: Waiting for nt event ‘Global\sqlserverRecComplete’ to be created、SQLEngine: –SqlServerServiceSCM: Wait for creation of event handle ‘Global\sqlserverRecComplete’ has timed out）：AS或SQLEngine: –SqlEngineSetupPrivate: Failed to set register with Software Usage Metrics: System.IO.FileNotFoundException: 系统找不到指定的文件。 (异常来自 HRESULT:0x80070002)、SQLEngine: –SqlServerServiceSCM: Exception happens at start SQL Engine attempt 1. Exception: 找不到数据库引擎启动句柄之解决方法：安装时在服务器配置-&gt;服务账户-&gt;SQL Server数据库引擎-&gt;账户名称修改为NT AUTHORITY\SYSTEM，注意不用查找账户直接输入该名称确定。然后顺利安装。安装后MSSQLSERVER采用的是本地系统登录。</p>
+</li>
+<li><p>第四次发现SQL Server主服务启动不了，修复又报错找不到数据库引擎启动句柄，发现SQL Server服务的登录方式被改回了NT Service\MSSQLSERVER并且无法启动，报错启动失败或请求失败或服务未及时响应，解决方法是在服务中将其登录的登录身份改为本地系统账户即可。</p>
+</li>
+<li><p>打开SSMS，注意输入的是计算机名称，而不是MSSQLSERVER等乱七八糟的名称，否则会报错：</p>
+<figure class="highlight asciidoc"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">===================================</span><br><span class="line"><span class="code"> </span></span><br><span class="line">无法连接到 MSSQLSERVER。</span><br><span class="line"><span class="code"> </span></span><br><span class="line">===================================</span><br><span class="line"><span class="code"> </span></span><br><span class="line">在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) (.Net SqlClient Data Provider)</span><br><span class="line"><span class="code"> </span></span><br><span class="line">------------------------------</span><br><span class="line">有关帮助信息，请单击: http://go.microsoft.com/fwlink?ProdName=Microsoft%20SQL%20Server&amp;EvtSrc=MSSQLServer&amp;EvtID=53&amp;LinkId=20476</span><br><span class="line"><span class="code"> </span></span><br><span class="line">------------------------------</span><br><span class="line">错误号: 53</span><br><span class="line">严重性: 20</span><br><span class="line">状态: 0</span><br><span class="line"><span class="code"> </span></span><br><span class="line"><span class="code"> </span></span><br><span class="line">------------------------------</span><br><span class="line">程序位置:</span><br><span class="line"><span class="code"> </span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal&amp; connection)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnection.Open()</span></span><br><span class="line"><span class="code">   在 Microsoft.SqlServer.Management.SqlStudio.Explorer.ObjectExplorerService.ValidateConnection(UIConnectionInfo ci, IServerType server)</span></span><br><span class="line"><span class="code">   在 Microsoft.SqlServer.Management.UI.ConnectionDlg.Connector.ConnectionThreadUser()</span></span><br><span class="line">===================================</span><br><span class="line">找不到网络路径。</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>在SQL Server配置管理器仍然没有64位的节点的情况下，可尝试修改计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\150和计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL15.MSSQLSERVER下的注册表，例如TCP/IP是在计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQLServer\SuperSocketNetLib\Tcp。将其Enabled值设为1，查看其子项IP列表，如IP14的IpAddress为127.0.0.1，TcpPort为1433，那么就可以通过服务器名称为127.0.0.1,1433登录，注意如果通过Windows身份验证会报错：</p>
+<figure class="highlight asciidoc"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">===================================</span><br><span class="line"><span class="code"> </span></span><br><span class="line">无法连接到 127.0.0.1,1433。</span><br><span class="line"><span class="code"> </span></span><br><span class="line">===================================</span><br><span class="line"><span class="code"> </span></span><br><span class="line">登录失败。该登录名来自不受信任的域，不能与集成身份验证一起使用。 (.Net SqlClient Data Provider)</span><br><span class="line"><span class="code"> </span></span><br><span class="line">------------------------------</span><br><span class="line">有关帮助信息，请单击: http://go.microsoft.com/fwlink?ProdName=Microsoft%20SQL%20Server&amp;EvtSrc=MSSQLServer&amp;EvtID=18452&amp;LinkId=20476</span><br><span class="line"><span class="code"> </span></span><br><span class="line">------------------------------</span><br><span class="line">服务器名称: 127.0.0.1,1433</span><br><span class="line">错误号: 18452</span><br><span class="line">严重性: 14</span><br><span class="line">状态: 1</span><br><span class="line">行号: 65536</span><br><span class="line"><span class="code"> </span></span><br><span class="line"><span class="code"> </span></span><br><span class="line">------------------------------</span><br><span class="line">程序位置:</span><br><span class="line"><span class="code"> </span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal&amp; connection)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)</span></span><br><span class="line"><span class="code">   在 System.Data.SqlClient.SqlConnection.Open()</span></span><br><span class="line"><span class="code">   在 Microsoft.SqlServer.Management.SqlStudio.Explorer.ObjectExplorerService.ValidateConnection(UIConnectionInfo ci, IServerType server)</span></span><br><span class="line"><span class="code">   在 Microsoft.SqlServer.Management.UI.ConnectionDlg.Connector.ConnectionThreadUser()</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>改为通过SQL Server身份验证登录即可。</p>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/15171.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/15171.html" class="post-title-link" itemprop="url">MAMP出现HTTP 错误 404.0 - Not Found的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-02 13:20:41" itemprop="dateCreated datePublished" datetime="2020-04-02T13:20:41+08:00">2020-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/15171.html" class="post-meta-item leancloud_visitors" data-flag-title="MAMP出现HTTP 错误 404.0 - Not Found的解决方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/15171.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/15171.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在Windows中使用MAMP新建E:\MAMP\htdocs\first文件夹和E:\MAMP\htdocs\first\index.php文件，使用Apache和Mysql服务器，然后打开<a target="_blank" rel="noopener" href="http://localhost/first/index.php%E5%87%BA%E7%8E%B0%E4%BB%A5%E4%B8%8B%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2![img](D:/Documents/Programming/HexoBlog/source/_posts/CSDN%E8%A1%A5%E6%A1%A3-28/20200402131311285.png)">http://localhost/first/index.php出现以下错误页面![img](D:\Documents\Programming\HexoBlog\source\_posts\CSDN补档-28\20200402131311285.png)</a></p>
+<p>首先在MAMP中的Settings-&gt;Hosts-&gt;General确认Host name为localhost，尝试在open中用浏览器打开出现页面显示：</p>
+<p>The virtual host was set up successfully.</p>
+<p>If you can see this page, your new virtual host was set up successfully. Now, web content can be added and this placeholder page1 should be replaced or deleted.</p>
+<p>Server name: localhost<br>Document root: E:/MAMP/htdocs </p>
+<p>1 Files: index.php and MAMP-PRO-Logo.png</p>
+<p>检查端口，由于80已经被系统占用，所以使用的是82，于是改为打开<a target="_blank" rel="noopener" href="http://localhost:82/first/index.php%E6%88%90%E5%8A%9F%E3%80%82">http://localhost:82/first/index.php成功。</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/53160.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/53160.html" class="post-title-link" itemprop="url">Cygwin如何更改HOME目录（MSYS2和Cygwin ZSH冲突）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-01 17:27:42" itemprop="dateCreated datePublished" datetime="2020-04-01T17:27:42+08:00">2020-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/53160.html" class="post-meta-item leancloud_visitors" data-flag-title="Cygwin如何更改HOME目录（MSYS2和Cygwin ZSH冲突）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/53160.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/53160.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>由于用户变量中的HOME由于需要使用Cadence的原因被迫改到E:\Cadence\SPB_Data下，MSYS2使用的ZSH的配置文件都自动放在这一目录下，然而想为Cygwin也配置ZSH发现产生乱码，这并不是由于字体或者编码问题导致的，其原因是MSYS2和Cygwin共用HOME目录下的.zshrc文件，而.zshrc文件中两个系统使用的路径表示不一样，Cygwin需要在盘符前面加”/cygdrive”，如在MSYS2使用的.zshrc中，ZSH的PATH配置语句为：</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">ZSH</span>=<span class="string">"/e/Cadence/SPB_Data/.oh-my-zsh"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>而Cygwin中则应为：</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">ZSH</span>=<span class="string">"/cygdrive/c/Users/&lt;userename&gt;/.oh-my-zsh"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>解决这个问题只能通过更改Cygwin的HOME目录的方式来解决（而不只是启动目录设置）。</p>
+<p>首先，Cygwin现在已有zsh包可通过setup程序安装，不要再使用apt-cyg，它已经过时，经测验安装zsh会报错。</p>
+<p>经过测验，<a target="_blank" rel="noopener" href="https://superuser.com/questions/585331/is-it-possible-to-have-cygwin-ignore-the-windows-home-environment-variable%E4%B8%8A%E6%8F%90%E5%87%BA%E7%9A%84%E5%9C%A8/etc/profile%E4%B8%AD%E6%B7%BB%E5%8A%A0">https://superuser.com/questions/585331/is-it-possible-to-have-cygwin-ignore-the-windows-home-environment-variable上提出的在/etc/profile中添加</a></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HOME=$(<span class="built_in">eval</span> <span class="built_in">echo</span> <span class="string">"~<span class="variable">$USER</span>"</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>的方法并不可行。你可以更改Cygwin的快捷方式为Cygwin.bat启动，在Cygwin.bat中可以随意更改HOME等设置，但是这样启动使用的是Windows命令提示符的Shell，并非Cygwin自带的mintty shell，这样就会出现乱码。另外经检验，<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1494658/how-can-i-change-my-cygwin-home-folder-after-installation%E4%B8%AD%E6%8F%90%E5%87%BA%E7%9A%84%E5%9C%A8/etc/nsswitch.conf%E4%B8%AD%E5%B0%86db_home%E7%9A%84%E6%B3%A8%E9%87%8A%E5%8E%BB%E6%8E%89%E5%B9%B6%E6%94%B9%E4%B8%BA/%H%E3%80%81/%H/cygwin%E3%80%81windows%E3%80%81/home/%U%E7%AD%89%E7%AD%89%E7%BB%9F%E7%BB%9F%E6%B2%A1%E7%94%A8%EF%BC%8C%E8%80%8C%E4%B8%94%E8%AF%95%E5%9B%BE%E6%89%A7%E8%A1%8Cmkpasswd%E3%80%81mkgroup%E8%AF%AD%E5%8F%A5%E6%88%96https://superuser.com/questions/289444/how-do-i-change-my-home-folder-in-cygwin%E4%B8%AD%E6%8F%90%E5%87%BA%E7%9A%84%E6%9B%B4%E6%94%B9/etc/passwd%E6%96%87%E4%BB%B6%E7%AD%89%E6%96%B9%E6%B3%95%E5%85%A8%E9%83%A8%E6%97%A0%E6%95%88%EF%BC%8C%E8%80%8C%E7%BB%8Fhttp://mintty.github.io/mintty.1.html%E6%9F%A5mintty.exe%E7%9A%84%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E4%B9%9F%E6%97%A0%E8%AE%A1%E5%8F%AF%E6%96%BD%E3%80%82">https://stackoverflow.com/questions/1494658/how-can-i-change-my-cygwin-home-folder-after-installation中提出的在/etc/nsswitch.conf中将db_home的注释去掉并改为/%H、/%H/cygwin、windows、/home/%U等等统统没用，而且试图执行mkpasswd、mkgroup语句或https://superuser.com/questions/289444/how-do-i-change-my-home-folder-in-cygwin中提出的更改/etc/passwd文件等方法全部无效，而经http://mintty.github.io/mintty.1.html查mintty.exe的启动参数也无计可施。</a></p>
+<p>正确方法是：</p>
+<ol>
+<li><p>在C:\Users&lt;username&gt;中另安装一个oh-my-zsh，可在该目录下执行命令（用Cygwin执行）：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="subst">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="subst">$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>等。</p>
+</li>
+<li><p>编辑.zshrc文件，确定语句：</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">ZSH</span>=<span class="string">"/cygdrive/c/Users/&lt;userename&gt;/.oh-my-zsh"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>并将ZSH_THEME更改为你喜欢的主题，我使用的是agnoster的变种</p>
+<p>zys主题</p>
+<p>。</p>
+</li>
+<li><p>在/etc/bash.bashrc中添加：</p>
+<figure class="highlight abnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">HOME</span>=<span class="string">"C:\Users\&lt;username&gt;"</span></span><br><span class="line"><span class="attribute">PATH</span>=<span class="string">"/usr/local/bin:/usr/bin"</span></span><br><span class="line">exec zsh</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中第一句是真正地设定了Cygwin的HOME目录，第二句是定义环境变量PATH，如没有这一句则很多命令无法执行，第三句是自动启动ZSH。</p>
+</li>
+<li><p>在/etc/profile中添加：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HOME</span>=<span class="string">"C:\Users\&lt;username&gt;"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这一句是设定了启动目录为<del>，其中</del>为C:\Users&lt;username&gt;。</p>
+</li>
+<li><p>确认Cygwin快捷方式的目标为：</p>
+<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="tag">\<span class="name">Program</span></span>_Files<span class="tag">\<span class="name">cygwin</span></span>64<span class="tag">\<span class="name">bin</span></span><span class="tag">\<span class="name">mintty</span></span>.exe -i /Cygwin-Terminal.ico -</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中目录请按照自己的安装目录修改，最后的-也可改为-<del>，都保证启动目录为</del>，但是如果没有则启动目录变成快捷方式所在的目录。经验证，</p>
+<p><a target="_blank" rel="noopener" href="https://superuser.com/questions/940529/how-to-change-the-default-shell-in-cygwin/1134672#1134672">https://superuser.com/questions/940529/how-to-change-the-default-shell-in-cygwin/1134672#1134672</a></p>
+<p>和</p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@alllexsm/how-to-install-z-shell-zsh-on-cygwin-dd9ee380d783">https://medium.com/@alllexsm/how-to-install-z-shell-zsh-on-cygwin-dd9ee380d783</a></p>
+<p>中所提出的自动启动zsh的参数会导致闪退，原因不明。</p>
+</li>
+</ol>
+<p>另外如果想为Windows Terminal配置Cygwin可在profiles.json的”profiles”里的”list”里添加：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"guid"</span>: <span class="string">"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"Cygwin64"</span>,</span><br><span class="line">    <span class="attr">"commandline"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\bin\\bash.exe"</span>,</span><br><span class="line">    <span class="attr">"icon"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\Cygwin.ico"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中GUID可使用PowerShell命令</p>
+<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">New</span>-GUID</span><br></pre></td></tr></tbody></table></figure>
+
+<p>生成一个，其他个性化设置在此就不提供了，发现Windows Terminal可以完美运行Cygwin（Windows Terminal有自己的默认启动目录）：</p>
+<p><img src="/posts/53160/Documents\Programming\HexoBlog\source_posts\CSDN补档-27\20200401172503260.png" alt="img"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/60680.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/60680.html" class="post-title-link" itemprop="url">WSL(Ubuntu)pip安装genpac后找不到命令的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-29 15:22:49" itemprop="dateCreated datePublished" datetime="2020-03-29T15:22:49+08:00">2020-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 12:31:49" itemprop="dateModified" datetime="2020-10-02T12:31:49+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/60680.html" class="post-meta-item leancloud_visitors" data-flag-title="WSL(Ubuntu)pip安装genpac后找不到命令的解决方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/60680.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/60680.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在WSL Ubuntu使用pip成功安装genpac后运行genpac –version却显示</p>
+<figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">zsh:</span> command not <span class="attr">found:</span> genpac</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输入</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br></pre></td></tr></tbody></table></figure>
+
+<p>后发现genpac已经在列表中。解决方法是在.zshrc（如果不用ZSH则是.bashrc）文件中添加：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=<span class="variable">$HOME</span><span class="regexp">/bin:/u</span>sr<span class="regexp">/local/</span>bin:<span class="variable">$PATH</span></span><br><span class="line">export PATH=<span class="variable">$HOME</span><span class="regexp">/.local/</span>bin:<span class="regexp">/usr/</span>local/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>后genpac可以成功运行。执行ls ~/.local/bin得到：</p>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">genpac</span>  pip  pip<span class="number">2</span>  pip<span class="number">2</span>.<span class="number">7</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个目录是pip的安装目录，对于pip安装的其他包也同样适用。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/23835.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liu Yihua">
+      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayka's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/23835.html" class="post-title-link" itemprop="url">VMware 15.5安装Ubuntu 19.10挂起不动报错squashfs和blk_update_request的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-29 12:03:38" itemprop="dateCreated datePublished" datetime="2020-03-29T12:03:38+08:00">2020-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 11:14:31" itemprop="dateModified" datetime="2020-10-02T11:14:31+08:00">2020-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/23835.html" class="post-meta-item leancloud_visitors" data-flag-title="VMware 15.5安装Ubuntu 19.10挂起不动报错squashfs和blk_update_request的解决方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/23835.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/23835.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>用VMware Workstation 15 Pro 15.5.1安装Ubuntu 19.10接近完成时显示Ubuntu的启动界面，即五个点一直闪烁的界面却一直不动：</p>
+<p><img src="/posts/23835/Documents\Programming\HexoBlog\source\_posts\CSDN补档-25\20200329123741712.png" alt="img"></p>
+<p>检查VMware Workstation VMX进程发现其CPU使用率一直维持在1%左右的低位，而GPU使用率却一直在10%左右（使用GPU 0 - 3D），更改虚拟机设置为2个处理器后仍然没有解决，最后发现虚拟机-&gt;可移动设备-&gt;CD/DVD 2 (SATA)和CD/DVD (SATA)均未被连接，因为我是通过移动硬盘中的镜像安装Ubuntu的，所以尝试点击CD/DVD 2 (SATA)-&gt;连接后系统进入命令行界面执行一段时间，显示正在安装open-vm-tools，然后顺利启动Ubuntu，尽管发现此时CD/DVD 2 (SATA)还是处于未连接的状态。</p>
+<p>还有一个问题，这样解决既然不是正常安装，那么VMware Tools就会出现问题，比如不能使用剪贴板，打开菜单栏虚拟机选项卡发现安装VMware Tools是灰色的，可尝试将虚拟机-&gt;CD/DVD (SATA)连接设置使用ISO映像文件的autoinst.iso改成vmware安装目录下的linux.exe。</p>
+<p>之所以安装新版本的Ubuntu 19.10一方面是想要更新系统，另一方面是原来的Ubuntu 19.04突然出现了网络连接问题（NAT模式），有线网络和无线网络都不可用，索性直接重装，不过吸取了上次的教训，即在创建新的虚拟机的设置过程中选择将虚拟磁盘存储为单个文件。不过后来才想起来，网络适配器-&gt;网络连接一定要选桥接模式（不用选复制物理网络连接状态）即可正常使用。</p>
+<p>另外，因为Ubuntu 14.04以后版本安装需要Internet连接，而一开始网络连接错误设置成了NAT模式而非桥接模式导致安装程序不能成功进行Retrieve files、Download language packs等操作及其后续Unpack等操作，导致不完全安装，即使安装成功也是英文版本，所以遇到这种情况还是<strong>重装</strong>为好，记得创建新的虚拟机时网络设置设置为<strong>桥接模式</strong>或者你能用的模式。另外推荐给虚拟机分配1/3的处理器和内核（比如6核12线程分配处理器数量为2、每个处理器的核心数量为2），这样安装会快不少。</p>
+<p>使用新设置重装后却发现仍然同样的结果，于是用Ctrl+Alt+F1或Ctrl+Alt+F2调出终端：</p>
+<p><img src="/posts/23835/Documents\Programming\HexoBlog\source\_posts\CSDN补档-25\20200329170400721.png" alt="img"></p>
+<p>这两条信息不停地循环显示。然而经Hard Disk Sentinel检测磁盘很健康，无坏道，（Windows下进入镜像目录）用</p>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">certutil</span> -hashfile ubuntu-<span class="number">19</span>.<span class="number">10</span>-desktop-amd<span class="number">64</span>.iso MD<span class="number">5</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>MD5码校验正确，猜测可能是硬盘数据线老化的问题，仍然是执行连接CD/DVD 2 (SATA)后成功安装VMware Tools，这时打开菜单栏虚拟机选项卡：</p>
+<p><img src="/posts/23835/Documents\Programming\HexoBlog\source\_posts\CSDN补档-25\20200329171032277.png" alt="img"></p>
+<p>显示重新安装VMware Tools为灰色，剪贴板等VMware Tools功能正常，虚拟机正常运行。发现文件选项卡中找不到共享文件夹，可执行：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmhgfs-fuse .host:<span class="regexp">/  /m</span>nt<span class="regexp">/hgfs/</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>还可以给共享文件夹创建到HOME目录的软链接（share为共享文件夹名称）：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="regexp">/mnt/</span>hgfs</span><br><span class="line">ln -s <span class="regexp">/mnt/</span>hgfs<span class="regexp">/share/</span> ~/share</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -757,758 +1652,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/57768.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/57768.html" class="post-title-link" itemprop="url">LaTeX中align和alignat之间的区别</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-22 15:33:43" itemprop="dateCreated datePublished" datetime="2020-03-22T15:33:43+08:00">2020-03-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/57768.html" class="post-meta-item leancloud_visitors" data-flag-title="LaTeX中align和alignat之间的区别" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/57768.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/57768.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>第一个区别是使用align不需要额外的参数：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{align}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>而alignat需要：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{&lt;number&gt;}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>两种环境都创建基于rl对的列对齐，align会根据你写的内容创建足够多的列，而alignat需要你提前指定想要多少列。</p>
-<p>然而，这两种环境还有更多不同。align环境会在列与列之间添加水平空格</p>
-<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;r col&gt;</span><span class="section">&lt;l col&gt;</span> <span class="section">&lt;space&gt;</span> <span class="section">&lt;...&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>而alignat不会添加水平空格。例如见<a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/200502/align-environment-align-on-the-left-side">Align-environment: Align on the left side</a>中的一个对齐</p>
-<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;l col&gt;</span><span class="section">&lt;l col&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>可以通过使用空的右对齐列：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat}</span><span class="string">{2}</span></span></span><br><span class="line">&amp;ABC  &amp;&amp;= AB</span><br><span class="line">&amp;ABCD &amp;&amp;= ABC - ABCDEFG</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>两种环境在cell的开始处的左对齐列都有一个隐式的{}来使得起始于关系符或运算符的cell能够有合适的间距。</p>
-<p>alignat的其他用法包括当我们想要更好地控制列与列之间的水平间距时。这样的间距应当被显式地指定如下：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">{alignat*}</span><span class="string">{3}</span></span></span><br><span class="line">&amp; m   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{módulo}</span></span>            <span class="tag">\<span class="name">quad</span></span> &amp;&amp; m&gt;0<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; a   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{multiplicador}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0&lt;a&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; c   <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{constante aditiva}</span></span> <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> c&lt;m<span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp; x_0 <span class="tag">\<span class="name">quad</span></span> &amp;&amp; <span class="tag">\<span class="name">text</span><span class="string">{valor inicial}</span></span>     <span class="tag">\<span class="name">quad</span></span> &amp;&amp; 0<span class="tag">\<span class="name">leq</span></span> x_0 &lt;m</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">{alignat*}</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>(见<a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/49014/aligning-equations-with-text-with-alignat">Aligning equations with text with alignat</a>)这样的控制是不可能通过align完成的，因为它总是在列与列之间添加相同长度的水平间距。</p>
-<p>两种环境都有*的形式并对于任意行都接受\tag或\notag。</p>
-<p>此外还有“内部”版本的aligned和alignedat，在行内公式、显示公式和数学对齐等内部数学模式中它们遵循相同的规则。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/31774.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/31774.html" class="post-title-link" itemprop="url">ssh-add -L出现两个ssh-rsa key的解决办法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-21 19:12:46" itemprop="dateCreated datePublished" datetime="2020-03-21T19:12:46+08:00">2020-03-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/31774.html" class="post-meta-item leancloud_visitors" data-flag-title="ssh-add -L出现两个ssh-rsa key的解决办法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/31774.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/31774.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Windows上配置Git的困难之处在于往往不知道谁动了自己的ssh key：Git for Windows、msys2/mingw-w64中的git、CMD或PowerShell中的Git、WSL中的Git、其他软件中自带的Git等，比如最近GitHub将分支推送到Origin时突然报错，然后经过一番波折发现在Windows CMD命令提示符或PowerShell中输入ssh-add -l或ssh-add -L居然显示了两个不同的ssh-rsa key，而且指向的目录都是C:\Users&lt;username&gt;.ssh\id_rsa，重启计算机仍然如此，用ssh-keygen重新生成了key仍然如此，不得不说是一个神奇的bug。事实上，到最后也没能找出原因。据说GitHub Desktop与github.com和其他站点通信使用两套不同的SSH密钥，然而理论上它使用的密钥也会显示在$USERPROFILE/.ssh中，所以排除。不过经过测试，将其中的id_rsa删除并重启CMD后运行ssh-add -L命令仍然出现两个key，原来这条命令将SSH key存入SSH-Agent的高速缓存中，所以使用语句：</p>
-<figure class="highlight dockerfile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-<span class="keyword">add</span><span class="bash"> -D</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>删除所有密钥（如果报错则先运行ssh-add -d直到不能删除然后再运行ssh-add D，不用担心，这条语句并不会删除id_rsa文件），然后重新运行</p>
-<figure class="highlight arcade"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add C:\Users\&lt;username&gt;<span class="regexp">/.ssh/i</span>d_rsa</span><br></pre></td></tr></tbody></table></figure>
-
-<p>再次检验ssh-add -L只剩一个密钥了。重新打开GitHub Desktop，问题成功解决。</p>
-<p>不过遗留的问题是如何根本上解决Windows SSH冲突的问题，比如Git for Windows中的SSH和WSL中的SSH，留待日后讨论。</p>
-<hr>
-<p>2020年3月27日更新：</p>
-<p>原因找到了，当我们使用JetBrains提供的CLion的WSL配置脚本后，它安装了一个SSH Server，并在WSL的~/.ssh/known_hosts末尾空一行添加了一行不同于普通ssh-rsa的代码，经过未知的操作，这段代码也在C:\Users&lt;username&gt;.ssh\known_hosts中出现。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/36466.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/36466.html" class="post-title-link" itemprop="url">Git for Windows 2.25.1更改$HOME路径</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-21 17:45:55" itemprop="dateCreated datePublished" datetime="2020-03-21T17:45:55+08:00">2020-03-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/36466.html" class="post-meta-item leancloud_visitors" data-flag-title="Git for Windows 2.25.1更改$HOME路径" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/36466.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/36466.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>由于之前安装Cadence更改了系统环境变量，Git for Windows的$HOME目录定位到了其他地方，新版的Git for Windows在安装目录（如D:\Program_Files\Git）下的/etc/profile中已经删除了HOME相关的设置行，但是不用担心，我们只需要在profile文件开头加入：</p>
-<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HOME</span>=<span class="string">"C:/Users/&lt;username&gt;"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>或其他你想指定的目录即可更改$HOME路径，无视环境变量中对HOME的定义。</p>
-<p>Reference:</p>
-<p><a target="_blank" rel="noopener" href="https://www.riuson.com/blog/post/git-for-windows-custom-home-directory">Git for Windows - custom home directory</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/16107.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/16107.html" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-18 13:54:00" itemprop="dateCreated datePublished" datetime="2020-03-18T13:54:00+08:00">2020-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 12:24:12" itemprop="dateModified" datetime="2020-10-02T12:24:12+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/16107.html" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/16107.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/16107.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/40036.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/40036.html" class="post-title-link" itemprop="url">Python解决gbk、utf-8、gb2312的UnicodeEncodeError与UnicodeDecodeError乱码解码的两种方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-15 11:09:16" itemprop="dateCreated datePublished" datetime="2020-03-15T11:09:16+08:00">2020-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:42:20" itemprop="dateModified" datetime="2020-10-02T10:42:20+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/40036.html" class="post-meta-item leancloud_visitors" data-flag-title="Python解决gbk、utf-8、gb2312的UnicodeEncodeError与UnicodeDecodeError乱码解码的两种方法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/40036.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/40036.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Python在处理文字数据时往往会面对文字中乱码的困扰，这其中往往还包含了神奇的双字节字符和多字节字符，我们只想删除这些乱码而不想去掉字符串中的任何普通符号，可以使用正则表达式处理（以MATLAB为例）：</p>
-<figure class="highlight lisp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matchStr=unique(<span class="name">regexp</span>(<span class="name">str</span>{i},'[^\x00-\xff]','match'))</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后使用strrep函数即可删除这些非双字节（非ASCII）字符，特别地，[\u4e00-\u9fa5]可以匹配中文字符。但是Python读取替换过后的字符串还是报错：</p>
-<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnicodeDecodeError: <span class="symbol">'gbk</span>' codec can<span class="symbol">'t</span> decode byte xxxx <span class="keyword">in</span> position</span><br></pre></td></tr></tbody></table></figure>
-
-<p>如果你设置utf-8解码或gb2312解码仍然会报错。问题在于正则表达式可以处理ASCII与Unicode编码，但<strong>不能处理GBK编码</strong>，遇上GBK编码的字符串是无解的（参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/simpman/archive/2013/02/22/2921907.html">正则表达式（二）：Unicode诸问题（上）</a>），而我们收到一组数据时往往不能对数据提供方要求说你们得给Unicode编码的字符，所以我们要忽略掉这些不能被正确编码解码的字符。</p>
-<p>方式一：读取文件对象时忽略错误</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(file_path, <span class="keyword">errors</span>=<span class="string">'ignore'</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    <span class="keyword">lines</span> = file_object.readlines()</span><br></pre></td></tr></tbody></table></figure>
-
-<p>方式二：读取表格等数据类型时使用ISO-8859-1编码（其中header默认值即为’infer’，sep相当于MATLAB中的’Delimiter’分隔符）</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"> </span><br><span class="line">table1 = pd.read_table(file_path, <span class="attribute">sep</span>=<span class="string">'\t'</span>, <span class="attribute">header</span>=<span class="string">'infer'</span>, <span class="attribute">encoding</span>=<span class="string">'ISO-8859-1'</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<p>成功解决。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yihuajack.github.io/posts/52215.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Liu Yihua">
-      <meta itemprop="description" content="綴る言の葉に彩られ 紅く色めき刹那に踊る">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ayka's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/52215.html" class="post-title-link" itemprop="url">MATLAB update出现未知错误unexpected error及Bundle#136 start failed的一种可能原因</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-15 10:21:26" itemprop="dateCreated datePublished" datetime="2020-03-15T10:21:26+08:00">2020-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 11:18:49" itemprop="dateModified" datetime="2020-10-02T11:18:49+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSDN%E8%A1%A5%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">CSDN补档</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/52215.html" class="post-meta-item leancloud_visitors" data-flag-title="MATLAB update出现未知错误unexpected error及Bundle#136 start failed的一种可能原因" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/52215.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/52215.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在安装MATLAB R2019b Update 5的过程中出现未知错误unexpected error，并且找不到日志文件可供查询（如果有高手找到请指教），打开代理后仍然出现未知错误还连带了连接错误connection error。本来想暂时放弃更新，结果打开MATLAB发现命令行窗口报错：</p>
-<figure class="highlight latex"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Caught "std::exception" Exception message is:</span><br><span class="line">Bundle#136 start failed: Loading E:<span class="tag">\<span class="name">Program</span></span> Files<span class="tag">\<span class="name">MATLAB</span></span><span class="tag">\<span class="name">R</span></span>2019b<span class="tag">\<span class="name">bin</span></span><span class="tag">\<span class="name">win</span></span>64<span class="tag">\<span class="name">builtins</span></span><span class="tag">\<span class="name">matlab</span></span>_graphics_hg<span class="tag">\<span class="name">mwhg</span></span>_builtinimpl.dllfailed with error: 鎵句笉鍒版寚瀹氱殑妯″潡銆�</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">在后台初始化图形期间出错: Bundle#136 start failed: Loading E:<span class="tag">\<span class="name">Program</span></span></span><br><span class="line">Files<span class="tag">\<span class="name">MATLAB</span></span><span class="tag">\<span class="name">R</span></span>2019b<span class="tag">\<span class="name">bin</span></span><span class="tag">\<span class="name">win</span></span>64<span class="tag">\<span class="name">builtins</span></span><span class="tag">\<span class="name">matlab</span></span>_graphics_hg<span class="tag">\<span class="name">mwhg</span></span>_builtinimpl.dllfailed</span><br><span class="line">with error: 鎵句笉鍒版寚瀹氱殑妯″潡銆</span><br></pre></td></tr></tbody></table></figure>
-
-<p>而试图打开一个m文件则继续报错</p>
-<figure class="highlight reasonml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"AWT-EventQueue-0"</span>: java.lang.NoClassDefFoundError: com/mathworks/toolbox/coder/nide/editor/StateflowStorageLocation</span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>define<span class="constructor">Class1(Native Method)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>define<span class="constructor">Class(ClassLoader.<span class="params">java</span>:763)</span></span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">SecureClassLoader</span>.</span></span>define<span class="constructor">Class(SecureClassLoader.<span class="params">java</span>:142)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>define<span class="constructor">Class(URLClassLoader.<span class="params">java</span>:468)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>access<span class="constructor">$100(URLClassLoader.<span class="params">java</span>:74)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader$1</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>java:<span class="number">369</span>)</span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader$1</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>java:<span class="number">363</span>)</span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">AccessController</span>.</span></span><span class="keyword">do</span><span class="constructor">Privileged(Native Method)</span></span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>find<span class="constructor">Class(URLClassLoader.<span class="params">java</span>:362)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:424)</span></span><br><span class="line">	at sun.misc.<span class="module-access"><span class="module"><span class="identifier">Launcher$AppClassLoader</span>.</span></span>load<span class="constructor">Class(Launcher.<span class="params">java</span>:349)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:357)</span></span><br><span class="line">	at com.mathworks.toolbox.eml.breakpoints.<span class="module-access"><span class="module"><span class="identifier">EmlMarginProvider</span>.</span></span>is<span class="constructor">Applicable(EmlMarginProvider.<span class="params">java</span>:21)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>get<span class="constructor">ApplicableMarginProviders(EditorView.<span class="params">java</span>:252)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>init<span class="constructor">SyntaxTextPane(EditorView.<span class="params">java</span>:885)</span></span><br><span class="line">	at com.mathworks.mde.editor.EditorView.&lt;init&gt;(<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>java:<span class="number">222</span>)</span><br><span class="line">	at com.mathworks.mde.editor.EditorView.&lt;init&gt;(<span class="module-access"><span class="module"><span class="identifier">EditorView</span>.</span></span>java:<span class="number">153</span>)</span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">EditorViewClient</span>.</span></span>init(<span class="module-access"><span class="module"><span class="identifier">EditorViewClient</span>.</span></span>java:<span class="number">232</span>)</span><br><span class="line">	at com.mathworks.mde.editor.EditorViewClient.&lt;init&gt;(<span class="module-access"><span class="module"><span class="identifier">EditorViewClient</span>.</span></span>java:<span class="number">181</span>)</span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>create<span class="constructor">EditorViewClient(MatlabEditorApplication.<span class="params">java</span>:700)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>create<span class="constructor">EditorViewClient(MatlabEditorApplication.<span class="params">java</span>:685)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>create<span class="constructor">EditorViewClientFromExistingFile(MatlabEditorApplication.<span class="params">java</span>:677)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication</span>.</span></span>access<span class="constructor">$300(MatlabEditorApplication.<span class="params">java</span>:73)</span></span><br><span class="line">	at com.mathworks.mde.editor.<span class="module-access"><span class="module"><span class="identifier">MatlabEditorApplication$4</span>.</span></span>run<span class="constructor">WithOutput(MatlabEditorApplication.<span class="params">java</span>:402)</span></span><br><span class="line">	at com.mathworks.jmi.<span class="module-access"><span class="module"><span class="identifier">AWTUtilities$Invoker$2</span>.</span></span>watched<span class="constructor">Run(AWTUtilities.<span class="params">java</span>:475)</span></span><br><span class="line">	at com.mathworks.jmi.<span class="module-access"><span class="module"><span class="identifier">AWTUtilities$WatchedRunnable</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">AWTUtilities</span>.</span></span>java:<span class="number">436</span>)</span><br><span class="line">	at java.awt.event.<span class="module-access"><span class="module"><span class="identifier">InvocationEvent</span>.</span></span>dispatch(<span class="module-access"><span class="module"><span class="identifier">InvocationEvent</span>.</span></span>java:<span class="number">311</span>)</span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>dispatch<span class="constructor">EventImpl(EventQueue.<span class="params">java</span>:758)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>access<span class="constructor">$500(EventQueue.<span class="params">java</span>:97)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue$3</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>java:<span class="number">709</span>)</span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue$3</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>java:<span class="number">703</span>)</span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">AccessController</span>.</span></span><span class="keyword">do</span><span class="constructor">Privileged(Native Method)</span></span><br><span class="line">	at java.security.<span class="module-access"><span class="module"><span class="identifier">ProtectionDomain$JavaSecurityAccessImpl</span>.</span></span><span class="keyword">do</span><span class="constructor">IntersectionPrivilege(ProtectionDomain.<span class="params">java</span>:74)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventQueue</span>.</span></span>dispatch<span class="constructor">Event(EventQueue.<span class="params">java</span>:728)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">OneEventForFilters(EventDispatchThread.<span class="params">java</span>:205)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">EventsForFilter(EventDispatchThread.<span class="params">java</span>:116)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">EventsForHierarchy(EventDispatchThread.<span class="params">java</span>:105)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">Events(EventDispatchThread.<span class="params">java</span>:101)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>pump<span class="constructor">Events(EventDispatchThread.<span class="params">java</span>:93)</span></span><br><span class="line">	at java.awt.<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>run(<span class="module-access"><span class="module"><span class="identifier">EventDispatchThread</span>.</span></span>java:<span class="number">82</span>)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: com.mathworks.toolbox.coder.nide.editor.StateflowStorageLocation</span><br><span class="line">	at java.net.<span class="module-access"><span class="module"><span class="identifier">URLClassLoader</span>.</span></span>find<span class="constructor">Class(URLClassLoader.<span class="params">java</span>:382)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:424)</span></span><br><span class="line">	at sun.misc.<span class="module-access"><span class="module"><span class="identifier">Launcher$AppClassLoader</span>.</span></span>load<span class="constructor">Class(Launcher.<span class="params">java</span>:349)</span></span><br><span class="line">	at java.lang.<span class="module-access"><span class="module"><span class="identifier">ClassLoader</span>.</span></span>load<span class="constructor">Class(ClassLoader.<span class="params">java</span>:357)</span></span><br><span class="line"><span class="operator">	... </span><span class="number">40</span> more</span><br></pre></td></tr></tbody></table></figure>
-
-<p>不禁让人联想起更新NVIDIA显卡驱动程序时MATLAB出现的临时性错误。经过回忆想起在这期间由于需要给开始菜单截图提交GitHub issue而把系统的语言更改成了英文。这时我们把系统的语言改回中文，命令行窗口仍会报错，这可能是因为更新失败无法回滚造成的，点击右上角铃铛图标显示通知中更新Update 5，无需代理即可成功安装更新。这启示如果出现类似错误，可以先检查一下系统设置是否发生了改变。</p>
-<p>另外，如有需求，我们可以直接从<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/downloads/web_downloads/show_updates?release=R2019b%EF%BC%88URL%E6%9C%80%E5%90%8E%E7%9A%84R2019b%E5%8F%AF%E6%8D%A2%E6%88%90%E4%BD%A0%E6%83%B3%E6%9B%B4%E6%96%B0%E7%9A%84MATLAB%E7%89%88%E6%9C%AC%E5%8F%B7%EF%BC%89%E4%B8%8B%E8%BD%BDMATLAB">https://ww2.mathworks.cn/downloads/web_downloads/show_updates?release=R2019b（URL最后的R2019b可换成你想更新的MATLAB版本号）下载MATLAB</a> Update更新包，如图所示：</p>
-<p><img src="/posts/52215/Documents\Programming\HexoBlog\source\_posts\CSDN补档-16\20200315101839605.png" alt="img"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1576,20 +1723,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1814,6 +1961,26 @@ window.addEventListener('pjax:success', () => {
 
 
 
+<script data-pjax>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 
