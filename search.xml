@@ -1229,6 +1229,42 @@
       </tags>
   </entry>
   <entry>
+    <title>git错误unable to create symlink ssl...Could not reset index file to revision ‘HEAD‘的解决方法</title>
+    <url>/posts/57803.html</url>
+    <content><![CDATA[<p>执行</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></tbody></table></figure>
+
+<p>时报错：</p>
+<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">error: </span>unable to create symlink ssl: Permission denied</span><br><span class="line">fatal: Could not reset index file to revision 'HEAD'</span><br></pre></td></tr></tbody></table></figure>
+
+<p>解决方法是以管理员身份运行Terminal或Shell。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CSDN补档</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pip升级会导致Could not install packages due to an EnvironmentError：[WinError 5]拒绝访问错误的原因</title>
     <url>/posts/17887.html</url>
     <content><![CDATA[<p>Python安装时可勾选安装pip，安装完成后执行</p>
@@ -1281,42 +1317,6 @@
       <tags>
         <tag>python</tag>
         <tag>pip</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git错误unable to create symlink ssl...Could not reset index file to revision ‘HEAD‘的解决方法</title>
-    <url>/posts/57803.html</url>
-    <content><![CDATA[<p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></tbody></table></figure>
-
-<p>时报错：</p>
-<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">error: </span>unable to create symlink ssl: Permission denied</span><br><span class="line">fatal: Could not reset index file to revision 'HEAD'</span><br></pre></td></tr></tbody></table></figure>
-
-<p>解决方法是以管理员身份运行Terminal或Shell。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CSDN补档</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -1411,6 +1411,37 @@
       <tags>
         <tag>go</tag>
         <tag>proxy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初配置WSL/Ubuntu时apt-get install g++等时出现依赖版本过高（Depends：but it is not going）的问题的解决方法</title>
+    <url>/posts/54448.html</url>
+    <content><![CDATA[<p>不要尝试一个个将依赖版本倒退回指定版本，因为根本没有用， 纯属浪费时间。不要使用网络上提供的源，该问题由于源的问题导致的（如某aliyun源的版本代号是xenial，属16.04LTS版本，在18.04LTS版本上将出现问题，18.04LTS对于的是bionic）。建议到<a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/%E4%B8%AD%E9%80%89%E5%AE%9A%E4%BD%A0%E6%89%80%E5%AE%89%E8%A3%85%E7%9A%84%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E7%9A%84%E6%BA%90%E6%9B%B4%E6%8D%A2%E3%80%82%E6%8D%A2%E5%A5%BD%E5%90%8E%E8%AE%B0%E5%BE%97sudo">https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/中选定你所安装的系统版本的源更换。换好后记得sudo</a> apt-get update然后sudo apt-get upgrade。这时再执行sudo apt-get install将没有问题。事实上，该问题还会导致SSL配置错误。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CSDN补档</category>
+      </categories>
+      <tags>
+        <tag>WSL</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1586,9 +1617,38 @@
       </tags>
   </entry>
   <entry>
-    <title>初配置WSL/Ubuntu时apt-get install g++等时出现依赖版本过高（Depends：but it is not going）的问题的解决方法</title>
-    <url>/posts/54448.html</url>
-    <content><![CDATA[<p>不要尝试一个个将依赖版本倒退回指定版本，因为根本没有用， 纯属浪费时间。不要使用网络上提供的源，该问题由于源的问题导致的（如某aliyun源的版本代号是xenial，属16.04LTS版本，在18.04LTS版本上将出现问题，18.04LTS对于的是bionic）。建议到<a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/%E4%B8%AD%E9%80%89%E5%AE%9A%E4%BD%A0%E6%89%80%E5%AE%89%E8%A3%85%E7%9A%84%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E7%9A%84%E6%BA%90%E6%9B%B4%E6%8D%A2%E3%80%82%E6%8D%A2%E5%A5%BD%E5%90%8E%E8%AE%B0%E5%BE%97sudo">https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/中选定你所安装的系统版本的源更换。换好后记得sudo</a> apt-get update然后sudo apt-get upgrade。这时再执行sudo apt-get install将没有问题。事实上，该问题还会导致SSL配置错误。</p>
+    <title>Cygwin快速配置C++环境+ZSH</title>
+    <url>/posts/1017.html</url>
+    <content><![CDATA[<ol>
+<li><p><a href="http://www.cygwin.com/">Cygwin官网</a>下载<a href="http://www.cygwin.com/setup-x86_64.exe">setup-x86_64.exe</a>并安装。选择Install from Internet、Use System Proxy Settings，在User URL中Add <a href="http://mirrors.aliyun.com/cygwin/%E3%80%82">http://mirrors.aliyun.com/cygwin/。</a></p>
+</li>
+<li><p>安装gcc-core、gcc-g++、make、gdb、binutils、python38、cmake、man-db、nano、openssl、libssl1.1、libstdc++6、vim、wget、xz、curl、git、perl、openssh、mintty、zsh等。</p>
+</li>
+<li><p>/etc/bash.bashrc添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">HOME=<span class="string">"/cygdrive/d/Documents/Programming/cygwinhome"</span></span><br><span class="line">PATH=<span class="string">"/usr/local/bin:/usr/bin"</span></span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line"><span class="built_in">exec</span> zsh</span><br></pre></td></tr></tbody></table></figure>
+
+<p>/etc/nsswitch.conf取消db_home注释并改为</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">db_home:  /cygdrive/d/Documents/Programming/cygwinhome</span><br></pre></td></tr></tbody></table></figure>
+
+<p>/etc/profile添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">HOME=<span class="string">"/cygdrive/d/Documents/Programming/cygwinhome"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>将.zshrc放在D:\Documents\Programming\cygwinhome中，改为</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ZSH=<span class="string">"/cygdrive/d/Program_Files/.oh-my-zsh"</span></span><br><span class="line">ZSH_THEME=<span class="string">"agnoster"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>参考<a href="https://stackoverflow.com/questions/1494658/how-can-i-change-my-cygwin-home-folder-after-installation">How can I change my Cygwin home folder after installation?</a>、<a href="https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-syntax%E5%8F%8A[Cygwin%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9HOME%E7%9B%AE%E5%BD%95%EF%BC%88MSYS2%E5%92%8CCygwin">https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-syntax及[Cygwin如何更改HOME目录（MSYS2和Cygwin</a> ZSH冲突）](<a href="https://blog.csdn.net/yihuajack/article/details/105249209)%E3%80%82">https://blog.csdn.net/yihuajack/article/details/105249209)。</a></p>
+</li>
+<li><p>Cygwin Terminal窗口Options-&gt;Text-&gt;Font更改字体。</p>
+</li>
+<li><p>（可选）Windows Terminal配置：settings.json中的”profiles”下的”list”下添加</p>
+<figure class="highlight json"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"guid"</span>: <span class="string">"{3bf9cb4f-ac0a-49ee-8002-f11a648c0ea2}"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"Cygwin64"</span>,</span><br><span class="line">    <span class="attr">"commandline"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\bin\\bash.exe"</span>,</span><br><span class="line">    <span class="attr">"icon"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\Cygwin.ico"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>（可选）ConEmu配置：Settings-&gt;General-&gt;Fonts更改字体；Settings-&gt;Startup-&gt;Tasks，{Bash:CygWin bash}中Commands默认为</p>
+<figure class="highlight taggerscript"><table><tbody><tr><td class="code"><pre><span class="line">set CHERE_INVOKING=1 &amp; set "PATH=<span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\b</span>in;<span class="variable">%PATH%</span>" &amp; <span class="variable">%ConEmuBaseDirShort%</span><span class="symbol">\c</span>onemu-cyg-64.exe -new_console:p <span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\b</span>in<span class="symbol">\b</span>ash.exe --login -i -new_console:C:"<span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\C</span>ygwin.ico"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>（可选）Fluent Terminal设置：配置文件-&gt;新建。名称：Cygwin；可执行程序位置：D:\Program_Files\cygwin64\bin\bash.exe；工作目录：D:\Documents\Programming\cygwinhome；快捷键：自选。</p>
+</li>
+</ol>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1612,8 +1672,8 @@
         <category>CSDN补档</category>
       </categories>
       <tags>
-        <tag>WSL</tag>
-        <tag>Ubuntu</tag>
+        <tag>cygwin</tag>
+        <tag>zsh</tag>
       </tags>
   </entry>
   <entry>
@@ -1719,66 +1779,6 @@
       <tags>
         <tag>ubuntu</tag>
         <tag>wsl</tag>
-        <tag>zsh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cygwin快速配置C++环境+ZSH</title>
-    <url>/posts/1017.html</url>
-    <content><![CDATA[<ol>
-<li><p><a href="http://www.cygwin.com/">Cygwin官网</a>下载<a href="http://www.cygwin.com/setup-x86_64.exe">setup-x86_64.exe</a>并安装。选择Install from Internet、Use System Proxy Settings，在User URL中Add <a href="http://mirrors.aliyun.com/cygwin/%E3%80%82">http://mirrors.aliyun.com/cygwin/。</a></p>
-</li>
-<li><p>安装gcc-core、gcc-g++、make、gdb、binutils、python38、cmake、man-db、nano、openssl、libssl1.1、libstdc++6、vim、wget、xz、curl、git、perl、openssh、mintty、zsh等。</p>
-</li>
-<li><p>/etc/bash.bashrc添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">HOME=<span class="string">"/cygdrive/d/Documents/Programming/cygwinhome"</span></span><br><span class="line">PATH=<span class="string">"/usr/local/bin:/usr/bin"</span></span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line"><span class="built_in">exec</span> zsh</span><br></pre></td></tr></tbody></table></figure>
-
-<p>/etc/nsswitch.conf取消db_home注释并改为</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">db_home:  /cygdrive/d/Documents/Programming/cygwinhome</span><br></pre></td></tr></tbody></table></figure>
-
-<p>/etc/profile添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">HOME=<span class="string">"/cygdrive/d/Documents/Programming/cygwinhome"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>将.zshrc放在D:\Documents\Programming\cygwinhome中，改为</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ZSH=<span class="string">"/cygdrive/d/Program_Files/.oh-my-zsh"</span></span><br><span class="line">ZSH_THEME=<span class="string">"agnoster"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>参考<a href="https://stackoverflow.com/questions/1494658/how-can-i-change-my-cygwin-home-folder-after-installation">How can I change my Cygwin home folder after installation?</a>、<a href="https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-syntax%E5%8F%8A[Cygwin%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9HOME%E7%9B%AE%E5%BD%95%EF%BC%88MSYS2%E5%92%8CCygwin">https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-syntax及[Cygwin如何更改HOME目录（MSYS2和Cygwin</a> ZSH冲突）](<a href="https://blog.csdn.net/yihuajack/article/details/105249209)%E3%80%82">https://blog.csdn.net/yihuajack/article/details/105249209)。</a></p>
-</li>
-<li><p>Cygwin Terminal窗口Options-&gt;Text-&gt;Font更改字体。</p>
-</li>
-<li><p>（可选）Windows Terminal配置：settings.json中的”profiles”下的”list”下添加</p>
-<figure class="highlight json"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"guid"</span>: <span class="string">"{3bf9cb4f-ac0a-49ee-8002-f11a648c0ea2}"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"Cygwin64"</span>,</span><br><span class="line">    <span class="attr">"commandline"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\bin\\bash.exe"</span>,</span><br><span class="line">    <span class="attr">"icon"</span>: <span class="string">"D:\\Program_Files\\cygwin64\\Cygwin.ico"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>（可选）ConEmu配置：Settings-&gt;General-&gt;Fonts更改字体；Settings-&gt;Startup-&gt;Tasks，{Bash:CygWin bash}中Commands默认为</p>
-<figure class="highlight taggerscript"><table><tbody><tr><td class="code"><pre><span class="line">set CHERE_INVOKING=1 &amp; set "PATH=<span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\b</span>in;<span class="variable">%PATH%</span>" &amp; <span class="variable">%ConEmuBaseDirShort%</span><span class="symbol">\c</span>onemu-cyg-64.exe -new_console:p <span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\b</span>in<span class="symbol">\b</span>ash.exe --login -i -new_console:C:"<span class="variable">%ConEmuDrive%</span><span class="symbol">\P</span>rogram_Files<span class="symbol">\c</span>ygwin64<span class="symbol">\C</span>ygwin.ico"</span><br></pre></td></tr></tbody></table></figure>
-
-<p>（可选）Fluent Terminal设置：配置文件-&gt;新建。名称：Cygwin；可执行程序位置：D:\Program_Files\cygwin64\bin\bash.exe；工作目录：D:\Documents\Programming\cygwinhome；快捷键：自选。</p>
-</li>
-</ol>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CSDN补档</category>
-      </categories>
-      <tags>
-        <tag>cygwin</tag>
         <tag>zsh</tag>
       </tags>
   </entry>
@@ -2674,6 +2674,38 @@
       </tags>
   </entry>
   <entry>
+    <title>GitHub Actions不更新Gist问题的调试方法与解决方法（以waka-box为例）</title>
+    <url>/posts/37452.html</url>
+    <content><![CDATA[<p>使用<a href="https://github.com/matchai/waka-box">waka-box</a>或<a href="https://github.com/YouEclipse/waka-box-go">waka-box-go</a>时根据其README配置完成后发现Gist未更新，根据<a href="https://github.com/matchai/waka-box/issues/42">Issue #42</a>需要等WakaTime中有数据后才可以更新，于是等到WakaTime有数据后再查看依旧不更新，根据<a href="https://github.com/matchai/waka-box/issues/61">Issue #61</a>，WakaTime每日更新一次，于是等过了一天Gist依旧不更新，尝试删除了GitHub Access Token、fork的Repository和创建的Gist后重新配置依旧失败，在另一个pinned-gist项目<a href="https://github.com/maxam2017/productive-box">productive-box</a>的README中找到Project Setup的第2步：Open the “Actions” tab of your fork and click the “enable” button，于是在fork的repository中的Actions中选择了启用，等待一天后依旧没有更新Gist。受到<a href="https://github.com/matchai/waka-box/issues/51">Issue #51</a>的启发，进入fork的waka-box仓库的/actions下查看All workflows显示两个results：Update gist with WakaTime stats Update gist with WakaTime stats #1: Scheduled和Update gist with WakaTime stats #2: Scheduled并都有绿色对勾，进入workflow:”Update gist with WakaTime stats”下选择任一个result进入显示1 completed job，左边栏update-gist为绿色对勾状态，点击update-gist下的Update Gist项显示httperror: bad credentials。受到<a href="https://blog.csdn.net/qq_22884761/article/details/102769390">Error: Failed to install ‘unknown package’ from GitHub: HTTP error 401. Bad credentials</a>启发检查<a href="https://github.com/settings/tokens">Personal access tokens</a>发现之前删除了token，于是重新Generate new token并修改库-&gt;Settings-&gt;Secrets Update GH_TOKEN后回到Actions下选择最新的result右上角点击Re-run jobs-&gt;Re-run all jobs：<img src="/posts/37452/Documents\Programming\HexoBlog\source_posts\Others-1\20201029190306206.png" alt="img">等待片刻后任务完成，检查Update Gists项详情：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020102919033828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpaHVhamFjaw==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>成功运行，此时检查对应Gist发现其已被正确更新。 </p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LaTeX TikZ使用usegdlibrary命令报错Undefined control sequence的原因及解决方案</title>
     <url>/posts/26450.html</url>
     <content><![CDATA[<p>原因：“usegdlibrary”命令基于Ti<em>k</em>Z库“graphdrawing”，该库需要LuaTeX/LuaLaTeX支持。</p>
@@ -2713,12 +2745,16 @@
       </tags>
   </entry>
   <entry>
-    <title>GitHub Actions不更新Gist问题的调试方法与解决方法（以waka-box为例）</title>
-    <url>/posts/37452.html</url>
-    <content><![CDATA[<p>使用<a href="https://github.com/matchai/waka-box">waka-box</a>或<a href="https://github.com/YouEclipse/waka-box-go">waka-box-go</a>时根据其README配置完成后发现Gist未更新，根据<a href="https://github.com/matchai/waka-box/issues/42">Issue #42</a>需要等WakaTime中有数据后才可以更新，于是等到WakaTime有数据后再查看依旧不更新，根据<a href="https://github.com/matchai/waka-box/issues/61">Issue #61</a>，WakaTime每日更新一次，于是等过了一天Gist依旧不更新，尝试删除了GitHub Access Token、fork的Repository和创建的Gist后重新配置依旧失败，在另一个pinned-gist项目<a href="https://github.com/maxam2017/productive-box">productive-box</a>的README中找到Project Setup的第2步：Open the “Actions” tab of your fork and click the “enable” button，于是在fork的repository中的Actions中选择了启用，等待一天后依旧没有更新Gist。受到<a href="https://github.com/matchai/waka-box/issues/51">Issue #51</a>的启发，进入fork的waka-box仓库的/actions下查看All workflows显示两个results：Update gist with WakaTime stats Update gist with WakaTime stats #1: Scheduled和Update gist with WakaTime stats #2: Scheduled并都有绿色对勾，进入workflow:”Update gist with WakaTime stats”下选择任一个result进入显示1 completed job，左边栏update-gist为绿色对勾状态，点击update-gist下的Update Gist项显示httperror: bad credentials。受到<a href="https://blog.csdn.net/qq_22884761/article/details/102769390">Error: Failed to install ‘unknown package’ from GitHub: HTTP error 401. Bad credentials</a>启发检查<a href="https://github.com/settings/tokens">Personal access tokens</a>发现之前删除了token，于是重新Generate new token并修改库-&gt;Settings-&gt;Secrets Update GH_TOKEN后回到Actions下选择最新的result右上角点击Re-run jobs-&gt;Re-run all jobs：<img src="/posts/37452/Documents\Programming\HexoBlog\source_posts\Others-1\20201029190306206.png" alt="img">等待片刻后任务完成，检查Update Gists项详情：</p>
-<p><img src="https://img-blog.csdnimg.cn/2020102919033828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpaHVhamFjaw==,size_16,color_FFFFFF,t_70" alt="img"></p>
-<p>成功运行，此时检查对应Gist发现其已被正确更新。 </p>
-<script>
+    <title>ssh-add出现Error connecting to agent：No such file or directory的解决方法</title>
+    <url>/posts/63648.html</url>
+    <content><![CDATA[<p>Windows环境下执行</p>
+<figure class="highlight arcade"><table><tbody><tr><td class="code"><pre><span class="line">ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa</span><br></pre></td></tr></tbody></table></figure>
+
+<p>报错：</p>
+<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Error </span>connecting to agent: No such file or directory</span><br></pre></td></tr></tbody></table></figure>
+
+<p>解决方法：【<strong>以管理员身份运行</strong>】执行</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="code"><pre><span class="line">Set-Service ssh-agent -StartupType Manual</span><br><span class="line">Start-Service ssh-agent</span><br></pre></td></tr></tbody></table></figure><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -2738,10 +2774,10 @@
           });
       </script>]]></content>
       <categories>
-        <category>Others</category>
+        <category>SuperUser</category>
       </categories>
       <tags>
-        <tag>github</tag>
+        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
@@ -2804,42 +2840,6 @@
         <tag>malloc</tag>
         <tag>free</tag>
         <tag>struct</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ssh-add出现Error connecting to agent：No such file or directory的解决方法</title>
-    <url>/posts/63648.html</url>
-    <content><![CDATA[<p>Windows环境下执行</p>
-<figure class="highlight arcade"><table><tbody><tr><td class="code"><pre><span class="line">ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa</span><br></pre></td></tr></tbody></table></figure>
-
-<p>报错：</p>
-<figure class="highlight subunit"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">Error </span>connecting to agent: No such file or directory</span><br></pre></td></tr></tbody></table></figure>
-
-<p>解决方法：【<strong>以管理员身份运行</strong>】执行</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="code"><pre><span class="line">Set-Service ssh-agent -StartupType Manual</span><br><span class="line">Start-Service ssh-agent</span><br></pre></td></tr></tbody></table></figure><script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>SuperUser</category>
-      </categories>
-      <tags>
-        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
